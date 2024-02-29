@@ -1,0 +1,255 @@
+﻿<UserControl
+    x:Class="CirrosUI.SelectContextMenuPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CirrosUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d" 
+    d:DesignHeight="500"
+    d:DesignWidth="260"
+    >
+
+    <UserControl.Resources>
+        <Style x:Key="muxNumberBoxStyle" TargetType="muxc:NumberBox">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="DarkGray"/>
+            <Setter Property="MinHeight" Value="14" />
+            <Setter Property="MinWidth" Value="50" />
+            <Setter Property="Margin" Value="6,1,0,0" />
+        </Style>
+        <Style x:Key="LabelStyle" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="8" />
+        </Style>
+    </UserControl.Resources>
+
+    <Border BorderThickness="1" BorderBrush="{StaticResource DarkDarkGray}" Grid.Column="1" Grid.Row="2" Margin="0">
+        <StackPanel Orientation="Vertical" Background="White" SizeChanged="StackPanel_SizeChanged" >
+
+            <Grid Background="{StaticResource DarkDarkGray}" MinWidth="260">
+                <Rectangle Fill="{StaticResource DarkDarkGray}" />
+                <TextBlock x:Name="_title" Text="Select" Style="{StaticResource PopupTitleText}" FontSize="{Binding UIFontSizeNormal}" Margin="10,0,0,2" />
+                <StackPanel x:Name="_jumpIconPanel" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <!--<Button FontFamily="Segoe MDL2 Assets" Content="&#xe1e3;" Margin="0"
+                        Height="30" Padding="4,0" IsEnabled="False"
+                        FontSize="{Binding UIFontSizeSmall}" Foreground="White" VerticalAlignment="Center" 
+                        Background="Transparent" />-->
+                    <Button FontFamily="Segoe MDL2 Assets" Content="&#xe15e;" Margin="0" 
+                        Height="30" Padding="4,0" Click="EditObjectClick"
+                        FontSize="{Binding UIFontSizeSmall}" Foreground="White" VerticalAlignment="Center" 
+                        Background="Transparent" PointerExited="Button_PointerExited" />
+                    <Button FontFamily="Segoe MDL2 Assets" Content="&#xe74c;" Margin="0"
+                        Height="30" Padding="4,0" Click="EditGroupClick"
+                        FontSize="{Binding UIFontSizeSmall}" Foreground="White" VerticalAlignment="Center" 
+                        Background="Transparent" PointerExited="Button_PointerExited" />
+                    <Button FontFamily="Segoe MDL2 Assets" Content="&#xe77f;" Margin="0" 
+                        Height="30" Padding="4,0" Click="CopyPasteButton_Click"
+                        FontSize="{Binding UIFontSizeSmall}" Foreground="White" VerticalAlignment="Center" 
+                        Background="Transparent" PointerExited="Button_PointerExited" />
+                    <Button FontFamily="Segoe UI Symbol" Content="&#xe21c;" Margin="0" 
+                        Height="30" Padding="4,0" Click="CloseButton_Click"
+                        FontSize="{Binding UIFontSizeSmall}" Foreground="White" VerticalAlignment="Center" 
+                        Background="Transparent" PointerExited="Button_PointerExited" />
+                </StackPanel>
+            </Grid>
+
+            <Rectangle Fill="White" Height="2" />
+
+            <StackPanel x:Name="_noSelectionPanel" Orientation="Vertical" Margin="10" Visibility="Collapsed">
+                <TextBlock TextAlignment="Center" FontSize="{Binding UIFontSizeNormal}">
+                    Select an object to move, copy or transform
+                </TextBlock>
+                <TextBlock TextAlignment="Center" FontSize="{Binding UIFontSizeNormal}">
+                    or draw a box to select multiple objects
+                </TextBlock>
+            </StackPanel>
+
+            <StackPanel x:Name="_row0" Orientation="Horizontal" Margin="6,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ToggleButton Content="Move" Style="{StaticResource ContextMenuToggleButtonStyle}" IsChecked="True" />
+                <ToggleButton Content="Copy" Style="{StaticResource ContextMenuToggleButtonStyle}" />
+                <ToggleButton Content="Delete" Style="{StaticResource ContextMenuToggleButtonStyle}" />
+            </StackPanel>
+
+            <StackPanel x:Name="_row1" Orientation="Horizontal" Margin="6,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ToggleButton Content="Copy to clipboard" Style="{StaticResource ContextMenuToggleButtonStyle}" />
+                <ToggleButton Content="Paste" Style="{StaticResource ContextMenuToggleButtonStyle}" />
+            </StackPanel>
+
+            <StackPanel x:Name="_row2" Orientation="Horizontal" Margin="6,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ToggleButton Content="Resize" Style="{StaticResource ContextMenuToggleButtonStyle}" />
+                <ToggleButton Content="Free rotate" Style="{StaticResource ContextMenuToggleButtonStyle}" />
+                <ToggleButton Content="Flip" Style="{StaticResource ContextMenuToggleButtonStyle}" />
+                <ToggleButton Content="Transform" Style="{StaticResource ContextMenuToggleButtonStyle}" />
+            </StackPanel>
+            
+            <StackPanel x:Name="_row3" Orientation="Horizontal" Margin="6,0,6,1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ToggleButton Content="Create group" Style="{StaticResource ContextMenuToggleButtonStyle}" />
+                <ToggleButton Content="Properties" Style="{StaticResource ContextMenuToggleButtonStyle}" />
+                <ToggleButton Content="Display order" Style="{StaticResource ContextMenuToggleButtonStyle}" />
+            </StackPanel>
+
+            <StackPanel x:Name="_moveOptions" Orientation="Vertical" Visibility="Collapsed">
+
+                <Line StrokeThickness="1" Margin="0,3,0,2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" 
+                    X2="1" Stretch="Fill" StrokeEndLineCap="Square" StrokeStartLineCap="Square" Stroke="DarkGray" />
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <ToggleButton x:Name="_moveDragButton" Grid.Column="1" Grid.Row="1" Content="Drag selection" HorizontalAlignment="Right" 
+                                  Style="{StaticResource ContextMenuToggleButtonStyle}" FontSize="{Binding UIFontSizeNormal}" Click="MoveDrag_Click" />
+                    <ToggleButton x:Name="_moveOffsetButton" Grid.Column="2" Grid.Row="1" Content="Move by offset" 
+                                  Style="{StaticResource ContextMenuToggleButtonStyle}" FontSize="{Binding UIFontSizeNormal}" Click="MoveOffset_Click" />
+                </StackPanel>
+                
+                <StackPanel x:Name="_moveOffsetPanel" Orientation="Vertical">
+                    <Grid Height="70">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Column="1" Grid.Row="0" FontSize="{Binding UIFontSizeNormal}" Text="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0"/>
+                        <local:NumberBox1 x:Name="_dxBox" Grid.Column="2" Grid.Row="0" Style="{StaticResource DialogNumberBox}" IsDistance="True"
+                                         FontSize="{Binding UIFontSizeNormal}" HorizontalAlignment="Stretch" VerticalAlignment="Center" 
+                                 Value="1" InputScope="Number" OnValueChanged="_dxBox_OnValueChanged" />
+                        <TextBlock Grid.Column="1" Grid.Row="1" FontSize="{Binding UIFontSizeNormal}" Text="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0"/>
+                        <local:NumberBox1 x:Name="_dyBox" Grid.Column="2" Grid.Row="1" Style="{StaticResource DialogNumberBox}" IsDistance="True"
+                                         FontSize="{Binding UIFontSizeNormal}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                 Value="0" InputScope="Number" OnValueChanged="_dxBox_OnValueChanged" />
+                    </Grid>
+                    <Button Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="5" Content="Apply" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                            Style="{StaticResource ContextMenuButton}" FontSize="{Binding UIFontSizeNormal}"
+                            Click="MoveOffsetApply_Click" />
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel x:Name="_flipOptions" Orientation="Vertical" Visibility="Collapsed">
+
+                <Line StrokeThickness="1" Margin="0,2,0,2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" 
+                    X2="1" Stretch="Fill" StrokeEndLineCap="Square" StrokeStartLineCap="Square" Stroke="DarkGray"/>
+
+                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Content="Horizontal" Style="{StaticResource ContextMenuButton}" FontSize="{Binding UIFontSizeNormal}" Click="FlipHorizontal_Click" />
+                    <Button Content="Vertical" Style="{StaticResource ContextMenuButton}" FontSize="{Binding UIFontSizeNormal}" Click="FlipVertical_Click" />
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel x:Name="_displayOrderOptions" Orientation="Vertical" Visibility="Visible">
+
+                <Line StrokeThickness="1" Margin="0,2,0,2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" 
+                    X2="1" Stretch="Fill" StrokeEndLineCap="Square" StrokeStartLineCap="Square" Stroke="DarkGray"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Z-Index" Grid.Column="1" Style="{StaticResource LabelStyle}" 
+                        FontSize="{Binding UIFontSizeNormal}" TextAlignment="Right" />
+                    <muxc:NumberBox x:Name="_zIndexBox" Value="1" Grid.Column="3"
+                        SpinButtonPlacementMode="Inline" SmallChange="1" LargeChange="10" CornerRadius="0"
+                        Style="{StaticResource muxNumberBoxStyle}" FontSize="{Binding UIFontSizeNormal}" 
+                        Height="{Binding UIControlHeightNormal}" ValueChanged="_zIndexBox_ValueChanged"/>
+                </Grid>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4">
+                    <Button Content="Bring to front" Style="{StaticResource ContextMenuButton}" FontSize="{Binding UIFontSizeNormal}" Click="BringToFront_Click" />
+                    <Button Content="Send to back" Style="{StaticResource ContextMenuButton}" FontSize="{Binding UIFontSizeNormal}" Click="SendToBack_Click" />
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel x:Name="_layerOptions" Orientation="Vertical" HorizontalAlignment="Stretch" Visibility="Collapsed">
+
+                <Line StrokeThickness="1" Margin="0,2,0,2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" 
+                    X2="1" Stretch="Fill" StrokeEndLineCap="Square" StrokeStartLineCap="Square" Stroke="DarkGray"/>
+
+                <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="8" />
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Tag="0xffff" Text="New layer" Margin="8" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="{Binding UIFontSizeNormal}" />
+                    <ComboBox x:Name="_layerComboBox" Tag="0xffff" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" Background="White"
+                  Style="{StaticResource SettingsComboBox}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"
+                  ItemContainerStyle="{StaticResource StdComboBoxItemStyle}">
+                        <local:LayerTile />
+                    </ComboBox>
+                </Grid>
+            </StackPanel>
+
+            <StackPanel x:Name="_transformOptions" Orientation="Vertical" Visibility="Collapsed">
+                
+                <Line StrokeThickness="1" Margin="0,2,0,2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" 
+                    X2="1" Stretch="Fill" StrokeEndLineCap="Square" StrokeStartLineCap="Square" Stroke="DarkGray"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="0"/>
+                    </Grid.RowDefinitions>
+
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="X Scale" FontSize="{Binding UIFontSizeNormal}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <local:NumberBox1 x:Name="_xScaleBox" Grid.Column="2" Grid.Row="1" Style="{StaticResource DialogNumberBox}" FontSize="{Binding UIFontSizeNormal}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Value="1"
+                                 InputScope="Number" OnValueChanged="XScaleValueChanged" TextChanged="_xScaleBox_TextChanged" Margin="0,2"/>
+
+                <TextBlock Grid.Column="1" Grid.Row="2" Text="Y Scale" FontSize="{Binding UIFontSizeNormal}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <local:NumberBox1 x:Name="_yScaleBox" Grid.Column="2" Grid.Row="2" Style="{StaticResource DialogNumberBox}" FontSize="{Binding UIFontSizeNormal}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                 Value="1" InputScope="Number" IsEnabled="False" Margin="0,2"/>
+
+                <ToggleButton x:Name="_aspectToggleButton" Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Stretch" IsChecked="True" 
+                              BorderBrush="Gainsboro" Margin="2,-2"
+                              Checked="PreserveAspect_Checked" Unchecked="PreserveAspect_Unchecked" Style="{StaticResource ContextMenuToggleButtonStyle}" Width="26" Grid.ColumnSpan="2">
+                    <Canvas Height="41" Width="10" >
+                        <Polyline x:Name="_tieBar" Points="0,1 5,1 5,40 0,40" Stroke="White" StrokeThickness="2" />
+                    </Canvas>
+                </ToggleButton>
+
+                <TextBlock Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" FontSize="{Binding UIFontSizeNormal}" Text="Angle" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <local:NumberBox1 x:Name="_angleBox" Grid.Column="2" Grid.Row="3" Grid.RowSpan="2" Style="{StaticResource DialogNumberBox}" FontSize="{Binding UIFontSizeNormal}" HorizontalAlignment="Stretch" VerticalAlignment="Center" 
+                                 Value="0" IsAngle="True" InputScope="Number" Margin="0,2" />
+                </Grid>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="Apply" VerticalAlignment="Center" 
+                        Style="{StaticResource ContextMenuButton}" FontSize="{Binding UIFontSizeNormal}" Click="Apply_Click" />
+                    <Button Content="Reset transformations" VerticalAlignment="Center" 
+                        Style="{StaticResource ContextMenuButton}" FontSize="{Binding UIFontSizeNormal}" Click="Reset_Click" />
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel x:Name="_propertiesPanel" Orientation="Vertical" Visibility="Collapsed">
+
+                <Line StrokeThickness="1" Margin="0,3" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" 
+                    X2="1" Stretch="Fill" StrokeEndLineCap="Square" StrokeStartLineCap="Square" Stroke="DarkGray"/>
+
+                <ContentControl x:Name="_propertiesContentControl" Margin="2" HorizontalAlignment="Stretch" />
+            </StackPanel>
+
+            <Rectangle Fill="White" Height="4" />
+        </StackPanel>
+    </Border>
+</UserControl>

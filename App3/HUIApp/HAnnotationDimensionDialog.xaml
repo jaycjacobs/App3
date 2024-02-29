@@ -1,0 +1,206 @@
+﻿<UserControl
+    x:Class="RedDog.HUIApp.HAnnotationDimensionDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RedDog.HUIApp"
+    xmlns:cirros="using:CirrosUI"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:rt="using:KT22.UI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="{Binding DialogWidth}"
+    mc:Ignorable="d"
+    d:DesignHeight="600"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <muxc:TeachingTip x:Name="_ttAnnotationDimensionIntro" Title="Dimension" Tag="intro" Target="{x:Bind _titleTextBlock}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.IconSource>
+                <muxc:FontIconSource FontFamily="Segoe UI Symbol" Glyph="&#x2b7e;" />
+            </muxc:TeachingTip.IconSource>
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttAnnotationDimensionIncremental" Title="Incremental" Tag="incremental" Target="{x:Bind _incrementalIcon}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttAnnotationDimensionBaseline" Title="Baseline" Tag="baseline" Target="{x:Bind _baselineIcon}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttAnnotationDimensionPoint2Point" Title="Point to point" Tag="point2point" Target="{x:Bind _pointToPointIcon}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttAnnotationDimensionAngular" Title="Angular" Tag="angular" Target="{x:Bind _angularIcon}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttAnnotationDimensionBaselineAngular" Title="Baseline angular" Tag="baselineangular" Target="{x:Bind _baselineAngularIcon}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttAnnotationDimensionTextStyle" Title="Text style" Tag="style" Target="{x:Bind _styleComboBox}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttAnnotationDimensionArrowStyle" Title="Arrow style" Tag="arrowstyle" Target="{x:Bind _arrowStyleComboBox}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttAnnotationDimensionShowText" Title="Show dimension text" Tag="showtext" Target="{x:Bind _showTextCB}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttAnnotationDimensionShowExt" Title="Show extension lines" Tag="showext" Target="{x:Bind _showExtensionCB}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource HDialogBackground}" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Fill="{StaticResource BrightBackground}" />
+        <TextBlock x:Name="_titleTextBlock" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
+                   Text="Dimension" Style="{StaticResource HDialogTitle}" FontSize="{Binding UIFontSizeNormal}" />
+        <Button x:Name="_helpButton" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
+                Content="&#xE11B;" Click="_helpButton_Click" Style="{StaticResource HDialogTitleGlyphButton}" FontSize="{Binding UIFontSizeNormal}" />
+
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="130" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel x:Name="_iconRow1" Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                <local:HXAMLControl x:Name="_incrementalIcon" Title="Incremental" IconSource="DimensionI.xaml" Id="incremental" Style="{StaticResource HXAMLIcon}" />
+                <local:HXAMLControl x:Name="_baselineIcon" Title="Baseline" IconSource="DimensionB.xaml" Id="baseline" Style="{StaticResource HXAMLIcon}" />
+                <local:HXAMLControl x:Name="_pointToPointIcon" Title="Point to point" IconSource="DimensionP.xaml"  Id="point-to-point" Style="{StaticResource HXAMLIcon}" />
+            </StackPanel>
+
+            <StackPanel x:Name="_iconRow2" Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                <local:HXAMLControl x:Name="_angularIcon" Title="Angular" IconSource="DimensionAI.xaml" Id="angular"  Style="{StaticResource HXAMLIcon}" IsSelected="True" />
+                <local:HXAMLControl x:Name="_baselineAngularIcon" Title="Baseline angular" IconSource="DimensionAB.xaml" Id="angular-baseline" Style="{StaticResource HXAMLIcon}" />
+            </StackPanel>
+
+            <TextBlock x:Name="_styleLabel" Grid.Column="0" Grid.Row="3" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Text style" />
+            <TextBlock x:Name="_alignmentLabel" Grid.Column="0" Grid.Row="4" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Arrow style" />
+
+            <ComboBox x:Name="_styleComboBox" Grid.Column="1" Grid.Row="3" Style="{StaticResource HDialogComboBox}" Height="{Binding UIControlHeightNormal}" FontSize="{Binding UIFontSizeNormal}">
+                <ComboBoxItem Content="Small" Tag="Small" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Normal" Tag="Normal" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Large" Tag="Large" Style="{StaticResource StdComboBoxItemStyle}"  />
+            </ComboBox>
+
+            <ComboBox x:Name="_arrowStyleComboBox" Grid.Column="1" Grid.Row="4" Style="{StaticResource HDialogComboBox}" Height="{Binding UIControlHeightNormal}" FontSize="{Binding UIFontSizeNormal}">
+                <ComboBoxItem Content="Filled" Tag="filled" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Open" Tag="open" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Wide" Tag="wide" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Ellipse" Tag="ellipse" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Dot" Tag="dot" Style="{StaticResource StdComboBoxItemStyle}" />
+            </ComboBox>
+
+            <CheckBox x:Name="_showTextCB" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Tag="show-text" Content="Show dimension text" 
+                      Style="{StaticResource HDialogCheckBox}" Height="{Binding UIControlHeightNormal}" FontSize="{Binding UIFontSizeNormal}" />
+            <CheckBox x:Name="_showExtensionCB" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Tag="show-extension" Content="Show extension lines" 
+                      Style="{StaticResource HDialogCheckBox}" Height="{Binding UIControlHeightNormal}" FontSize="{Binding UIFontSizeNormal}" />
+        </Grid>
+
+        <local:HDrawAttributesControl x:Name="_attributesControl" Grid.Column="1" Grid.Row="4" FillKey="" LayerKey="dimension_layer" />
+    </Grid>
+</UserControl>

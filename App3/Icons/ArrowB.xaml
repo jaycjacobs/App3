@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="ArrowB" Width="80" Height="60">
+	<Canvas x:Name="Layer_1" Width="80" Height="60" Canvas.Left="0" Canvas.Top="0">
+		<Path x:Name="Path" Width="4.00067" Height="4.00067" Canvas.Left="63.9804" Canvas.Top="12.9997" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 64.9808,13.2679C 65.9373,12.7157 67.1605,13.0434 67.7128,14C 68.2651,14.9566 67.9373,16.1798 66.9808,16.7321C 66.0242,17.2843 64.801,16.9566 64.2487,16C 63.6964,15.0434 64.0242,13.8202 64.9808,13.2679 Z "/>
+		<Path x:Name="Path_0" Width="4.00067" Height="4.00067" Canvas.Left="12.0189" Canvas.Top="42.9997" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 13.0192,43.2679C 13.9758,42.7157 15.199,43.0434 15.7513,44C 16.3036,44.9566 15.9758,46.1798 15.0192,46.732C 14.0626,47.2843 12.8395,46.9566 12.2872,46C 11.7349,45.0434 12.0626,43.8202 13.0192,43.2679 Z "/>
+		<Path x:Name="Path_1" Width="11.5263" Height="8.96411" Canvas.Left="54.4545" Canvas.Top="15" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 65.9808,15L 54.4545,17.0359L 58.4545,23.9641L 65.9808,15 Z "/>
+		<Path x:Name="Path_2" Width="11.5263" Height="8.9641" Canvas.Left="13.5862" Canvas.Top="36.2859" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 13.5862,45.25L 25.1125,43.2141L 21.1125,36.2859L 13.5862,45.25 Z "/>
+		<Path x:Name="Line" Width="48.7654" Height="29" Canvas.Left="15.6173" Canvas.Top="15.5" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 16.6173,43.5L 63.3827,16.5"/>
+	</Canvas>
+</Canvas>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="Curve" Width="80" Height="60" UseLayoutRounding="False">
+	<Canvas x:Name="Layer_1" Width="80" Height="60" Canvas.Left="0" Canvas.Top="0">
+		<Path x:Name="Path" Width="62.1875" Height="42.1049" Canvas.Left="8.94263" Canvas.Top="8.88538" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 9.94263,49.9896C 14.276,49.9896 19.7238,50.1178 24.9635,46.974C 30.7968,43.474 34.3393,39.1508 36.0468,36.724C 40.3489,30.6094 39.0155,29.349 43.2135,23.5573C 45.6808,20.1533 47.7968,16.974 54.8801,12.974C 60.8201,9.61963 66.3487,9.89063 70.1301,9.89063"/>
+		<Ellipse x:Name="Ellipse" Width="4" Height="4" Canvas.Left="8" Canvas.Top="48" Stretch="Fill" Fill="#FFFFFFFF"/>
+		<Ellipse x:Name="Ellipse_0" Width="4" Height="4" Canvas.Left="68" Canvas.Top="8" Stretch="Fill" Fill="#FFFFFFFF"/>
+		<Ellipse x:Name="Ellipse_1" Width="4" Height="4" Canvas.Left="41" Canvas.Top="11" Stretch="Fill" Fill="#FFFFFFFF"/>
+		<Ellipse x:Name="Ellipse_2" Width="4" Height="4" Canvas.Left="35" Canvas.Top="44" Stretch="Fill" Fill="#FFFFFFFF"/>
+	</Canvas>
+</Canvas>

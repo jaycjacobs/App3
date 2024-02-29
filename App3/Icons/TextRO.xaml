@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="TextRO" Width="80" Height="60" UseLayoutRounding="False">
+	<Canvas x:Name="Layer_1" Width="80" Height="60" Canvas.Left="0" Canvas.Top="0">
+		<Ellipse x:Name="Ellipse" Width="4" Height="4" Canvas.Left="8" Canvas.Top="28" Stretch="Fill" Fill="#FFFFFFFF"/>
+		<TextBlock x:Name="TextBlock" FontFamily="Arial" FontSize="9" Canvas.Left="0" Canvas.Top="0">
+			<TextBlock.RenderTransform>
+				<TransformGroup>
+					<MatrixTransform Matrix="1.33333,0,0,1.33333,43.06,23.52"/>
+				</TransformGroup>
+			</TextBlock.RenderTransform>
+			<Run Text="ABC" Foreground="#FFFFFFFF"/>
+		</TextBlock>
+		<Ellipse x:Name="Ellipse_0" Width="4" Height="4" Canvas.Left="68" Canvas.Top="28" Stretch="Fill" Fill="#FFFFFFFF"/>
+	</Canvas>
+</Canvas>

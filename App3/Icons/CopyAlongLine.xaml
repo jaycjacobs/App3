@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="CopyAlongLine" Width="80" Height="60" UseLayoutRounding="False">
+	<Canvas x:Name="Layer_1" Width="80" Height="60" Canvas.Left="0" Canvas.Top="0">
+		<Path x:Name="Line" Width="64.4466" Height="37.6939" Canvas.Left="8.73081" Canvas.Top="11.5621" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#67FFFFFF" Data="F1 M 9.73081,48.256L 72.1775,12.5621"/>
+		<Path x:Name="Path" Width="18.8711" Height="19.2426" Canvas.Left="10.7734" Canvas.Top="32.7845" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 11.7734,39.7428L 22.1896,33.7845L 28.6445,45.0687L 18.2283,51.0271L 11.7734,39.7428 Z "/>
+		<Path x:Name="Path_0" Width="18.8711" Height="19.2426" Canvas.Left="31.523" Canvas.Top="20.723" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 32.523,27.6814L 42.9393,21.723L 49.3942,33.0073L 38.978,38.9656L 32.523,27.6814 Z "/>
+		<Path x:Name="Path_1" Width="18.8711" Height="19.2426" Canvas.Left="52.3555" Canvas.Top="8.80624" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 53.3555,15.7646L 63.7717,9.80624L 70.2266,21.0905L 59.8104,27.0489L 53.3555,15.7646 Z "/>
+	</Canvas>
+</Canvas>

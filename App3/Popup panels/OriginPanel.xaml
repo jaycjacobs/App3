@@ -1,0 +1,43 @@
+﻿<UserControl
+    x:Class="Cirros8.OriginPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Cirros8"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" MinWidth="200" 
+    d:DesignHeight="120"
+    d:DesignWidth="200">
+
+    <Border BorderThickness="1" BorderBrush="{StaticResource DarkDarkGray}" Grid.Column="1" Grid.Row="2" Margin="5">
+        <Grid x:Name="_coordinatePanel" Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="auto" MinWidth="180"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="5"/>
+            </Grid.RowDefinitions>
+
+            <Rectangle Fill="{StaticResource DarkDarkGray}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
+            <TextBlock Text="Drawing origin" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource SettingsText}" 
+                       FontSize="{Binding UIFontSizeNormal}" Foreground="White" VerticalAlignment="Center" />
+
+            <StackPanel x:Name="_perimeterPanel" Orientation="Vertical" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch">
+                <TextBlock Text="Paper offset" Style="{StaticResource SettingsText}" FontSize="{Binding UIFontSizeSmall}" Margin="6,0"/>
+                <TextBlock x:Name="_paperOffsetBlock" Style="{StaticResource SettingsValueTextBlock}" Text="(0.0, 0.0)" FontSize="{Binding UIFontSizeNormal}" />
+            </StackPanel>
+
+            <StackPanel x:Name="_areaPanel" Orientation="Vertical" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch">
+                <TextBlock Text="Model offset" Style="{StaticResource SettingsText}" FontSize="{Binding UIFontSizeSmall}" Margin="6,0"/>
+                <TextBlock x:Name="_modelOffsetBlock" Style="{StaticResource SettingsValueTextBlock}" Text="(0.0, 0.0)" FontSize="{Binding UIFontSizeNormal}" />
+            </StackPanel>
+        </Grid>
+
+    </Border>
+</UserControl>

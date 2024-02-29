@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="Polyline" Width="80" Height="60" UseLayoutRounding="False">
+	<Canvas x:Name="Layer_1" Width="80" Height="60" Canvas.Left="0" Canvas.Top="0">
+		<Ellipse x:Name="Ellipse" Width="7" Height="7" Canvas.Left="6.50001" Canvas.Top="46.5" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF"/>
+		<Ellipse x:Name="Ellipse_0" Width="7" Height="7" Canvas.Left="66.5" Canvas.Top="6.5" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF"/>
+		<Ellipse x:Name="Ellipse_1" Width="7" Height="7" Canvas.Left="46.5" Canvas.Top="36.5" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF"/>
+		<Ellipse x:Name="Ellipse_2" Width="7" Height="7" Canvas.Left="26.5" Canvas.Top="16.5" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF"/>
+		<Path x:Name="Line" Width="19" Height="27.5" Canvas.Left="10.5" Canvas.Top="21.25" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 11.5,47.75L 28.5,22.25"/>
+		<Path x:Name="Line_3" Width="18" Height="18" Canvas.Left="31" Canvas.Top="21" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 32,22L 48,38"/>
+		<Path x:Name="Line_4" Width="19" Height="27.5" Canvas.Left="50.5" Canvas.Top="11.25" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 51.5,37.75L 68.5,12.25"/>
+	</Canvas>
+</Canvas>

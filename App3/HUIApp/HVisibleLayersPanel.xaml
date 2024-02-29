@@ -1,0 +1,27 @@
+﻿<UserControl
+    x:Class="RedDog.HUIApp.HVisibleLayersPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RedDog.HUIApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="320"
+    MaxHeight="440"
+    Width="300">
+
+    <Border BorderBrush="{StaticResource SettingsDarkForeground}" BorderThickness="1" Background="White">
+        <ListView x:Name="_layerListView" Height="auto" Width="300"  MaxHeight="600"
+                   ScrollViewer.IsVerticalRailEnabled="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <CheckBox Content="Layer 1" />
+            <CheckBox Content="Layer 2" />
+            <CheckBox Content="Layer 3" />
+            <CheckBox Content="Layer 4" />
+            <CheckBox Content="Layer 5" />
+            <CheckBox Content="Layer 6 plus a lot of extra words" />
+            <CheckBox Content="Layer 7" />
+            <CheckBox Content="Layer 8" />
+            <CheckBox Content="Layer 9" />
+        </ListView>
+    </Border>
+</UserControl>

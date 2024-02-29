@@ -1,0 +1,25 @@
+﻿<UserControl
+    x:Class="CirrosUI.ExpandoTextBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CirrosUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="36" d:DesignWidth="180">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <TextBox x:Name="_textBox" Text="XYZ" IsHitTestVisible="False" Margin="0" BorderBrush="Red" BorderThickness="1" TextWrapping="NoWrap" 
+                 LayoutUpdated="_textBox_LayoutUpdated" SizeChanged="_textBox_SizeChanged" />
+
+        <Popup x:Name="_textPopup" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" IsLightDismissEnabled="True" Closed="_textPopup_Closed">
+            <!--<TextBox x:Name="_popupTextBox" Text="ABC" Margin="0" BorderBrush="Red" BorderThickness="1" 
+                     AcceptsReturn="True" TextWrapping="NoWrap"
+                     LostFocus="_popupTextBox_LostFocus" KeyDown="_popupTextBox_KeyDown" TextChanged="_popupTextBox_TextChanged" />-->
+            <TextBox x:Name="_popupTextBox" Text="ABC" Margin="0" BorderBrush="Red" BorderThickness="1" 
+                     AcceptsReturn="True" TextWrapping="NoWrap"
+                     LostFocus="_popupTextBox_LostFocus" TextChanged="_popupTextBox_TextChanged" />
+        </Popup>
+    </Grid>
+</UserControl>

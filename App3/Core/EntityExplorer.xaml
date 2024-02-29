@@ -1,0 +1,45 @@
+﻿<ContentDialog
+    x:Class="CirrosCore.Entity_Explorer.EntityExplorer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CirrosCore.Entity_Explorer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Entity Explorer"
+    PrimaryButtonText="Button1"
+    SecondaryButtonText="Button2"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="40" />
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Text="Entity" Grid.Column="0" VerticalAlignment="Center" />
+        <TextBox x:Name="_entityIdBox" Grid.Column="1" HorizontalAlignment="Stretch" Margin="6,0" KeyDown="_entityIdBox_KeyDown" />
+        <Button x:Name="_entityIdButton" Grid.Column="2" Content="Go" Click="_entityIdButton_Click" />
+        
+        <ScrollViewer Grid.Row="1" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Visible" 
+                      Width="740" Height="400" Margin="0,12,0,0">
+            <ListView x:Name="_listView" SelectionChanged="_listView_SelectionChanged">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Height" Value="16" />
+                        <Setter Property="MinHeight" Value="16" />
+                        <Setter Property="FontFamily" Value="Consolas" />
+                        <Setter Property="FontSize" Value="12" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+        </ScrollViewer>
+            
+    </Grid>
+</ContentDialog>

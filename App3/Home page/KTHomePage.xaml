@@ -1,0 +1,143 @@
+﻿<Page
+    x:Class="KT22.KTHomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:KT22"
+    xmlns:cirros="using:Cirros8"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:rt="using:KT22.UI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignWidth="1024">
+
+        <Grid x:Name="_layoutRoot" Background="White">
+            <Grid.Resources>
+                <Style x:Key="HomeButtonGrid" TargetType="Grid">
+                    <Setter Property="Background" Value="WhiteSmoke"/>
+                    <Setter Property="Height" Value="auto"/>
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+                <Style x:Key="HomeButtonText" TargetType="TextBlock">
+                    <Setter Property="FontFamily" Value="Segoe UI"/>
+                    <Setter Property="FontWeight" Value="SemiLight"/>
+                    <Setter Property="FontSize" Value="28"/>
+                    <Setter Property="Foreground" Value="#363636"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="Margin" Value="15,0,0,2" />
+                </Style>
+                <Style x:Key="HomeButtonIcon" TargetType="TextBlock">
+                    <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+                    <Setter Property="FontSize" Value="24"/>
+                    <Setter Property="Foreground" Value="#363636"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="Margin" Value="15,0,0,2" />
+                    <Setter Property="Width" Value="40" />
+                </Style>
+
+                <muxc:TeachingTip x:Name="_ttHomeUxPreview" Style="{StaticResource TeachingTipTopStyle}"
+                    IsLightDismissEnabled="True"
+	                ActionButtonContent="Try the new UX" ActionButtonClick="_ttHomeUxPreview_ActionButtonClick"
+	                CloseButtonContent="Maybe later" CloseButtonClick="_ttHomeUxPreview_CloseButtonClick"
+                    Closed="_ttHomeUxPreview_Closed">
+                    <muxc:TeachingTip.Content>
+                        <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                    </muxc:TeachingTip.Content>
+                </muxc:TeachingTip>
+            </Grid.Resources>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="80" x:Name="_adMargin" />
+                <ColumnDefinition Width="300" x:Name="_adColumn" />
+                <ColumnDefinition Width="80" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="28" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="28"/>
+                <RowDefinition Height="0" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <!-- 55 -->
+                <RowDefinition Height="55" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="88" />
+            </Grid.RowDefinitions>
+
+            <Rectangle x:Name="_hackRect1" Stroke="Transparent" Fill="Transparent" Grid.Row="0" Grid.RowSpan="9" />
+            <Rectangle x:Name="_hackRect3" Stroke="Transparent" Fill="Transparent" Grid.Row="0" Grid.RowSpan="11" />
+
+            <StackPanel x:Name="_logoPanel" Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,14" Grid.RowSpan="2" >
+            <Image x:Name="_largeLogo" Source="../Assets/icon-green.png" />
+            <Image x:Name="_largeLogoText" Source="../Assets/Back-to-the-Drawing-Board-green-underline.png" Margin="20,14,0,0" Height="70" />
+            </StackPanel>
+
+            <Grid x:Name="_createButton" Tag="new" Grid.Column="1" Grid.Row="4" Style="{StaticResource HomeButtonGrid}" Margin="0,3,0,2">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#xE0D8;" Style="{StaticResource HomeButtonIcon}" Margin="12,0,3,2" />
+                    <TextBlock Text="Create a new drawing" Style="{StaticResource HomeButtonText}" FontSize="{Binding UIFontSizeTitle}" Margin="0,6" />
+                </StackPanel>
+            </Grid>
+
+            <Grid x:Name="_openButton" Tag="open_drawing" Grid.Column="1" Grid.Row="5" Style="{StaticResource HomeButtonGrid}" Margin="0,3,0,2">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#xE132;" Style="{StaticResource HomeButtonIcon}" />
+                    <TextBlock Text="Open an existing drawing" Style="{StaticResource HomeButtonText}" FontSize="{Binding UIFontSizeTitle}" Margin="0,6" />
+                </StackPanel>
+            </Grid>
+
+            <Grid x:Name="_importButton" Tag="import" Grid.Column="1" Grid.Row="6" Style="{StaticResource HomeButtonGrid}" Margin="0,3,0,2">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#xE184;" Style="{StaticResource HomeButtonIcon}" />
+                    <TextBlock Text="Import an SVG or DXF document" Style="{StaticResource HomeButtonText}" FontSize="{Binding UIFontSizeTitle}" Margin="0,6" />
+                </StackPanel>
+            </Grid>
+
+            <Grid x:Name="_dwgButton" Tag="dwg" Grid.Column="1" Grid.Row="7" Style="{StaticResource HomeButtonGrid}" Margin="0,3,0,2" Visibility="Visible">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#xE114;" Style="{StaticResource HomeButtonIcon}" Margin="15,2,0,0" />
+                    <TextBlock Text="Import a DWG document (beta)" Style="{StaticResource HomeButtonText}" FontSize="{Binding UIFontSizeTitle}" Margin="0,6"  />
+                </StackPanel>
+            </Grid>
+
+            <Grid x:Name="_imageButton" Tag="image" Grid.Column="1" Grid.Row="7" Style="{StaticResource HomeButtonGrid}" Margin="0,3,0,2" Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#xE114;" Style="{StaticResource HomeButtonIcon}" Margin="15,2,0,0" />
+                    <TextBlock Text="Create a drawing from a photograph" Style="{StaticResource HomeButtonText}" />
+                </StackPanel>
+                <TextBlock x:Name="_buyImageIcon" Text="&#xE14D;" Style="{StaticResource HomeButtonIcon}" Margin="0,2,15,0" Foreground="Green"
+                       HorizontalAlignment="Right" FontSize="24"/>
+            </Grid>
+
+            <Button x:Name="_facebook" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="10" Height="32" Margin="8" BorderThickness="0" BorderBrush="Transparent"
+                VerticalAlignment="Bottom" HorizontalAlignment="Center" Click="_facebook_Click">
+                <Image Source="../Assets/FindUs-FB-RGB-BRC-Site-500.png" />
+            </Button>
+
+            <!--<TextBlock x:Name="_adMessage" Grid.Column="3" Grid.ColumnSpan="1" Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,9,4"
+                   Style="{StaticResource DialogText}" FontSize="{Binding UIFontSizeNormal}"  Foreground="{StaticResource DarkDarkGray}"
+                   FontWeight="SemiBold" Text="Purchase the app to remove ads" />-->
+
+            <TextBlock Text="Recent drawings" Foreground="Black" FontSize="{Binding UIFontSizeNormal}" 
+                   VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="8" Margin="0,0,0,4" />
+
+            <StackPanel x:Name="_selectionOptionButton" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" 
+                    Grid.Column="1" Grid.Row="8" Margin="0,0,0,4" Visibility="Collapsed">
+                <Button Content="Delete" Tag="delete" Click="SelectionButton_Click" />
+                <Button Content="Remove from list" Tag="remove" Click="SelectionButton_Click" />
+                <Button Content="Clear selection" Tag="clearselection" Click="SelectionButton_Click" />
+            </StackPanel>
+
+        <cirros:RecentDrawingsControl x:Name="_recentDrawingsControl" Grid.Column="1" Grid.Row="9" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
+
+            <TextBlock x:Name="_versionTextBox" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,9,4"
+                   Style="{StaticResource DialogText}" FontSize="{Binding UIFontSizeNormal}" Foreground="{StaticResource DarkDarkDarkGray}" FontWeight="SemiBold" Text="0.0.0.0" />
+        </Grid>
+    </Page>

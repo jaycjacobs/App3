@@ -1,0 +1,118 @@
+﻿<Page
+    x:Class="Cirros8.Export.ExportPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CirrosUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="768"
+    d:DesignWidth="1366"
+    mc:Ignorable="d">
+
+    <Grid x:Name="_topView" Background="#80000000">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+        <Rectangle Grid.Column="3" Grid.Row="2" Fill="WhiteSmoke" />
+
+        <Grid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" Height="30" VerticalAlignment="Top" Background="{StaticResource DarkDarkDarkGray}">
+            <TextBlock Foreground="WhiteSmoke" Text="Export" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       FontSize="16" />
+        </Grid>
+
+        <Grid x:Name="_baseOptions" Grid.Row="2" Grid.Column="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <CheckBox x:Name="_baseShowFrame" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Content="Show drawing frame" Checked="showFrame_Checked" Unchecked="showFrame_Checked" />
+        </Grid>
+        
+        <Grid x:Name="_imageOptions" Grid.Row="2" Grid.Column="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="90" />
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="10" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="32" />
+                <RowDefinition Height="36" />
+                <RowDefinition Height="36" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="32" />
+                <RowDefinition Height="36" />
+                <RowDefinition Height="36" />
+                <RowDefinition Height="36" />
+                <RowDefinition Height="36" />
+                <RowDefinition Height="36" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Text="Image size" Style="{StaticResource DialogText}" />
+
+            <TextBlock Grid.Row="2" Grid.Column="2" Text="Width" Style="{StaticResource DialogText}" />
+            <local:NumberBox1 Grid.Row="2" Grid.Column="3" x:Name="_pixelWidth" HorizontalAlignment="Stretch" IsInteger="True" Style="{StaticResource DialogNumberBox}" OnValueChanged="numberBox_OnValueChanged" />
+            <TextBlock Grid.Row="3" Grid.Column="2" Text="Height" Style="{StaticResource DialogText}" />
+            <local:NumberBox1 Grid.Row="3" Grid.Column="3" x:Name="_pixelHeight" HorizontalAlignment="Stretch" IsInteger="True" Style="{StaticResource DialogNumberBox}" OnValueChanged="numberBox_OnValueChanged" />
+            <TextBlock Grid.Row="2" Grid.Column="4" Text="Pixels" Style="{StaticResource DialogText}" />
+
+            <TextBlock Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="4" Text="Document size" Style="{StaticResource DialogText}" />
+
+            <ComboBox Grid.Row="7" Grid.Column="4" x:Name="_unitComboBox" Margin="6,0,0,0" SelectionChanged="ComboBox_SelectionChanged">
+                <ComboBoxItem Content="Inches" />
+                <ComboBoxItem Content="Millimeters" />
+            </ComboBox>
+
+            <TextBlock Grid.Row="7" Grid.Column="2" Text="Width" Style="{StaticResource DialogText}" />
+            <local:NumberBox1 Grid.Row="7" Grid.Column="3" x:Name="_docWidth" HorizontalAlignment="Stretch" Style="{StaticResource DialogNumberBox}" OnValueChanged="numberBox_OnValueChanged" />
+            <TextBlock Grid.Row="8" Grid.Column="2" Text="Height" Style="{StaticResource DialogText}" />
+            <local:NumberBox1 Grid.Row="8" Grid.Column="3" x:Name="_docHeight" HorizontalAlignment="Stretch" Style="{StaticResource DialogNumberBox}" OnValueChanged="numberBox_OnValueChanged" />
+            <TextBlock Grid.Row="9" Grid.Column="2" Text="Resolution" Style="{StaticResource DialogText}" />
+            <local:NumberBox1 Grid.Row="9" Grid.Column="3" x:Name="_docResoulution" HorizontalAlignment="Stretch" Style="{StaticResource DialogNumberBox}" OnValueChanged="numberBox_OnValueChanged" />
+            <TextBlock Grid.Row="9" Grid.Column="4" x:Name="_resolutionLabel" Text="Pixels/centimeter" Style="{StaticResource DialogText}" />
+
+            <CheckBox Grid.Row="10" Grid.Column="1" x:Name="_imageShowFrame" Grid.ColumnSpan="4" Content="Show drawing frame" Checked="showFrame_Checked" Unchecked="showFrame_Checked" />
+            <CheckBox Grid.Row="11" Grid.Column="1" x:Name="_imageShowGrid" Grid.ColumnSpan="4" Content="Show drawing grid" Checked="_showGrid_Checked"  Unchecked="_showGrid_Checked" />
+        </Grid>
+
+        <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ToggleButton x:Name="_jpgButton" Content="JPEG" Tag="JPG" Click="_formatButton_Click" HorizontalAlignment="Stretch" Margin="2" />
+            <ToggleButton x:Name="_pngButton" Content="PNG" Tag="PNG" Click="_formatButton_Click" HorizontalAlignment="Stretch" Margin="2" />
+            <ToggleButton x:Name="_pdfButton" Content="PDF" Tag="PDF" Click="_formatButton_Click" HorizontalAlignment="Stretch" Margin="2" />
+            <ToggleButton x:Name="_svgButton" Content="SVG" Tag="SVG" Click="_formatButton_Click" HorizontalAlignment="Stretch" Margin="2" />
+            <ToggleButton x:Name="_dxfButton" Content="DXF" Tag="DXF" Click="_formatButton_Click" HorizontalAlignment="Stretch" Margin="2" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="4" HorizontalAlignment="Center">
+            <Button x:Name="_okButton" Content="Continue" Click="_okButton_Click" Margin="2" />
+            <Button x:Name="_cancelButton" Content="Cancel" HorizontalAlignment="Left"  Click="_cancelButton_Click" Margin="2" />
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,85 @@
+﻿<UserControl
+    x:Class="CirrosUWP.CirrosUI.Context_Menu.CopyPasteContextMenuPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CirrosUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="400"
+    d:DesignWidth="280">
+
+    <Border BorderThickness="1" BorderBrush="{StaticResource DarkDarkGray}" Grid.Column="1" Grid.Row="2" Margin="0">
+        <Grid x:Name="_menuPanel" Background="White" MinWidth="260" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition MinWidth="260" Width="auto"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="5"/>
+            </Grid.RowDefinitions>
+
+            <Rectangle Fill="{StaticResource DarkDarkGray}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" />
+            <TextBlock x:Name="_title" Text="Copy/paste" Grid.Column="0" Grid.ColumnSpan="3" 
+                       Style="{StaticResource PopupTitleText}" FontSize="{Binding UIFontSizeNormal}" />
+            <StackPanel x:Name="_jumpIconPanel" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button FontFamily="Segoe MDL2 Assets" Content="&#xe1e3;" Margin="0"
+                        Height="30" Padding="4,0" Click="SelectObjectsClick" PointerExited="Button_PointerExited"
+                        FontSize="{Binding UIFontSizeSmall}" Foreground="White" VerticalAlignment="Center" 
+                        Background="Transparent" />
+                <Button FontFamily="Segoe MDL2 Assets" Content="&#xe15e;" Margin="0" 
+                        Height="30" Padding="4,0" Click="EditObjectClick"
+                        FontSize="{Binding UIFontSizeSmall}" Foreground="White" VerticalAlignment="Center" 
+                        Background="Transparent" PointerExited="Button_PointerExited" />
+                <Button FontFamily="Segoe MDL2 Assets" Content="&#xe74c;" Margin="0"
+                        Height="30" Padding="4,0" Click="EditGroupClick"
+                        FontSize="{Binding UIFontSizeSmall}" Foreground="White" VerticalAlignment="Center" 
+                        Background="Transparent" PointerExited="Button_PointerExited" />
+                <!--<Button FontFamily="Segoe MDL2 Assets" Content="&#xe77f;" Margin="0" 
+                        Height="30" Padding="4,0" Click="CopyPasteButton_Click"
+                        FontSize="{Binding UIFontSizeSmall}" Foreground="White" VerticalAlignment="Center" 
+                        Background="Transparent" PointerExited="Button_PointerExited" />-->
+                <Button FontFamily="Segoe UI Symbol" Content="&#xe21c;" Margin="0" 
+                        Height="30" Padding="4,0" Click="CloseButton_Click"
+                        FontSize="{Binding UIFontSizeSmall}" Foreground="White" VerticalAlignment="Center" 
+                        Background="Transparent" PointerExited="Button_PointerExited" />
+            </StackPanel>
+
+            <StackPanel x:Name="_noSelectionPanel" Grid.Row="2" Grid.Column="1" Orientation="Vertical" Margin="10" Visibility="Visible">
+                <TextBlock TextAlignment="Center" FontSize="{Binding UIFontSizeNormal}">
+                    Select an object to copy to the clipboard
+                </TextBlock>
+                <TextBlock TextAlignment="Center" FontSize="{Binding UIFontSizeNormal}">
+                    or draw a box to select multiple objects
+                </TextBlock>
+            </StackPanel>
+
+            <Button x:Name="_copyButton" Grid.Column="1" Grid.Row="2" Content="Copy selection to the clipboard" Tag="A_SelectCopyToClipboard" 
+                    VerticalAlignment="Center" HorizontalAlignment="Center" Click="_button_Click"
+                                Style="{StaticResource ContextMenuButtonStyle}" FontSize="{Binding UIFontSizeNormal}"/>
+            <Button x:Name="_pasteButton" Grid.Column="1" Grid.Row="4" Content="Paste from the clipboard" Tag="A_SelectPaste" 
+                    VerticalAlignment="Center" HorizontalAlignment="Center" Click="_button_Click"
+                                Style="{StaticResource ContextMenuButtonStyle}" FontSize="{Binding UIFontSizeNormal}"/>
+
+            <StackPanel x:Name="_spaceButtons" Visibility="Collapsed" Orientation="Vertical" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3">
+                <Line StrokeThickness="1" Margin="0,3,0,2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" 
+                    X2="1" Stretch="Fill" StrokeEndLineCap="Square" StrokeStartLineCap="Square" Stroke="DarkGray" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="6">
+                    <ToggleButton x:Name="_paperButton" Content="Use paper space" Tag="paper" VerticalAlignment="Center" Click="_button_Click"
+                                  Style="{StaticResource ContextMenuToggleButtonStyle}" FontSize="{Binding UIFontSizeNormal}" />
+                    <ToggleButton x:Name="_modelButton" Content="Use model space" Tag="model" VerticalAlignment="Center" Click="_button_Click" IsChecked="True"
+                                  Style="{StaticResource ContextMenuToggleButtonStyle}" FontSize="{Binding UIFontSizeNormal}" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>
+

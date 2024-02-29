@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="AppBarFlip" Width="40" Height="40" UseLayoutRounding="False">
+	<Canvas x:Name="Layer_1" Width="40" Height="40" Canvas.Left="0" Canvas.Top="0">
+        <Path x:Name="Path" Width="12" Height="13" Canvas.Left="23" Canvas.Top="13" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 33,25.4998L 23,25.4998L 23,14.4998L 30,14.4998L 33,17.4998L 33,25.4998 Z "/>
+        <Path x:Name="Line" Width="1" Height="21" Canvas.Left="20" Canvas.Top="9" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 20,10L 20,30"/>
+        <Path x:Name="Path_0" Width="12" Height="13" Canvas.Left="6" Canvas.Top="13" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 7,25.4998L 17,25.4998L 17,14.4998L 10,14.4998L 7,17.4998L 7,25.4998 Z "/>
+    </Canvas>
+</Canvas>

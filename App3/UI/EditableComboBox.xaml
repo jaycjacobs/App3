@@ -1,0 +1,58 @@
+﻿<UserControl
+    x:Class="CirrosUI.EditableComboBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CirrosUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="24"
+    d:DesignWidth="300">
+
+    <Border x:Name="_border" Background="White" BorderBrush="DarkGray" BorderThickness="2" Margin="0">
+        <Grid Width="auto" Height="auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="32" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBox x:Name="_textBox" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" MinHeight="14" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                       FontSize="{Binding UIFontSizeNormal}" Text="Oxy" Background="Transparent" BorderThickness="0"
+                       Margin="0" Padding="10,5,0,0" TextAlignment="Left" FontStretch="Normal" FontFamily="Arial" FontWeight="Light" VerticalContentAlignment="Stretch" />
+            <Rectangle x:Name="_dropDownButton" Grid.Column="1" HorizontalAlignment="Stretch" Fill="White" />
+            <TextBlock x:Name="DropDownGlyph"
+                    Text="&#xE011;"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    IsHitTestVisible="False"
+                    Margin="0,4,9,4"
+                    Foreground="{ThemeResource ComboBoxArrowForegroundThemeBrush}"
+                    FontWeight="Normal"
+                    FontSize="11"
+                    FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    AutomationProperties.AccessibilityView="Raw"/>
+            <Popup x:Name="_menuPopup" IsLightDismissEnabled="True" Margin="-2,-2,2,0">
+                <ListBox x:Name="_menuDropDown" HorizontalAlignment="Stretch" Background="WhiteSmoke"  BorderBrush="LightGray" BorderThickness="1"
+                 VerticalAlignment="Stretch" FontStretch="Condensed" FontFamily="Arial" Padding="0,4,0,4"
+                 ScrollViewer.VerticalScrollMode="Auto" Visibility="Visible" SelectedIndex="0"
+                 SelectionChanged="_menuDropDown_SelectionChanged">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Padding" Value="12,0,0,0"/>
+                            <Setter Property="Margin" Value="1,0,1,0"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <!--<ListBoxItem FontSize="{Binding UIFontSizeNormal}" FontStretch="Condensed" FontFamily="Arial" Tag=".1">.1</ListBoxItem>
+                    <ListBoxItem FontSize="{Binding UIFontSizeNormal}" FontStretch="Condensed" FontFamily="Arial" Tag=".2">.2</ListBoxItem>
+                    <ListBoxItem FontSize="{Binding UIFontSizeNormal}" FontStretch="Condensed" FontFamily="Arial" Tag=".3">.3</ListBoxItem>
+                    <ListBoxItem FontSize="{Binding UIFontSizeNormal}" FontStretch="Condensed" FontFamily="Arial" Tag=".4">.4</ListBoxItem>-->
+                </ListBox>
+            </Popup>
+            <ContentControl x:Name="_target" />
+        </Grid>
+    </Border>
+</UserControl>

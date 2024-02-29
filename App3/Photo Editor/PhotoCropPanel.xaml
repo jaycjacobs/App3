@@ -1,0 +1,107 @@
+﻿<UserControl
+    x:Class="Cirros8.ModalDialogs.PhotoCropPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Cirros8.Photo_Editor"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="720"
+    d:DesignWidth="310">
+
+    <Border Grid.Row="0" BorderBrush="{StaticResource SettingsDarkForeground}" BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" MinWidth="10" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" MinWidth="10" />
+            </Grid.ColumnDefinitions>
+
+            <Rectangle x:Name="_titleBlock" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Fill="{StaticResource SettingsDarkForeground}" />
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="Crop image" Style="{StaticResource ModalDialogTitle}" />
+
+            <Grid x:Name="_contentGrid" Grid.Column="1" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="288" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="64" />
+                    <RowDefinition Height="8" />
+                    <RowDefinition Height="64" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="14" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="30" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock x:Name="_previewText" Text="Preview" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,6"
+                           Style="{StaticResource ModalDialogLabel}" FontSize="{Binding UIFontSizeNormal}" />
+                
+                <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Width="290">
+                    <Rectangle x:Name="_previewArea" Fill="WhiteSmoke" />
+                    <Image x:Name="_previewImage" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Grid>
+
+                <Grid Grid.Column="1" Grid.Row="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Original size (pixels)" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
+                               Style="{StaticResource ModalDialogLabel}" FontSize="{Binding UIFontSizeNormal}" />
+
+                    <TextBlock Text="Width" Grid.Row="1" Grid.Column="0" Style="{StaticResource ModalDialogLabel}" 
+                               FontSize="{Binding UIFontSizeNormal}" />
+                    <TextBlock x:Name="_originalWidth" Text="1000" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right"
+                               Style="{StaticResource ModalDialogLabel}" FontSize="{Binding UIFontSizeNormal}" FontWeight="SemiBold" />
+
+                    <TextBlock Text="Height" Grid.Row="2" Grid.Column="0" Style="{StaticResource ModalDialogLabel}" 
+                               FontSize="{Binding UIFontSizeNormal}" />
+                    <TextBlock x:Name="_originalHeight" Text="1000" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" 
+                               Style="{StaticResource ModalDialogLabel}" FontSize="{Binding UIFontSizeNormal}" FontWeight="SemiBold" />
+                </Grid>
+
+                <Grid Grid.Column="1" Grid.Row="6">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Cropped size (pixels)" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
+                               Style="{StaticResource ModalDialogLabel}" FontSize="{Binding UIFontSizeNormal}" />
+
+                    <TextBlock Text="Width" Grid.Row="1" Grid.Column="0" Style="{StaticResource ModalDialogLabel}"
+                               FontSize="{Binding UIFontSizeNormal}" />
+                    <TextBlock x:Name="_croppedWidth" Text="1000" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" 
+                               Style="{StaticResource ModalDialogLabel}" FontSize="{Binding UIFontSizeNormal}" FontWeight="SemiBold" />
+
+                    <TextBlock Text="Height" Grid.Row="2" Grid.Column="0" Style="{StaticResource ModalDialogLabel}" 
+                               FontSize="{Binding UIFontSizeNormal}" />
+                    <TextBlock x:Name="_croppedHeight" Text="1000" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right"
+                               Style="{StaticResource ModalDialogLabel}" FontSize="{Binding UIFontSizeNormal}" FontWeight="SemiBold" />
+                </Grid>
+
+                <Button x:Name="_applyButton" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" Content="Apply changes" Margin="8"
+                        FontSize="{Binding UIFontSizeNormal}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="_applyButton_Click" />
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="Protractor" Width="80" Height="60" UseLayoutRounding="False">
+	<Canvas x:Name="Layer_1" Width="80" Height="60" Canvas.Left="0" Canvas.Top="0">
+		<Path x:Name="Path" Width="39.5" Height="29" Canvas.Left="21" Canvas.Top="12.5" Stretch="Fill" StrokeThickness="3" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 59,40L 22.5,40L 46.5,14"/>
+		<Path x:Name="Path_0" Width="14.3749" Height="28.3881" Canvas.Left="32.6251" Canvas.Top="17.8545" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 33.6251,18.8545C 40.9924,22.9058 46,30.8557 46,40C 46,41.8007 45.8058,43.5551 45.4377,45.2426"/>
+	</Canvas>
+</Canvas>

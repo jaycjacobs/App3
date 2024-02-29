@@ -1,0 +1,284 @@
+﻿<UserControl
+    x:Class="RedDog.HUIApp.HAnnotationTextDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RedDog.HUIApp"
+    xmlns:cirros="using:CirrosUI"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:rt="using:KT22.UI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="{Binding DialogWidth}"
+    mc:Ignorable="d"
+    d:DesignHeight="634"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <muxc:TeachingTip x:Name="_ttAnnotationTextIntro" Title="Text" Tag="intro" Target="{x:Bind _titleTextBlock}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.IconSource>
+                <muxc:FontIconSource FontFamily="Segoe MDL2 Assets" Glyph="&#xe8d2;" />
+            </muxc:TeachingTip.IconSource>
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttAnnotationTextOnePoint" Title="One point" Tag="onepoint" Target="{x:Bind _onePointIcon}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttAnnotationTextTwoPoint" Title="Two point" Tag="twopoint" Target="{x:Bind _twoPointIcon}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttAnnotationTextAlignment" Title="Alignment" Tag="alignment" Target="{x:Bind _alignmentComboBox}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttAnnotationTextPosition" Title="Position" Tag="position" Target="{x:Bind _positionComboBox}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttAnnotationTextStyle" Title="Text style" Tag="style" Target="{x:Bind _styleComboBox}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttAnnotationTextHeight" Title="Text height" Tag="height" Target="{x:Bind _heightBox}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttAnnotationTextLineSpacing" Title="Line spacing" Tag="line-spacing" Target="{x:Bind _lineSpacingBox}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttAnnotationTextSpacing" Title="Char spacing" Tag="spacing" Target="{x:Bind _spacingBox}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttAnnotationTextFont" Title="Font family" Tag="font" Target="{x:Bind _fontComboBox}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttAnnotationTextAngle" Title="Rotation" Tag="angle" Target="{x:Bind _angleBox}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttAnnotationTextLayer" Title="Layer" Tag="layer" Target="{x:Bind _layerComboBox}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttAnnotationTextColor" Title="Color" Tag="color" Target="{x:Bind _colorComboBox}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource HDialogBackground}" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Fill="{StaticResource BrightBackground}" />
+        <TextBlock x:Name="_titleTextBlock" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
+                   Text="Text" Style="{StaticResource HDialogTitle}" FontSize="{Binding UIFontSizeNormal}" />
+        <Button x:Name="_helpButton" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
+                Content="&#xE11B;" Click="_helpButton_Click" Style="{StaticResource HDialogTitleGlyphButton}" FontSize="{Binding UIFontSizeNormal}" />
+
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="130" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel x:Name="_iconRow1" Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                <local:HXAMLControl x:Name="_onePointIcon" Title="One point" IconSource="Text1.xaml" Id="1-point" Style="{StaticResource HXAMLIcon}" />
+                <local:HXAMLControl x:Name="_twoPointIcon" Title="Two point" IconSource="Text2.xaml" Id="2-point" Style="{StaticResource HXAMLIcon}" />
+            </StackPanel>
+
+            <TextBlock x:Name="_alignmentLabel" Grid.Column="0" Grid.Row="2" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Alignment" />
+            <TextBlock x:Name="_positionLabel" Grid.Column="0" Grid.Row="3" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Position" />
+            <TextBlock x:Name="_styleLabel" Grid.Column="0" Grid.Row="4" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Text style" />
+            <TextBlock x:Name="_heightLabel" Grid.Column="0" Grid.Row="5" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Text height" />
+            <TextBlock x:Name="_lineSpacingLabel" Grid.Column="0" Grid.Row="6" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Line spacing" />
+            <TextBlock x:Name="_charSpacingLabel" Grid.Column="0" Grid.Row="7" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Char spacing" />
+            <TextBlock x:Name="_fontLabel" Grid.Column="0" Grid.Row="8" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Font family" />
+            <TextBlock x:Name="_angleLabel" Grid.Column="0" Grid.Row="9" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Rotation" />
+            <TextBlock x:Name="_layerLabel" Grid.Column="0" Grid.Row="10" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Layer" />
+            <TextBlock x:Name="_colorLabel" Grid.Column="0" Grid.Row="11" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Color" />
+
+            <ComboBox x:Name="_alignmentComboBox" Grid.Column="1" Grid.Row="2" Style="{StaticResource HDialogComboBox}" Height="{Binding UIControlHeightNormal}" FontSize="{Binding UIFontSizeNormal}">
+                <ComboBoxItem Content="Left" Tag="left" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Center" Tag="center" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Right" Tag="right" Style="{StaticResource StdComboBoxItemStyle}" />
+            </ComboBox>
+
+            <ComboBox x:Name="_positionComboBox" Grid.Column="1" Grid.Row="3" Style="{StaticResource HDialogComboBox}" Height="{Binding UIControlHeightNormal}" FontSize="{Binding UIFontSizeNormal}">
+                <ComboBoxItem Content="Above" Tag="above" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="On" Tag="on" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Below" Tag="below" Style="{StaticResource StdComboBoxItemStyle}" />
+            </ComboBox>
+
+            <ComboBox x:Name="_styleComboBox" Grid.Column="1" Grid.Row="4" Style="{StaticResource HDialogComboBox}" Height="{Binding UIControlHeightNormal}" FontSize="{Binding UIFontSizeNormal}">
+                <ComboBoxItem Content="Small" Tag="Small" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Normal" Tag="Normal" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Large" Tag="Large" Style="{StaticResource StdComboBoxItemStyle}" />
+            </ComboBox>
+
+            <cirros:NumberBox1 x:Name="_heightBox" Tag="size" Grid.Column="1" Grid.Row="5" ZeroStringText="Use style value"
+                              Style="{StaticResource HDialogTextBox}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" IsDistance="True" Unit="Paper" Value="1" />
+            <cirros:NumberBox1 x:Name="_lineSpacingBox" Tag="line-spacing" Grid.Column="1" Grid.Row="6" ZeroStringText="Use style value"
+                              Style="{StaticResource HDialogTextBox}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" Value="1" />
+            <cirros:NumberBox1 x:Name="_spacingBox" Tag="spacing" Grid.Column="1" Grid.Row="7" ZeroStringText="Use style value"
+                              Style="{StaticResource HDialogTextBox}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" Value="1" />
+
+            <ComboBox x:Name="_fontComboBox" Grid.Column="1" Grid.Row="8" Style="{StaticResource HDialogComboBox}" Height="{Binding UIControlHeightNormal}" FontSize="{Binding UIFontSizeNormal}" >
+                <TextBlock Text="Use style value" FontStyle="Italic" FontWeight="Light" Tag="bystyle" />
+                <ComboBoxItem Content="Arial" Tag="Arial" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Calibri" Tag="Calibri" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Cambria" Tag="Cambria" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Consolas" Tag="Consolas" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Courier New" Tag="Courier New" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Georgia" Tag="Georgia" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Segoe Print" Tag="Segoe Print" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Segoe Script" Tag="Segoe Script" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Segoe UI" Tag="Segoe UI" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Tahoma" Tag="Tahoma" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Times New Roman" Tag="Times New Roman" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Verdana" Tag="Verdana" Style="{StaticResource StdComboBoxItemStyle}" />
+            </ComboBox>
+            <cirros:NumberBox1 x:Name="_angleBox" Tag="angle" Grid.Column="1" Grid.Row="9" Style="{StaticResource HDialogTextBox}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" IsAngle="True" Value="0" />
+
+            <ComboBox x:Name="_layerComboBox" Grid.Column="1" Grid.Row="10" Style="{StaticResource HDialogComboBox}" Height="{Binding UIControlHeightNormal}" FontSize="{Binding UIFontSizeNormal}">
+                <ComboBoxItem Content="Layer 0" Tag="Layer 0" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Layer 1" Tag="Layer 1" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Layer 2" Tag="Layer 2" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Layer 3" Tag="Layer 3" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Layer 4" Tag="Layer 4" Style="{StaticResource StdComboBoxItemStyle}" />
+            </ComboBox>
+
+            <ComboBox x:Name="_colorComboBox" Grid.Column="1" Grid.Row="11" Style="{StaticResource HDialogComboBox}" Height="{Binding UIControlHeightNormal}" FontSize="{Binding UIFontSizeNormal}">
+                <ComboBoxItem Content="By layer" Tag="by_layer" FontStyle="Italic" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Black" Tag="black" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="White" Tag="white" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Red" Tag="red" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Green" Tag="green" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Blue" Tag="blue" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Cyan" Tag="cyan" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Magenta" Tag="magenta" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Yellow" Tag="yellow" Style="{StaticResource StdComboBoxItemStyle}" />
+            </ComboBox>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,29 @@
+﻿<ContentDialog
+    x:Class="CirrosUI.Symbols.FileExistsDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CirrosUI.Symbols"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="File exists"
+    PrimaryButtonText="Replace"
+    SecondaryButtonText="Cancel"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
+            <TextBlock x:Name="_promptText" FontSize="16" Text="A symbol with this name exists in the selected folder." />
+            <TextBlock FontSize="16"  Text="Do you want to replace it?" />
+        </StackPanel>
+    </Grid>
+</ContentDialog>

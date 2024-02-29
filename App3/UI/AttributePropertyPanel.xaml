@@ -1,0 +1,313 @@
+﻿<UserControl
+    x:Class="CirrosUI.AttributePropertyPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CirrosUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    d:DesignHeight="610"
+    d:DesignWidth="285">
+
+    <UserControl.Resources>
+        <Style x:Key="NumberBoxStyle" TargetType="TextBox">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="DarkGray"/>
+            <Setter Property="InputScope" Value="Number" />
+            <Setter Property="MinHeight" Value="14" />
+            <Setter Property="MinWidth" Value="50" />
+            <Setter Property="Margin" Value="6,1,0,0" />
+        </Style>
+        <Style x:Key="muxNumberBoxStyle" TargetType="muxc:NumberBox">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="DarkGray"/>
+            <Setter Property="MinHeight" Value="14" />
+            <Setter Property="MinWidth" Value="50" />
+            <Setter Property="Margin" Value="6,1,0,0" />
+        </Style>
+        <Style x:Key="ExpandoBoxStyle" TargetType="UserControl">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="DarkGray"/>
+            <Setter Property="MinHeight" Value="14" />
+            <Setter Property="MinWidth" Value="50" />
+            <Setter Property="Margin" Value="6,1,0,0" />
+        </Style>
+        <Style x:Key="LabelStyle" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="8" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid x:Name="_grid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" x:Name="_valueColumn"/>
+            <ColumnDefinition Width="8" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Row 0 -->
+        <TextBlock Tag="0xffff" Text="Layer" Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="0" FontSize="{Binding UIFontSizeNormal}" />
+        <ComboBox x:Name="_layerComboBox" Tag="0xffff" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch"
+                  Style="{StaticResource SettingsComboBox}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"
+                  ItemContainerStyle="{StaticResource StdComboBoxItemStyle}">
+            <local:LayerTile />
+        </ComboBox>
+
+        <!-- Row 1 -->
+        <TextBlock Tag="0x37fc" Text="Line type" Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="1" FontSize="{Binding UIFontSizeNormal}" />
+        <ComboBox x:Name="_lineTypeComboBox" Tag="0x37fc" Grid.Column="2" Grid.Row="1" FontStretch="Normal"
+                  Style="{StaticResource SettingsComboBox}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" ItemContainerStyle="{StaticResource StdComboBoxItemStyle}" />
+
+        <!-- Row 2 -->
+        <TextBlock  Tag="0x37fc" Text="Thickness" Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="{Binding UIFontSizeNormal}" />
+        <local:NumberComboBox x:Name="_weightNumberComboBox" Tag="0x37fc" Grid.Column="2" Grid.Row="2" Background="White" VerticalAlignment="Center" Margin="6,1,0,0" />
+
+        <!-- Row 3 -->
+        <TextBlock Tag="0x3fff" Text="Color" Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="{Binding UIFontSizeNormal}" />
+        <ComboBox x:Name="_colorComboBox" Tag="0x3fff" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Stretch" 
+                  Style="{StaticResource SettingsComboBox}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" ItemContainerStyle="{StaticResource StdComboBoxItemStyle}" />
+
+        <!-- Row 4 -->
+        <TextBlock Tag="0x798" Text="Fill color" Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="{Binding UIFontSizeNormal}" />
+        <local:FillComboBox x:Name="_fillComboBox" Tag="0x798" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Stretch" 
+                  Style="{StaticResource SettingsComboBox}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" ItemContainerStyle="{StaticResource StdComboBoxItemStyle}" />
+
+        <TextBlock Tag="0x2000" Text="Dimension type" Style="{StaticResource LabelStyle}" Grid.Column="0" Grid.Row="4"
+                        FontSize="{Binding UIFontSizeNormal}" />
+        <ComboBox Name="_dimstyleCombo" Tag="0x2000" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Stretch" 
+                        FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"
+                        VerticalAlignment="Center" Style="{StaticResource SettingsComboBox}" 
+                        ItemContainerStyle="{StaticResource StdComboBoxItemStyle}">
+            <TextBlock Text="Incremental" Style="{StaticResource SettingsTextSmall}" FontSize="{Binding UIFontSizeNormal}"/>
+            <TextBlock Text="Baseline" Style="{StaticResource SettingsTextSmall}" FontSize="{Binding UIFontSizeNormal}"/>
+        </ComboBox>
+
+        <TextBlock Tag="0x4000" Text="Name" Grid.Column="0" Grid.Row="4" Style="{StaticResource LabelStyle}"
+                   FontSize="{Binding UIFontSizeNormal}" />
+        <TextBlock x:Name="_imageName" Tag="0x4000" Text="ImageName" Grid.Column="2" Grid.Row="4" VerticalAlignment="Center"
+                   FontSize="{Binding UIFontSizeNormal}" />
+        <Rectangle Tag="0x4000" Height="{Binding UIControlHeightNormal}" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" Fill="Transparent" />
+
+        <!-- Row 5 -->
+        <TextBlock Tag="0x798" Text="Pattern" Grid.Column="0" Grid.Row="5" Style="{StaticResource LabelStyle}" FontSize="{Binding UIFontSizeNormal}" />
+        <ComboBox Name="_fillPatternCombo" Tag="0x798" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Stretch" 
+                        FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"
+                        VerticalAlignment="Center" Style="{StaticResource SettingsComboBox}" 
+                        ItemContainerStyle="{StaticResource StdComboBoxItemStyle}">
+            <TextBlock Text="Solid" Style="{StaticResource SettingsTextSmallNoMargin}" FontSize="{Binding UIFontSizeNormal}"/>
+            <TextBlock Text="Lines" Style="{StaticResource SettingsTextSmallNoMargin}" FontSize="{Binding UIFontSizeNormal}"/>
+        </ComboBox>
+
+        <TextBlock Tag="0x10" Text="End style" Grid.Column="0" Grid.Row="8" Style="{StaticResource LabelStyle}" FontSize="{Binding UIFontSizeNormal}" />
+        <ComboBox Name="_endStyleCombo" Tag="0x10" Grid.Column="2" Grid.Row="8" HorizontalAlignment="Stretch" 
+                        FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"
+                        VerticalAlignment="Center" Style="{StaticResource SettingsComboBox}" 
+                        ItemContainerStyle="{StaticResource StdComboBoxItemStyle}">
+            <TextBlock Text="Open" Style="{StaticResource SettingsTextSmall}" FontSize="{Binding UIFontSizeNormal}"/>
+            <TextBlock Text="Close start" Style="{StaticResource SettingsTextSmall}" FontSize="{Binding UIFontSizeNormal}"/>
+            <TextBlock Text="Close end" Style="{StaticResource SettingsTextSmall}" FontSize="{Binding UIFontSizeNormal}"/>
+            <TextBlock Text="Close start and end" Style="{StaticResource SettingsTextSmall}" FontSize="{Binding UIFontSizeNormal}"/>
+        </ComboBox>
+
+        <TextBlock Tag="0x2800" Text="Text style" Grid.Column="0" Grid.Row="5" Style="{StaticResource LabelStyle}" FontSize="{Binding UIFontSizeNormal}" />
+        <ComboBox Name="_textStyleCombo" Tag="0x2800" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Stretch" 
+                        FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"
+                        VerticalAlignment="Center" Style="{StaticResource SettingsComboBox}" 
+                        ItemContainerStyle="{StaticResource StdComboBoxItemStyle}">
+            <TextBlock Text="Normal" Style="{StaticResource SettingsTextSmall}" FontSize="{Binding UIFontSizeNormal}"/>
+        </ComboBox>
+
+        <TextBlock Tag="0x4000" Grid.Row="5" Style="{StaticResource LabelStyle}" FontSize="{Binding UIFontSizeNormal}" Text="Opacity"/>
+        <Slider x:Name="_opacitySlider" Tag="0x4000" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="6,-4,0,0" 
+                        Minimum="0" Maximum="1" StepFrequency=".05" Height="{Binding UIControlHeightNormal}" />
+        <!--<Rectangle Tag="0x4000" Height="{Binding UIControlHeightNormal}" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" Stroke="Green" Margin="0" Fill="Transparent" />-->
+
+        <!-- Row 6 -->
+        <TextBlock Tag="0x798" Text="Pattern scale" Grid.Column="0" Grid.Row="6" Style="{StaticResource LabelStyle}" FontSize="{Binding UIFontSizeNormal}" />
+        <local:NumberBox1 x:Name="_fillPatternScale" Tag="0x798" Text="1" Grid.Column="2" Grid.Row="6" IsDistance="false" 
+                Style="{StaticResource NumberBoxStyle}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"/>
+
+        <TextBlock Tag="0xc" Text="Fillet radius" Grid.Column="0" Grid.Row="9" Style="{StaticResource LabelStyle}" 
+                FontSize="{Binding UIFontSizeNormal}" />
+        <TextBlock Tag="0x100" Text="Radius" Grid.Column="0" Grid.Row="9" Style="{StaticResource LabelStyle}" 
+                FontSize="{Binding UIFontSizeNormal}" />
+        <local:NumberBox1 x:Name="_radiusBox" Tag="0x10c" Text="1" Grid.Column="2" Grid.Row="9" IsDistance="True" Unit="Model"
+                Style="{StaticResource NumberBoxStyle}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"/>
+
+        <TextBlock Tag="0x400" Text="Axis A" Grid.Column="0" Grid.Row="9" Style="{StaticResource LabelStyle}" 
+                FontSize="{Binding UIFontSizeNormal}" />
+        <local:NumberBox1 x:Name="_majorBox" Tag="0x400" Text="1" Grid.Column="2" Grid.Row="9" IsDistance="True" Unit="Model"
+                Style="{StaticResource NumberBoxStyle}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"/>
+
+        <TextBlock Tag="0x800" Text="Alignment" Grid.Column="0" Grid.Row="6" Style="{StaticResource LabelStyle}"
+                        FontSize="{Binding UIFontSizeNormal}" />
+        <ComboBox Name="_alignmentCombo" Tag="0x800" Grid.Column="2" Grid.Row="6" HorizontalAlignment="Stretch" 
+                        FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"
+                        VerticalAlignment="Center" Style="{StaticResource SettingsComboBox}" 
+                        ItemContainerStyle="{StaticResource StdComboBoxItemStyle}">
+            <TextBlock Text="Left" Style="{StaticResource SettingsTextSmall}" FontSize="{Binding UIFontSizeNormal}"/>
+            <TextBlock Text="Center" Style="{StaticResource SettingsTextSmall}" FontSize="{Binding UIFontSizeNormal}"/>
+            <TextBlock Text="Right" Style="{StaticResource SettingsTextSmall}" FontSize="{Binding UIFontSizeNormal}"/>
+        </ComboBox>
+
+        <TextBlock Tag="0x3000" Text="Arrow style" Grid.Column="0" Grid.Row="6" Style="{StaticResource LabelStyle}"
+                        FontSize="{Binding UIFontSizeNormal}" />
+        <ComboBox Name="_arrowStyleCombo" Tag="0x3000" Grid.Column="2" Grid.Row="6" HorizontalAlignment="Stretch" 
+                        FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"
+                        VerticalAlignment="Center" Style="{StaticResource SettingsComboBox}" 
+                        ItemContainerStyle="{StaticResource StdComboBoxItemStyle}">
+            <TextBlock Text="Normal" Style="{StaticResource SettingsTextSmall}" FontSize="{Binding UIFontSizeNormal}"/>
+        </ComboBox>
+
+        <!-- Row 7 -->
+        <TextBlock Tag="0x798" Text="Pattern angle" Grid.Column="0" Grid.Row="7" Style="{StaticResource LabelStyle}" FontSize="{Binding UIFontSizeNormal}" />
+        <local:NumberBox1 x:Name="_fillPatternAngle" Tag="0x798" Text="0" Grid.Column="2" Grid.Row="7" IsAngle="true"  
+                Style="{StaticResource NumberBoxStyle}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"/>
+
+        <TextBlock Tag="0x400" Text="Axis B" Grid.Column="0" Grid.Row="10" Style="{StaticResource LabelStyle}" 
+                FontSize="{Binding UIFontSizeNormal}" />
+        <local:NumberBox1 x:Name="_minorBox" Tag="0x400" Text="1" Grid.Column="2" Grid.Row="10" IsDistance="True" Unit="Model" 
+                Style="{StaticResource NumberBoxStyle}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"/>
+
+        <TextBlock Tag="0x800" Text="Position" Grid.Column="0" Grid.Row="7" Style="{StaticResource LabelStyle}"
+                        FontSize="{Binding UIFontSizeNormal}" />
+        <ComboBox Name="_positionCombo" Tag="0x800" Grid.Column="2" Grid.Row="7" HorizontalAlignment="Stretch" 
+                        FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"
+                        VerticalAlignment="Center" Style="{StaticResource SettingsComboBox}" 
+                        ItemContainerStyle="{StaticResource StdComboBoxItemStyle}">
+            <TextBlock Text="Above" Style="{StaticResource SettingsTextSmall}" FontSize="{Binding UIFontSizeNormal}"/>
+            <TextBlock Text="On" Style="{StaticResource SettingsTextSmall}" FontSize="{Binding UIFontSizeNormal}"/>
+            <TextBlock Text="Below" Style="{StaticResource SettingsTextSmall}" FontSize="{Binding UIFontSizeNormal}"/>
+        </ComboBox>
+
+        <TextBlock Tag="0x1000" Text="Placement" Grid.Column="0" Grid.Row="7" Style="{StaticResource LabelStyle}"
+                        FontSize="{Binding UIFontSizeNormal}" />
+        <ComboBox Name="_placementCombo" Tag="0x1000" Grid.Column="2" Grid.Row="7" HorizontalAlignment="Stretch" 
+                        FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"
+                        VerticalAlignment="Center" Style="{StaticResource SettingsComboBox}" 
+                        ItemContainerStyle="{StaticResource StdComboBoxItemStyle}">
+            <TextBlock Text="Start" Style="{StaticResource SettingsTextSmall}" FontSize="{Binding UIFontSizeNormal}"/>
+            <TextBlock Text="End" Style="{StaticResource SettingsTextSmall}" FontSize="{Binding UIFontSizeNormal}"/>
+            <TextBlock Text="Start and end" Style="{StaticResource SettingsTextSmall}" FontSize="{Binding UIFontSizeNormal}"/>
+        </ComboBox>
+
+        <CheckBox x:Name="_showDimTextCB" Tag="0x2000" Grid.Row="7" Grid.ColumnSpan="3" Content="Show dimension text" Margin="8"
+                          FontSize="{Binding UIFontSizeNormal}" Style="{StaticResource SettingsCheckBox}" />
+
+        <!-- Row 8 -->
+        <TextBlock Tag="0x8" Text="Fill rule" Grid.Column="0" Grid.Row="8" Style="{StaticResource LabelStyle}" FontSize="{Binding UIFontSizeNormal}" />
+        <ComboBox Name="_fillRuleCombo" Tag="0x8" Grid.Column="2" Grid.Row="8" HorizontalAlignment="Stretch" 
+                        FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"
+                        VerticalAlignment="Center" Style="{StaticResource SettingsComboBox}" 
+                        ItemContainerStyle="{StaticResource StdComboBoxItemStyle}">
+            <TextBlock Text="Non-zero" Style="{StaticResource SettingsTextSmallNoMargin}" FontSize="{Binding UIFontSizeNormal}"/>
+            <TextBlock Text="Even-odd" Style="{StaticResource SettingsTextSmallNoMargin}" FontSize="{Binding UIFontSizeNormal}"/>
+        </ComboBox>
+
+        <TextBlock Tag="0x400" Text="Axis rotation" Grid.Column="0" Grid.Row="11" Style="{StaticResource LabelStyle}" 
+                FontSize="{Binding UIFontSizeNormal}" />
+        <local:NumberBox1 x:Name="_axisAngleBox" Tag="0x400" Text="45" Grid.Column="2" Grid.Row="11" IsAngle="True" Precision="3"
+                Style="{StaticResource NumberBoxStyle}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"/>
+
+        <TextBlock Tag="0x800" Text="Rotation" Grid.Column="0" Grid.Row="8" Style="{StaticResource LabelStyle}" 
+                FontSize="{Binding UIFontSizeNormal}" />
+        <local:NumberBox1 x:Name="_rotationBox" Tag="0x800" Text="Two point" Grid.Column="2" Grid.Row="8" IsAngle="True" Precision="3"
+                Style="{StaticResource NumberBoxStyle}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"/>
+
+        <CheckBox x:Name="_showDimExtensionCB" Tag="0x2000" Grid.Row="8" Grid.ColumnSpan="3" Content="Show extension lines"  Margin="8"
+                          FontSize="{Binding UIFontSizeNormal}" Style="{StaticResource SettingsCheckBox}" />
+
+        <!-- Row 9 -->
+        <TextBlock Tag="0x90" Text="Width" Grid.Column="0" Grid.Row="9" Style="{StaticResource LabelStyle}" 
+                FontSize="{Binding UIFontSizeNormal}" />
+        <local:NumberBox1 x:Name="_widthBox" Tag="0x90" Text="1" Grid.Column="2" Grid.Row="9" IsDistance="True" Unit="Model" 
+                Style="{StaticResource NumberBoxStyle}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"/>
+        <TextBlock Tag="0x500" Text="Included angle" Grid.Column="0" Grid.Row="13" Style="{StaticResource LabelStyle}" 
+                FontSize="{Binding UIFontSizeNormal}" />
+        <local:NumberBox1 x:Name="_includedBox" Tag="0x500" Text="270" Grid.Column="2" Grid.Row="13" IsAngle="True" Precision="3"
+                Style="{StaticResource NumberBoxStyle}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"/>
+
+        <TextBlock Tag="0x800" Text="Font height" Grid.Column="0" Grid.Row="9" Style="{StaticResource LabelStyle}" 
+                FontSize="{Binding UIFontSizeNormal}" />
+        <local:NumberBox1 x:Name="_fontHeightBox" Tag="0x800" Text="1" Grid.Column="2" Grid.Row="9" IsDistance="True" ZeroStringText="Use Style Value" 
+                Style="{StaticResource NumberBoxStyle}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" Unit="Paper"/>
+
+        <!-- Row 10 -->
+        <TextBlock Tag="0x80" Text="Height" Grid.Column="0" Grid.Row="10" Style="{StaticResource LabelStyle}" 
+                FontSize="{Binding UIFontSizeNormal}" />
+        <local:NumberBox1 x:Name="_heightBox" Tag="0x80" Text="1" Grid.Column="2" Grid.Row="10" IsDistance="True" Unit="Model" 
+                Style="{StaticResource NumberBoxStyle}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"/>
+
+        <TextBlock x:Name="_startLabel" Tag="0x500" Text="Start angle" Grid.Column="0" Grid.Row="12" Style="{StaticResource LabelStyle}" 
+                FontSize="{Binding UIFontSizeNormal}" />
+        <local:NumberBox1 x:Name="_startBox" Tag="0x500" Text="45" Grid.Column="2" Grid.Row="12" IsAngle="True" Precision="3"
+                Style="{StaticResource NumberBoxStyle}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"/>
+
+        <TextBlock Tag="0x800" Text="Line spacing" Grid.Column="0" Grid.Row="10" Style="{StaticResource LabelStyle}" 
+                FontSize="{Binding UIFontSizeNormal}" />
+        <local:NumberBox1 x:Name="_lineSpacingBox" Tag="0x800" Text="1" Grid.Column="2" Grid.Row="10" ZeroStringText="Use Style Value" 
+                Style="{StaticResource NumberBoxStyle}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"/>
+
+        <TextBlock Tag="0x800" Text="Char spacing" Grid.Column="0" Grid.Row="11" Style="{StaticResource LabelStyle}" 
+                FontSize="{Binding UIFontSizeNormal}" />
+        <local:NumberBox1 x:Name="_spacingBox" Tag="0x800" Text="1" Grid.Column="2" Grid.Row="11" ZeroStringText="Use Style Value" 
+                Style="{StaticResource NumberBoxStyle}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"/>
+
+        <!-- Row 11 -->
+        <TextBlock Tag="0x800" Text="Text" Grid.Column="0" Grid.Row="12" Style="{StaticResource LabelStyle}" 
+                FontSize="{Binding UIFontSizeNormal}" />
+        <local:ExpandoTextBox x:Name="_textBox" Tag="0x800" Text="Text..." Grid.Column="2" Grid.Row="12" 
+                Style="{StaticResource ExpandoBoxStyle}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}"/>
+
+        <!-- Row 13 -->
+        <Line StrokeThickness="1" Margin="0,5,0,2" Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="4" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" 
+                    X2="1" Stretch="Fill" StrokeEndLineCap="Square" StrokeStartLineCap="Square" Stroke="DarkGray"/>
+
+        <!-- Row 14 -->
+        <TextBlock Text="Z-Index" Grid.Column="0" Grid.Row="14" Style="{StaticResource LabelStyle}" 
+                FontSize="{Binding UIFontSizeNormal}" />
+        <muxc:NumberBox x:Name="_zIndexBox" Text="1" Grid.Column="2" Grid.Row="14" SpinButtonPlacementMode="Inline"
+                    SmallChange="1" LargeChange="10" CornerRadius="0"
+                    Style="{StaticResource muxNumberBoxStyle}" FontSize="{Binding UIFontSizeNormal}" 
+                    Height="{Binding UIControlHeightNormal}" ValueChanged="_zIndexBox_ValueChanged" />
+
+        <!-- Row 15 -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="2" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="15">
+            <Button x:Name="_orderFrontButton" Content="Bring to front" Style="{StaticResource ContextMenuButton}" FontSize="{Binding UIFontSizeNormal}"
+                            HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" Click="_orderButton_Click" />
+            <Button x:Name="_orderBackButton" Content="Send to back" Style="{StaticResource ContextMenuButton}" FontSize="{Binding UIFontSizeNormal}"
+                            HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" Click="_orderButton_Click" />
+        </StackPanel>
+        
+        <Popup x:Name="_colorPickerPopup" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" 
+               IsLightDismissEnabled="True" Closed="_colorPickerPopup_Closed" />
+    </Grid>
+</UserControl>

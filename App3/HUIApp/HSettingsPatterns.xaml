@@ -1,0 +1,198 @@
+﻿<UserControl
+    x:Class="RedDog.HUIApp.HSettingsPatterns"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RedDog.HUIApp"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:rt="using:KT22.UI"
+    xmlns:ui="using:CirrosUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="{Binding DialogWidth}"
+    mc:Ignorable="d"
+    d:DesignHeight="600"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <muxc:TeachingTip x:Name="_ttSettingsPatternsIntro" Title="Pattern Definitions" Tag="intro" Target="{x:Bind _titleTextBlock}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.IconSource>
+                <muxc:FontIconSource FontFamily="Segoe UI Symbol" Glyph="&#x25a8;" />
+            </muxc:TeachingTip.IconSource>
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttSettingsPatternsName" Title="Pattern name" Tag="name" Target="{x:Bind _patternComboBox}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttSettingsPatternsSample" Title="Pattern sample" Tag="sample" Target="{x:Bind _swatch}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttSettingsPatternsDefinition" Title="Pattern definition" Tag="definition" Target="{x:Bind _textBox}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttSettingsPatternsNew" Title="Create a new pattern" Tag="new" Target="{x:Bind _newButton}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttSettingsPatternsEdit" Title="Edit the selected pattern" Tag="edit" Target="{x:Bind _editButton}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttSettingsPatternsSave" Title="Save the selected pattern" Tag="save" Target="{x:Bind _saveButton}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttSettingsPatternsDelete" Title="Delete the selected pattern" Tag="delete" Target="{x:Bind _deleteButton}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource HDialogBackground}" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Fill="{StaticResource BrightBackground}" />
+        <TextBlock x:Name="_titleTextBlock" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
+                   Text="Pattern Definitions" Style="{StaticResource HDialogTitle}" FontSize="{Binding UIFontSizeNormal}" />
+        <Button x:Name="_helpButton" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
+                Content="&#xE11B;" Click="_helpButton_Click" Style="{StaticResource HDialogTitleGlyphButton}" FontSize="{Binding UIFontSizeNormal}" />
+
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="208" />
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="130" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Pattern name" />
+            <TextBox Grid.Column="2" Grid.Row="0" x:Name="_patternNameBox" Visibility="Collapsed" SelectionHighlightColor="{StaticResource RedDogHighlightColor}"
+                     Style="{StaticResource HDialogTextBox}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" Text="Unassigned" Padding="11,4" />
+            <ComboBox Grid.Column="2" Grid.Row="0" x:Name="_patternComboBox" Visibility="Visible" SelectionChanged="_patternComboBox_SelectionChanged"
+                      Style="{StaticResource HDialogComboBox}" Height="{Binding UIControlHeightNormal}" FontSize="{Binding UIFontSizeNormal}" Text="Unassigned" />
+
+            <ui:PatternSwatch x:Name="_swatch" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,4" />
+
+            <TextBox x:Name="_textBox" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Margin="0,4" AcceptsReturn="True" 
+                     ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     BorderBrush="DarkGray"
+                     BorderThickness="1"
+                     IsEnabled="False"
+                     TextChanged="_textBox_TextChanged"
+                     LostFocus="_textBox_LostFocus"
+                     KeyDown="_textBox_KeyDown" 
+                 />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                <Button x:Name="_newButton" HorizontalAlignment="Center" Margin="4,0" Click="Button_Click">New</Button>
+                <Button x:Name="_editButton" HorizontalAlignment="Center" Margin="4,0" Click="Button_Click">Edit</Button>
+                <Button x:Name="_saveButton" HorizontalAlignment="Center" Margin="4,0" Click="Button_Click">Save</Button>
+                <Button x:Name="_deleteButton" HorizontalAlignment="Center" Margin="4,0" Click="Button_Click">Delete</Button>
+            </StackPanel>
+        </Grid>
+
+
+        <Grid x:Name="_alert" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="0" Grid.RowSpan="7"  
+              Height="auto" Width="auto" Background="Transparent" Visibility="Collapsed">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Rectangle Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Fill="WhiteSmoke" Stroke="DarkGray" />
+
+            <TextBlock x:Name="_alertContent" Grid.Row="1" Grid.Column="1" Foreground="Black" Margin="20"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap">
+                The file contains 8 patterns.
+                <LineBreak/>
+                4 of the patterns are duplicates.
+            </TextBlock>
+
+            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="8">
+                <Button x:Name="_alertOkButton" Content="Ok" Margin="4" Click="_alertButton_Click" />
+                <Button x:Name="_alertCancelButton" Content="Cancel" Margin="4" Click="_alertButton_Click" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="Dimension" Width="80" Height="60" UseLayoutRounding="False">
+	<Canvas x:Name="Layer_1" Width="80" Height="60" Canvas.Left="0" Canvas.Top="0">
+		<Path x:Name="Line" Width="56" Height="2" Canvas.Left="12.25" Canvas.Top="17" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 13.25,18L 67.25,18"/>
+		<Path x:Name="Line_0" Width="2" Height="38.0001" Canvas.Left="69" Canvas.Top="11.9999" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 70,49L 70,12.9999"/>
+		<Path x:Name="Line_1" Width="2" Height="38.0001" Canvas.Left="9" Canvas.Top="11.9999" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 10,49L 10,12.9999"/>
+		<Path x:Name="Path" Width="8" Height="6" Canvas.Left="10" Canvas.Top="15" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 10,18L 18,15L 18,21L 10,18 Z "/>
+		<Path x:Name="Path_2" Width="8" Height="6" Canvas.Left="62" Canvas.Top="15" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 70,18L 62,21L 62,15L 70,18 Z "/>
+	</Canvas>
+</Canvas>

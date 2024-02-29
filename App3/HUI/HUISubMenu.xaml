@@ -1,0 +1,70 @@
+﻿<UserControl
+    x:Class="HUI.HUISubMenu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:huiapp="using:CirrosUWP.HUIApp" d:DataContext="{d:DesignInstance Type=huiapp:HDataContext}"
+    mc:Ignorable="d"
+    Width="{Binding MenuPlusIconWidth}">
+
+    <UserControl.Resources>
+        <Storyboard x:Name="_expandAnimation">
+            <DoubleAnimation Storyboard.TargetName="_submenu" EnableDependentAnimation="True" Storyboard.TargetProperty="Width" 
+                             To="{Binding MenuPlusIconWidth}" Duration="0:0:0.15">
+                <DoubleAnimation.EasingFunction>
+                    <QuinticEase />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Name="_expandNoAnimation">
+            <DoubleAnimation Storyboard.TargetName="_submenu" EnableDependentAnimation="True" Storyboard.TargetProperty="Width" 
+                             To="{Binding MenuPlusIconWidth}" Duration="0:0:0" />
+        </Storyboard>
+        <Storyboard x:Name="_unexpandAnimation">
+            <DoubleAnimation Storyboard.TargetName="_submenu" EnableDependentAnimation="True" Storyboard.TargetProperty="Width" 
+                             To="0" Duration="0:0:0.05">
+                <DoubleAnimation.EasingFunction>
+                    <QuarticEase />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid x:Name="_background" Background="Black" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <StackPanel x:Name="_submenu" Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Left" 
+                    Width="{Binding MenuPlusIconWidth}">
+            <local:HUISubMenuItem Id="sv" Title="Squaw Valley" Glyph="⁂" />
+            <local:HUISubMenuItem Id="ns" Title="Northstar" Glyph="❆" />
+            <local:HUISubMenuItem Id="hw" Title="Homewood" Glyph="❅" />
+            <local:HUISubMenuItem Id="am" Title="Alpine Meadows" Glyph="❊" />
+            <local:HUISubMenuItem Id="sb" Title="Sugar Bowl" Glyph="❄" />
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left">
+            <Rectangle x:Name="_menuPH0" Stroke="Transparent" Height="{Binding MenuIconSize.Width}" VerticalAlignment="Top" />
+            <Rectangle x:Name="_menuPH1" Stroke="Transparent" Height="{Binding MenuIconSize.Width}" VerticalAlignment="Top" />
+            <Rectangle x:Name="_menuPH2" Stroke="Transparent" Height="{Binding MenuIconSize.Width}" VerticalAlignment="Top" />
+            <Rectangle x:Name="_menuPH3" Stroke="Transparent" Height="{Binding MenuIconSize.Width}" VerticalAlignment="Top" />
+            <Rectangle x:Name="_menuPH4" Stroke="Transparent" Height="{Binding MenuIconSize.Width}" VerticalAlignment="Top" />
+            <Rectangle x:Name="_menuPH5" Stroke="Transparent" Height="{Binding MenuIconSize.Width}" VerticalAlignment="Top" />
+            <Rectangle x:Name="_menuPH6" Stroke="Transparent" Height="{Binding MenuIconSize.Width}" VerticalAlignment="Top" />
+            <Rectangle x:Name="_menuPH7" Stroke="Transparent" Height="{Binding MenuIconSize.Width}" VerticalAlignment="Top" />
+            <Rectangle x:Name="_menuPH8" Stroke="Transparent" Height="{Binding MenuIconSize.Width}" VerticalAlignment="Top" />
+            <Rectangle x:Name="_menuPH9" Stroke="Transparent" Height="{Binding MenuIconSize.Width}" VerticalAlignment="Top" />
+        </StackPanel>
+        
+        <Button x:Name="_helpButton" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                Content="&#xE11B;" Click="_helpButton_Click"  Margin="10"
+                Style="{StaticResource HDialogTitleGlyphButton}" FontSize="{Binding UIFontSizeNormal}" Foreground="Black" />
+    </Grid>
+
+</UserControl>

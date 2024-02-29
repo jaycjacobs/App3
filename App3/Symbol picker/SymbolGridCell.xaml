@@ -1,0 +1,32 @@
+﻿<UserControl
+    x:Class="Cirros8.Symbols.SymbolPickerGridCell"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="92"
+    d:DesignWidth="79">
+
+    <UserControl.Resources>
+        <Style x:Key="BoxStyle" TargetType="Rectangle">
+            <Setter Property="Margin" Value="1" />
+            <Setter Property="Fill" Value="Transparent" />
+            <Setter Property="Stroke" Value="DarkGray" />
+            <Setter Property="Width" Value="77" />
+            <Setter Property="Height" Value="77" />
+        </Style>
+    </UserControl.Resources>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    PointerEntered="StackPanel_PointerEntered"
+                    PointerExited="StackPanel_PointerExited"
+                    PointerPressed="StackPanel_PointerPressed"
+                    PointerReleased="StackPanel_PointerReleased">
+        <Grid>
+            <Rectangle x:Name="_rect" Style="{StaticResource BoxStyle}" />
+            <Image x:Name="_thumbnail" Width="75" Height="75" Margin="2" />
+        </Grid>
+        <TextBlock x:Name="_symbolName" Text="X" FontSize="10" Margin="3,0" 
+                   HorizontalAlignment="Center" MaxWidth="75" TextTrimming="WordEllipsis" />
+        </StackPanel>
+</UserControl>

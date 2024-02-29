@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="AppBarPanLeft" Width="40" Height="40" UseLayoutRounding="False">
+	<Canvas x:Name="Layer_1" Width="40" Height="40" Canvas.Left="0" Canvas.Top="0">
+		<Path x:Name="Path" Width="7.2" Height="8.31384" Canvas.Left="27.8" Canvas.Top="15.8431" Stretch="Fill" Fill="#67FFFFFF" Data="F1 M 35,20L 27.8,15.8431L 27.8,24.1569L 35,20 Z "/>
+		<Path x:Name="Line" Width="7.00001" Height="2" Canvas.Left="21.8" Canvas.Top="19" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#67FFFFFF" Data="F1 M 27.8,20L 22.8,20"/>
+		<Path x:Name="Path_0" Width="7.2" Height="8.31384" Canvas.Left="5.00001" Canvas.Top="15.8431" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 5.00001,20L 12.2,24.1569L 12.2,15.8431L 5.00001,20 Z "/>
+		<Path x:Name="Line_1" Width="7" Height="2" Canvas.Left="11.2" Canvas.Top="19" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 12.2,20L 17.2,20"/>
+		<Path x:Name="Path_2" Width="8.31384" Height="7.2" Canvas.Left="15.8431" Canvas.Top="27.8" Stretch="Fill" Fill="#67FFFFFF" Data="F1 M 20,35L 24.1569,27.8L 15.8431,27.8L 20,35 Z "/>
+		<Path x:Name="Line_3" Width="2" Height="7" Canvas.Left="19" Canvas.Top="21.8" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#67FFFFFF" Data="F1 M 20,27.8L 20,22.8"/>
+		<Path x:Name="Path_4" Width="8.31384" Height="7.2" Canvas.Left="15.8431" Canvas.Top="5" Stretch="Fill" Fill="#67FFFFFF" Data="F1 M 20,5L 15.8431,12.2L 24.1569,12.2L 20,5 Z "/>
+		<Path x:Name="Line_5" Width="2" Height="7" Canvas.Left="19" Canvas.Top="11.2" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#67FFFFFF" Data="F1 M 20,12.2L 20,17.2"/>
+	</Canvas>
+</Canvas>

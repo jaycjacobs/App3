@@ -1,0 +1,125 @@
+﻿<Page
+    x:Class="Cirros8.ModalDialogs.PhotoEditPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Cirros8.ModalDialogs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="768"
+    d:DesignWidth="1366"
+    mc:Ignorable="d">
+
+    <Page.Transitions>
+        <TransitionCollection>
+            <EntranceThemeTransition/>
+        </TransitionCollection>
+    </Page.Transitions>
+    
+    <Grid x:Name="_topView" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="auto" MinWidth="300"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        
+        <Rectangle Fill="WhiteSmoke" Grid.Row="1" Grid.Column="2"/>
+        <ScrollViewer x:Name="_imageScrollViewer" Grid.Row="1" Grid.Column="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" ZoomMode="Enabled" Visibility="Visible">
+            <Canvas x:Name="_imageCanvas" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image x:Name="_imagePanel" />
+            </Canvas>
+        </ScrollViewer>
+
+        <Canvas x:Name="_topCanvas" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="0" Grid.RowSpan="3" />
+
+        <TextBlock x:Name="_cd" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right"/>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="left" VerticalAlignment="Top" Margin="10,10,5,10">
+            <Button x:Name="_backButton" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource HomePageBackButtonStyle}" 
+                Margin="2,2,0,10" Click="_backButton_Click"  Visibility="Collapsed" />
+            <Button x:Name="_zoomButton" Background="#20000000" Foreground="Red" FontFamily="Segoe UI Symbol"  FontSize="20" Width="40" Height="40" Content="&#xe1d9;" Margin="2" Padding="2" FontWeight="Normal" Click="_zoomButton_Click" />
+            <Button x:Name="_zoomInButton" Background="#20000000" Foreground="Red" FontFamily="Segoe UI Symbol"  FontSize="20" Width="40" Height="40" Content="&#xe1a3;" Margin="2" Padding="2" FontWeight="Normal" Click="_zoomInButton_Click" />
+            <Button x:Name="_zoomOutButton" Background="#20000000" Foreground="Red" FontFamily="Segoe UI Symbol"  FontSize="20" Width="40" Height="40" Content="&#xe1a4;" Margin="2" Padding="2" FontWeight="Normal" Click="_zoomOutButton_Click" />
+            <Button x:Name="_redButton" Background="Red" Foreground="Red" FontFamily="Segoe UI Symbol" FontSize="32" Width="40" Height="40" Margin="2" Padding="2" FontWeight="Normal" Click="_redButton_Click" />
+            <Button x:Name="_greenButton" Background="LimeGreen" Foreground="LimeGreen" FontFamily="Segoe UI Symbol" FontSize="32" Width="40" Height="40" Margin="2" Padding="2" FontWeight="Normal" Click="_greenButton_Click" />
+            <Button x:Name="_blueButton" Background="Blue" Foreground="Blue" FontFamily="Segoe UI Symbol" FontSize="32" Width="40" Height="40" Margin="2" Padding="2" FontWeight="Normal" Click="_blueButton_Click" />
+            <Button x:Name="_yellowButton" Background="Yellow" Foreground="Yellow" FontFamily="Segoe UI Symbol" FontSize="32" Width="40" Height="40" Margin="2" Padding="2" FontWeight="Normal" Click="_yellowButton_Click" />
+        </StackPanel>
+        
+        <Grid Grid.Column="4" Grid.Row="1" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="12" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="0" />
+            </Grid.RowDefinitions>
+            
+            <local:PhotoFilterPanel x:Name="_filterPanel" Grid.Row="1" Grid.Column="4" Visibility="Visible" VerticalAlignment="Top" />
+            <local:PhotoCropPanel x:Name="_cropPanel" Grid.Row="1" Grid.Column="4" Visibility="Collapsed" VerticalAlignment="Top" />
+            <local:PhotoWarpPanel x:Name="_warpPanel" Grid.Row="1" Grid.Column="4" Visibility="Collapsed" VerticalAlignment="Top" />
+
+            <Grid x:Name="_applyPanel" Grid.Column="4" Grid.Row="1" Grid.RowSpan="3" Background="#40000000" Visibility="Collapsed">
+                <Border x:Name="_applyAlert" Height="110" BorderBrush="{StaticResource SettingsDarkForeground}" BorderThickness="3" VerticalAlignment="Center"
+                        Margin="10,60,10,60">
+                    <Grid Background="WhiteSmoke">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="15"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="15"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="20"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1" Grid.Row="1" FontSize="18" Text="Apply changes to the image?" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button x:Name="_doApplyButton" Content="Yes" Margin="5,0" Click="_doApplyButton_Click" />
+                            <Button x:Name="_dontApplyButton" Content="No" Margin="5,0" Click="_dontApplyButton_Click" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <StackPanel Grid.Row="3" Grid.Column="4" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <ToggleButton x:Name="_warpButton" Content="Straighten" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                              Click="WarpButtonClick" Style="{StaticResource ModalDialogToggleButtonStyle}"
+                              FontSize="{Binding UIFontSizeNormal}"/>
+                    <ToggleButton x:Name="_filterButton" Content="Filter" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                              Click="FilterButtonClick" Style="{StaticResource ModalDialogToggleButtonStyle}"
+                              FontSize="{Binding UIFontSizeNormal}"/>
+                    <ToggleButton x:Name="_cropButton" Content="Crop" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                              Click="CropButtonClick" Style="{StaticResource ModalDialogToggleButtonStyle}"
+                              FontSize="{Binding UIFontSizeNormal}"/>
+                </StackPanel>
+
+                <Grid Margin="6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*" MinWidth="20"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Content="Revert to original" HorizontalAlignment="Left" 
+                    VerticalAlignment="Center" Click="RevertClick" 
+                              FontSize="{Binding UIFontSizeNormal}"/>
+
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Center" Click="CancelClick" 
+                              FontSize="{Binding UIFontSizeNormal}" Margin="0,0,4,0"/>
+                        <Button x:Name="_okButton" Content="Insert" HorizontalAlignment="Left" VerticalAlignment="Center" Click="DoneClick"
+                              FontSize="{Binding UIFontSizeNormal}"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+       </Grid>
+   </Grid>
+</Page>

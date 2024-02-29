@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="AppBarGap" Width="40" Height="40" UseLayoutRounding="False">
+	<Canvas x:Name="Layer_1" Width="40" Height="40" Canvas.Left="0" Canvas.Top="0">
+		<Path x:Name="Line" Width="8.19239" Height="8.19237" Canvas.Left="22" Canvas.Top="9.80762" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 29.1924,10.8076L 23,17"/>
+		<Path x:Name="Line_0" Width="8.19238" Height="8.19239" Canvas.Left="9.80761" Canvas.Top="22" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 17,23L 10.8076,29.1924"/>
+	</Canvas>
+</Canvas>

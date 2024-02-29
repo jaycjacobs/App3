@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="AppBarOffset" Width="40" Height="40" UseLayoutRounding="False">
+	<Canvas x:Name="Layer_1" Width="40" Height="40" Canvas.Left="0" Canvas.Top="0">
+		<Path x:Name="Path" Width="23.9766" Height="24.0339" Canvas.Left="9.02341" Canvas.Top="9.70051" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 10.0234,32.7344L 24.9051,24.1425L 20.8752,17.1234L 32,10.7005"/>
+		<Path x:Name="Path_0" Width="24.0168" Height="23.9642" Canvas.Left="7" Canvas.Top="6.26558" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#67FFFFFF" Data="F1 M 8,29.2298L 19.2768,22.7191L 15.2702,15.7795L 30.0168,7.26558"/>
+	</Canvas>
+</Canvas>

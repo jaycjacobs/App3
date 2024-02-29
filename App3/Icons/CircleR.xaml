@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="CircleR" Width="80" Height="60" UseLayoutRounding="False">
+	<Canvas x:Name="Layer_1" Width="80" Height="60" Canvas.Left="0" Canvas.Top="0">
+		<Ellipse x:Name="Ellipse" Width="4" Height="4" Canvas.Left="38" Canvas.Top="28" Stretch="Fill" Fill="#FFFFFFFF"/>
+		<Ellipse x:Name="Ellipse_0" Width="45.9999" Height="45.9999" Canvas.Left="16.9999" Canvas.Top="7.00016" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF"/>
+		<Path x:Name="Path" Width="6.80321" Height="6.8086" Canvas.Left="40.3532" Canvas.Top="22.8375" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 40.3532,29.6461L 43.4409,22.8375L 47.1564,26.5466L 40.3532,29.6461 Z "/>
+		<Path x:Name="Path_1" Width="6.80321" Height="6.80859" Canvas.Left="48.3863" Canvas.Top="14.784" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 55.1895,14.784L 52.1019,21.5926L 48.3863,17.8835L 55.1895,14.784 Z "/>
+		<Path x:Name="Line" Width="13.7168" Height="13.739" Canvas.Left="40.2065" Canvas.Top="16.0533" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 40.7065,29.2923L 53.4233,16.5533"/>
+	</Canvas>
+</Canvas>

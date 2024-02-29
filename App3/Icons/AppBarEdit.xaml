@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="AppBarLine" Width="40" Height="40" UseLayoutRounding="False">
+	<Canvas x:Name="Layer_1" Width="40" Height="40" Canvas.Left="0" Canvas.Top="0">
+		<Path x:Name="Line" Width="14.7279" Height="14.7279" Canvas.Left="12.636" Canvas.Top="12.636" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 26.364,13.636L 13.636,26.364"/>
+		<Ellipse x:Name="Ellipse_0" Width="5" Height="5" Canvas.Left="25.5" Canvas.Top="9.5" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF"/>
+		<Ellipse x:Name="Ellipse_1" Width="5" Height="5" Canvas.Left="9.5" Canvas.Top="25.5" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF"/>
+	</Canvas>
+</Canvas>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="AppBarUngroup" Width="40" Height="40" UseLayoutRounding="False">
+	<Canvas x:Name="Layer_1" Width="40" Height="40" Canvas.Left="0" Canvas.Top="0">
+		<Path x:Name="Path_0" Width="7.70779" Height="10" Canvas.Left="4.14611" Canvas.Top="15" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 5.35389,16C 8.39146,16 10.8539,17.7909 10.8539,20C 10.8539,22.2091 8.39146,24 5.35389,24C 5.28432,24 5.21505,23.9991 5.14611,23.9972"/>
+		<Path x:Name="Path_1" Width="7.70779" Height="10" Canvas.Left="28.1461" Canvas.Top="15" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 34.6461,24C 31.6085,24 29.1461,22.2091 29.1461,20C 29.1461,17.7909 31.6085,16 34.6461,16C 34.7157,16 34.785,16.0009 34.8539,16.0028"/>
+		<Path x:Name="Line" Width="10" Height="2" Canvas.Left="7" Canvas.Top="19" Stretch="Fill" StrokeThickness="2" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 8,20L 16,20"/>
+		<Path x:Name="Line_2" Width="10" Height="2" Canvas.Left="23" Canvas.Top="19" Stretch="Fill" StrokeThickness="2" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 24,20L 32,20"/>
+		<Path x:Name="Path_3" Width="7.70779" Height="10" Canvas.Left="20.1461" Canvas.Top="15" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 21.3539,16C 24.3915,16 26.8539,17.7909 26.8539,20C 26.8539,22.2091 24.3915,24 21.3539,24C 21.2843,24 21.2151,23.9991 21.1461,23.9972"/>
+		<Path x:Name="Path_4" Width="7.70779" Height="10" Canvas.Left="12.1461" Canvas.Top="15" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 18.6461,24C 15.6085,24 13.1461,22.2091 13.1461,20C 13.1461,17.7909 15.6085,16 18.6461,16C 18.7157,16 18.7849,16.0009 18.8539,16.0028"/>
+	</Canvas>
+</Canvas>

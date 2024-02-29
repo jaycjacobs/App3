@@ -1,0 +1,119 @@
+﻿<UserControl
+    x:Class="Cirros8.NewDrawingControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CirrosUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="618"
+    d:DesignWidth="1226">
+
+    <UserControl.Transitions>
+        <TransitionCollection>
+            <EntranceThemeTransition/>
+        </TransitionCollection>
+    </UserControl.Transitions>
+
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+
+        <Grid Background="Transparent" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="0"/>
+                <ColumnDefinition Width="164"/>
+                <ColumnDefinition Width="246"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="72"/>
+                <RowDefinition Height="56" />
+                <RowDefinition Height="58" />
+                <RowDefinition Height="0" />
+                <RowDefinition Height="56" />
+                <RowDefinition Height="56" />
+                <RowDefinition Height="0" />
+                <RowDefinition Height="56" />
+                <RowDefinition Height="72" />
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+
+            <Rectangle Grid.ColumnSpan="7" Fill="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.RowSpan="11" Stroke="Black" />
+
+            <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="4" Style="{StaticResource DialogTitle}" TextAlignment="Center" VerticalAlignment="Bottom" Margin="4,0,0,20" Height="33">Create a new drawing</TextBlock>
+            <TextBlock Style="{StaticResource DialogText}" Grid.Row="2" Grid.Column="2" Text="Drawing size" Margin="6,18,2,17" Height="21"/>
+            <ComboBox x:Name="_sizeComboBox" Grid.Row="2" Grid.Column="3" Style="{StaticResource DialogComboBox}" ItemContainerStyle="{StaticResource StdComboBoxItemStyle}" Margin="6,12,0,11" Height="32">
+                <ComboBoxItem Style="{StaticResource DialogComboBoxItem}" Content="Custom" Tag="0,0" />
+                <ComboBoxItem Style="{StaticResource DialogComboBoxItem}" Content="ANSI A" Tag="8.5,11" />
+                <ComboBoxItem Style="{StaticResource DialogComboBoxItem}" Content="ANSI B" Tag="11,17" />
+                <ComboBoxItem Style="{StaticResource DialogComboBoxItem}" Content="ANSI C" Tag="17,22"/>
+                <ComboBoxItem Style="{StaticResource DialogComboBoxItem}" Content="ANSI D" Tag="22,34"/>
+                <ComboBoxItem Style="{StaticResource DialogComboBoxItem}" Content="ANSI E" Tag="34,44"/>
+                <ComboBoxItem Style="{StaticResource DialogComboBoxItem}" Content="ANSI F" Tag="28,40"/>
+                <ComboBoxItem Style="{StaticResource DialogComboBoxItem}" Content="ISO A0" Tag="33.11023622,46.81102362"/>
+                <ComboBoxItem Style="{StaticResource DialogComboBoxItem}" Content="ISO A1" Tag="23.38582677,33.11023622"/>
+                <ComboBoxItem Style="{StaticResource DialogComboBoxItem}" Content="ISO A2" Tag="16.53543307,23.38582677"/>
+                <ComboBoxItem Style="{StaticResource DialogComboBoxItem}" Content="ISO A3" Tag="11.69291339,16.53543307"/>
+                <ComboBoxItem Style="{StaticResource DialogComboBoxItem}" Content="ISO A4" Tag="8.267716535,11.69291339"/>
+            </ComboBox>
+            <StackPanel x:Name="_orientationPanel" Orientation="Horizontal" Grid.Row="2" Grid.Column="4" VerticalAlignment="Center" Margin="8,14,8,13" Height="29" >
+                <RadioButton x:Name="_rbLandscape" Margin="8,0" Content="Landscape" GroupName="orientation" MinWidth="10" />
+                <RadioButton x:Name="_rbPortrait" Margin="8,0" Content="Portrait" GroupName="orientation" MinWidth="10" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="4" VerticalAlignment="Center" Margin="8,14,8,13" Height="29" >
+                <RadioButton x:Name="_rbInch" Margin="8,0" Content="Inches" GroupName="paperUnit" MinWidth="10" />
+                <RadioButton x:Name="_rbMm" Margin="8,0" Content="Millimeters" GroupName="paperUnit" MinWidth="10" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" Margin="0,11" Height="35">
+                <local:NumberBox1 x:Name="_widthBox" Style="{StaticResource DialogNumberBox}" VerticalAlignment="Center" Text="17" Grid.Row="1" Grid.Column="2"
+                                 MinValue="1" Precision="0" Width="100"/>
+                <TextBlock  Style="{StaticResource DialogText}" Grid.Row="2" Grid.Column="1" Text="by" HorizontalAlignment="Center" />
+                <local:NumberBox1 x:Name="_heightBox" Style="{StaticResource DialogNumberBox}" VerticalAlignment="Center" Text="11" Grid.Row="2" Grid.Column="2"
+                                 MinValue="1" Precision="0" Width="100"/>
+            </StackPanel>
+
+            <TextBlock  Style="{StaticResource DialogText}" Grid.Row="4" Grid.Column="2" Text="Drawing (model) units" Margin="6,18,2,17" Grid.RowSpan="2" Height="21" />
+            <StackPanel Orientation="Horizontal"  Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" Margin="0,14,0,13" Grid.RowSpan="2" Height="29">
+                <RadioButton x:Name="_rbAppUnit1" Margin="8,0" Content="Inches" GroupName="modelUnit" MinWidth="10" />
+                <RadioButton x:Name="_rbAppUnit2" Margin="8,0" Content="Feet" GroupName="modelUnit" MinWidth="10" />
+                <RadioButton x:Name="_rbAppUnit3" Margin="8,0" Content="Meters" GroupName="modelUnit" Visibility="Collapsed" MinWidth="10" />
+            </StackPanel>
+            <TextBlock  Style="{StaticResource DialogText}" Grid.Row="6" Grid.Column="2" Text="Drawing scale" Margin="6,18,2,17" Height="21" />
+            <ComboBox x:Name="_scaleComboBox" Grid.Row="6" Grid.Column="3" Style="{StaticResource DialogComboBox}" ItemContainerStyle="{StaticResource StdComboBoxItemStyle}" Margin="6,12,0,11" Height="32"/>
+            <StackPanel x:Name="_scalePanel" Orientation="Horizontal" Margin="12,0" Grid.Row="6" Grid.Column="4" Grid.ColumnSpan="2">
+                <TextBlock Style="{StaticResource DialogText}" Text="1 : " />
+                <local:NumberBox1 x:Name="_scaleBox" Style="{StaticResource DialogNumberBox}" VerticalAlignment="Center" IsInteger="True" Width="100" />
+            </StackPanel>
+
+            <TextBlock  Style="{StaticResource DialogText}" Grid.Row="7" Grid.Column="2" Text="Theme" Margin="6,18,2,17" Grid.RowSpan="2" Height="21"/>
+            <ComboBox x:Name="_themeComboBox" Grid.Row="7" Grid.Column="3" Style="{StaticResource DialogComboBox}" ItemContainerStyle="{StaticResource StdComboBoxItemStyle}" Margin="6,12,0,11" Grid.RowSpan="2" Height="32">
+                <ComboBoxItem Style="{StaticResource DialogComboBoxItem}" Content="Light" />
+                <ComboBoxItem Style="{StaticResource DialogComboBoxItem}" Content="Dark" />
+                <ComboBoxItem Style="{StaticResource DialogComboBoxItem}" Content="Blueline" />
+                <ComboBoxItem Style="{StaticResource DialogComboBoxItem}" Content="Blueprint" />
+                <ComboBoxItem Style="{StaticResource DialogComboBoxItem}" Content="Sepia" />
+            </ComboBox>
+
+            <Grid x:Name="_previewGrid" Grid.Row="2" Grid.RowSpan="7" Grid.Column="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="220" />
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid x:Name="_previewRectangleGrid" Grid.Row="1" Grid.Column="0">
+                    <Rectangle x:Name="_previewRectangle" Height="160" Width="120" Fill="WhiteSmoke" Stroke="Black" StrokeThickness="1" />
+                </Grid>
+                <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="0">
+                    <!--<TextBlock Style="{StaticResource DialogText}" FontSize="14" TextAlignment="Center" Text="Drawing size" Margin="0" />-->
+                    <TextBlock x:Name="_paperSizeText" Style="{StaticResource DialogText}" FontSize="14" TextAlignment="Center" Text="Paper: 1000 mm x 1000 mm" Margin="0" />
+                    <TextBlock x:Name="_modelSizeText" Style="{StaticResource DialogText}" FontSize="14" TextAlignment="Center" Text="Model: 1000 mm x 1000 mm" Margin="0" />
+                </StackPanel>
+            </Grid>
+            <Button x:Name="_startButton" Content="Start drawing" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="7" HorizontalAlignment="Center" Height="38" Width="200" Margin="0,17" />
+        </Grid>
+    </Grid>
+</UserControl>

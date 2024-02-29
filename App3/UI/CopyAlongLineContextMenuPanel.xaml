@@ -1,0 +1,97 @@
+﻿<UserControl
+    x:Class="CirrosUI.CopyAlongLineContextMenuPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CirrosUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="400"
+    d:DesignWidth="230">
+
+    <Border BorderThickness="1" BorderBrush="{StaticResource DarkDarkGray}" Grid.Column="1" Grid.Row="2" Margin="0">
+        <Grid x:Name="_menuPanel" Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="5"/>
+            </Grid.RowDefinitions>
+
+            <Rectangle Fill="{StaticResource DarkDarkGray}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" />
+            <TextBlock x:Name="_title" Text="Linear array of objects" Grid.Column="0" Grid.ColumnSpan="3" 
+                       Style="{StaticResource PopupTitleText}" FontSize="{Binding UIFontSizeNormal}" />
+            <Button FontFamily="Segoe UI Symbol" Grid.Column="0" Grid.ColumnSpan="3" Content="&#xe21c;" Height="30" 
+                    Padding="0" Click="CloseButton_Click" FontSize="{Binding UIFontSizeSmall}" 
+                    Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Right" Background="Transparent" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="2">
+                <ToggleButton x:Name="_selectNewButton" Content="Pick object" VerticalAlignment="Center"  Click="_selectNewButton_Click"
+                                  Style="{StaticResource ContextMenuToggleButtonStyle}" FontSize="{Binding UIFontSizeNormal}"/>
+                <ToggleButton x:Name="_getSymbolButton" Content="Get symbol" VerticalAlignment="Center"  Click="_getSymbolButton_Click"
+                                  Style="{StaticResource ContextMenuToggleButtonStyle}" FontSize="{Binding UIFontSizeNormal}"/>
+                <ToggleButton x:Name="_drawLineButton" Content="Draw line" VerticalAlignment="Center" Click="_drawLineButton_Click" 
+                                  FontSize="{Binding UIFontSizeNormal}" Style="{StaticResource ContextMenuToggleButtonStyle}" />
+            </StackPanel>
+
+            <Grid x:Name="_options" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="4" Visibility="Visible">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="8"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="0"/>
+                </Grid.RowDefinitions>
+
+                <Line Stroke="DarkGray" StrokeThickness="1" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Height="1"
+                      X1="0" Y1="0" X2="1" Y2="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Stretch="Fill"/>
+
+                <StackPanel x:Name="_row0" Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" 
+                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <ToggleButton x:Name="_spaceButton" Content="Space along line" Click="_spaceButton_Click"
+                                  Style="{StaticResource ContextMenuToggleButtonStyle}" FontSize="{Binding UIFontSizeNormal}" />
+                    <ToggleButton x:Name="_distributeButton" Content="Distribute along line" Click="_distributeButton_Click" 
+                                  Style="{StaticResource ContextMenuToggleButtonStyle}" FontSize="{Binding UIFontSizeNormal}" />
+                </StackPanel>
+
+                <TextBlock Grid.Column="1" Grid.Row="2" Text="Number of objects" HorizontalAlignment="Left" VerticalAlignment="Center"
+                           Margin="0,10,0,8" FontSize="{Binding UIFontSizeNormal}" FontWeight="SemiLight"/>
+                <local:NumberBox1 x:Name="_repeatBox" Grid.Column="2" Grid.Row="2" Value="1" 
+                                 Style="{StaticResource DialogNumberBox}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                 FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" MinHeight="10"
+                                 InputScope="Number" IsInteger="True" OnValueChanged="_repeatBox_OnValueChanged" />
+
+                <TextBlock Grid.Column="1" Grid.Row="3" Text="Distance between objects" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                           Margin="0,10,0,8" FontSize="{Binding UIFontSizeNormal}" FontWeight="SemiLight" />
+                <local:NumberBox1 x:Name="_spacingBox" Grid.Column="2" Grid.Row="3" Value="1" 
+                                 Style="{StaticResource DialogNumberBox}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                 FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" MinHeight="10"
+                                 InputScope="Number" OnValueChanged="_spacingBox_OnValueChanged" />
+
+                <CheckBox x:Name="_connectCB" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Content="Connect objects with line segments" 
+                          Style="{StaticResource ContextMenuCheckBox}" Checked="_connectCB_Checked" Unchecked="_connectCB_Checked"
+                          FontSize="{Binding UIFontSizeNormal}" Margin="4,4,2,3" />
+                <CheckBox x:Name="_endCB" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Content="Include object at start point" 
+                          Style="{StaticResource ContextMenuCheckBox}" Checked="_endCB_Checked" Unchecked="_endCB_Checked"
+                          FontSize="{Binding UIFontSizeNormal}" Margin="4,4,2,3" />
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
+

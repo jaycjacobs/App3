@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="AppBarTransform" Width="40" Height="40" UseLayoutRounding="False">
+	<Canvas x:Name="Layer_1" Width="40" Height="40" Canvas.Left="0" Canvas.Top="0">
+		<Rectangle x:Name="Rectangle" Width="16" Height="13.2" Canvas.Left="14" Canvas.Top="19.4" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#67FFFFFF"/>
+		<Path x:Name="Path" Width="27.5468" Height="26.5643" Canvas.Left="5.22662" Canvas.Top="5.71786" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 6.22662,16.5599L 23.2735,6.71786L 31.7734,21.4401L 14.7265,31.2821L 6.22662,16.5599 Z "/>
+	</Canvas>
+</Canvas>

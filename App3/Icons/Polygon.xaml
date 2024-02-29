@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="Polygon" Width="80" Height="60">
+	<Canvas x:Name="Layer_1" Width="80" Height="60" Canvas.Left="0" Canvas.Top="0">
+        <Path x:Name="Path" Width="40" Height="40" Canvas.Left="17" Canvas.Top="12" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" StrokeEndLineCap="Round" Stroke="#FFFFFFFF" Fill="#67FFFFFF" Data="F1 M 56,13L 47,51L 18,24L 56,13"/>
+		<Ellipse x:Name="Ellipse" Width="4" Height="4" Canvas.Left="38" Canvas.Top="28" Stretch="Fill" Fill="#FFFFFFFF"/>
+	</Canvas>
+</Canvas>

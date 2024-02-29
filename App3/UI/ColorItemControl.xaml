@@ -1,0 +1,23 @@
+﻿<UserControl
+    x:Class="CirrosUI.ColorItemControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Cirros8"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="40"
+    d:DesignWidth="400">
+    
+    <Grid x:Name="_colorListContainer" VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="48" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <Rectangle x:Name="_colorRect" Grid.Column="0" Fill="AliceBlue" Stroke="Black" StrokeThickness="1" 
+                    />
+        <TextBlock x:Name="_colorText" Grid.Column="1" Text="AliceBlue" Style="{StaticResource SettingsTextSmall}"
+                   FontSize="{Binding UIFontSizeNormal}" VerticalAlignment="Center" Margin="6,0,0,0"
+                   FontFamily="Arial" FontStretch="Condensed"/>
+    </Grid>
+</UserControl>

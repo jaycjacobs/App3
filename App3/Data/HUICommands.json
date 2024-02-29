@@ -1,0 +1,424 @@
+﻿{
+    "mainMenu": {
+        "items": [
+            {
+                "id": "home",
+                "dismiss": "immediate",
+                "glyph": "0xe10f",
+                "title": "Home",
+                "tip": "Return to the Home page"
+            },
+            {
+                "id": "file",
+                "glyph": "0xed25",
+				"sticky": "no",
+                "title": "File",
+                "tip":  "File and drawing management commands"
+            },
+            {
+                "id": "draw",
+                "glyph": "0xe104",
+                "title": "Draw",
+                "tip" : "Drawing tools"
+            },
+            {
+                "id": "annotation",
+                "glyph": "0xe185",
+                "title": "Annotation",
+                "tip": "Text and dimensioning tools"
+            },
+            {
+                "id": "insert",
+                "glyph": "0xea86",
+                "title": "Insert",
+                "tip": "Insert symbols and images"
+            },
+            {
+                "id": "modify",
+                "glyph": "0xe15e",
+                "title": "Modify",
+                "tip": "Editing tools"
+            },
+            {
+                "id": "info",
+                "glyph": "0xe946",
+                "title": "Info",
+                "tip": "Information about drawing and objects"
+            },
+            {
+                "id": "view",
+                //"glyph": "0xe11a",
+                "glyph": "0xf19d",
+                "title": "View",
+                "tip": "View management tools"
+            },
+            {
+                "id": "settings",
+                "glyph": "0xE713",
+                "sticky": "no",
+                "title": "Settings",
+                "tip": "Settings panels"
+            }
+        ]
+    },
+    "subMenus": [
+        {
+            "file": {
+                "items": [
+                    {
+                        "dismiss": "immediate",
+                        "id": "open",
+                        "glyph": "0xe8e5",
+                        "title": "Open"
+                    },
+                    {
+                        "dismiss": "immediate",
+                        "id": "save",
+                        "glyph": "0xe105",
+                        "sticky": "no",
+                        "title": "Save"
+                    },
+                    {
+                        "dismiss": "immediate",
+                        "id": "save_as",
+                        "glyph": "0xe792",
+                        "title": "Save as"
+                    },
+                    {
+                        "dismiss": "immediate",
+                        "id": "save_template",
+                        "glyph": "0xefa5",
+                        "title": "Save as template"
+                    },
+                    {
+                        "dismiss": "immediate",
+                        "id": "export",
+                        "glyph": "0xe118",
+                        "title": "Export"
+                    },
+                    {
+                        "dismiss": "immediate",
+                        "id": "clear",
+                        "glyph": "0xedae",
+                        "title": "Clear drawing"
+                    },
+                    {
+                        "dismiss": "immediate",
+                        "id": "print",
+                        "glyph": "0xe749",
+                        "title": "Print"
+                    }
+                ]
+            },
+            "draw": {
+                "items": [
+                    {
+                        "id": "line",
+                        "glyph": "0xf7af",
+                        "title": "Line",
+                        "dialog": "line",
+                        "dismiss": "light"
+                    },
+                    {
+                        "id": "polygon",
+                        "glyph": "0x25b3",
+                        "font": "Segoe UI Symbol",
+                        "title": "Polygon",
+                        "dialog": "polygon",
+                        "dismiss": "light"
+                    },
+                    {
+                        "id": "curve",
+                        "glyph": "0xf128",
+                        "title": "Curve",
+                        "dialog": "curve",
+                        "dismiss": "light"
+                    },
+                    {
+                        "id": "doubleline",
+                        "glyph": "0xe76f",
+                        "title": "Doubleline",
+                        "dialog": "doubleline",
+                        "dismiss": "light"
+                    },
+                    {
+                        "id": "rectangle",
+                        "glyph": "0xe71a",
+                        "title": "Rectangle",
+                        "dialog": "rectangle",
+                        "dismiss": "light"
+                    },
+                    {
+                        "id": "circle",
+                        "glyph": "0xf138",
+                        "title": "Circle",
+                        "dialog": "circle",
+                        "dismiss": "light"
+                    },
+                    {
+                        "id": "arc",
+                        "glyph": "0x25e0",
+                        "font": "Segoe UI Symbol",
+                        "title": "Arc",
+                        "dialog": "arc",
+                        "dismiss": "light"
+                    },
+                    {
+                        "id": "ellipse",
+                        "glyph": "0x2b2f",
+                        "font": "Segoe UI Symbol",
+                        "title": "Ellipse",
+                        "dialog": "ellipse",
+                        "dismiss": "light"
+                    }
+                ]
+            },
+            "annotation": {
+                "items": [
+                    {
+                        "id": "text",
+                        "glyph": "0xe8d2",
+                        "dialog": "text",
+                        "title": "Text"
+                    },
+                    {
+                        "id": "arrow",
+                        "glyph": "0x2b5d",
+                        "font": "Segoe UI Symbol",
+                        "dialog": "arrow",
+                        "title": "Arrow"
+                    },
+                    {
+                        "id": "dimension",
+                        "glyph": "0x2b7e",
+                        "font": "Segoe UI Symbol",
+                        "dialog": "dimension",
+                        "title": "Dimension"
+                    }
+                ]
+            },
+            "insert": {
+                "items": [
+                    {
+                        "id": "insert_group",
+                        "glyph": "0xe97b",
+                        "dialog": "insert_group",
+                        "title": "Insert group"
+                    },
+                    {
+                        "id": "insert_group_linear",
+                        "glyph": "CopyAlongLineSmall.xaml",
+                        "dialog": "insert_group_linear",
+                        "title": "Insert along line"
+                    },
+                    {
+                        "id": "insert_group_radial",
+                        "glyph": "CopyAlongArcSmall.xaml",
+                        "dialog": "insert_group_radial",
+                        "title": "Insert along arc"
+                    },
+                    {
+                        "id": "insert_image",
+                        "glyph": "0xeb9f",
+                        "dialog": "insert_image",
+                        "title": "Insert image"
+                    },
+                    {
+                        "id": "symbol_library",
+                        "glyph": "0xe8f1",
+                        "dialog": "manage_symbols",
+                        "title": "Manage Symbol Library"
+                    }
+                ]
+            },
+            "modify": {
+                "items": [
+                    {
+                        "id": "select_objects",
+                        "glyph": "0xe1e3",
+                        "dismiss": "immediate",
+                        "title": "Select objects"
+                    },
+                    {
+                        "id": "edit_object",
+                        "glyph": "0xe15e",
+                        "dismiss": "immediate",
+                        "title": "Edit object"
+                    },
+                    {
+                        "id": "edit_group",
+                        "glyph": "0xe74c",
+                        "dismiss": "immediate",
+                        "title": "Edit group"
+                    },
+                    {
+                        "id": "copy_paste",
+                        "glyph": "0xE77F",
+                        "dismiss": "immediate",
+                        "title": "Copy/paste"
+                    }
+                ]
+            },
+            "info": {
+                "items": [
+                    {
+                        "id": "properties",
+                        //"dismiss": "immediate",
+                        "glyph": "0xf8a6",
+                        "title": "Properties"
+                    },
+                    {
+                        "id": "origin",
+                        //"dismiss": "immediate",
+                        "glyph": "0xe707",
+                        "title": "Set drawing origin"
+                    },
+                    {
+                        "id": "distance",
+                        //"dismiss": "immediate",
+                        "glyph": "0xecc6",
+                        "title": "Distance"
+                    },
+                    {
+                        "id": "angle",
+                        //"dismiss": "immediate",
+                        "glyph": "0x2b6e",
+                        "font": "Segoe UI Symbol",
+                        "title": "Angle"
+                    },
+                    {
+                        "id": "area",
+                        //"dismiss": "immediate",
+                        "glyph": "0xf408",
+                        "title": "Area"
+                    }
+                ]
+            },
+            "view": {
+                "items": [
+                    {
+                        "id": "window",
+                        "dismiss": "immediate",
+                        //"glyph": "0xe123",
+                        "glyph": "0xf407",
+                        "title": "Set window"
+                    },
+                    {
+                        "id": "view_all",
+                        "glyph": "0xe740",
+                        "dismiss": "immediate",
+                        "title": "Display all"
+                    },
+                    {
+                        "id": "actual_size",
+                        "glyph": "0xe9a6",
+                        "dismiss": "immediate",
+                        "title": "Display actual size"
+                    },
+                    {
+                        "id": "zoom_in",
+                        "glyph": "0xE8A3",
+                        "dismiss": "none",
+                        "title": "Zoom in"
+                    },
+                    {
+                        "id": "zoom_out",
+                        "glyph": "0xE71F",
+                        "dismiss": "none",
+                        "title": "Zoom out"
+                    },
+                    {
+                        "id": "pan",
+                        "dismiss": "immediate",
+                        //"glyph": "0xece9",
+                        "glyph": "0xe759",
+                        "title": "Pan"
+
+                    },
+                    {
+                        "id": "pan_left",
+                        "glyph": "0xf0b0",
+                        "dismiss": "none",
+                        "title": "Page left"
+                    },
+                    {
+                        "id": "pan_right",
+                        "glyph": "0xf0af",
+                        "dismiss": "none",
+                        "title": "Page right"
+                    },
+                    {
+                        "id": "pan_up",
+                        "glyph": "0xf0ad",
+                        "dismiss": "none",
+                        "title": "Page up"
+                    },
+                    {
+                        "id": "pan_down",
+                        "glyph": "0xf0ae",
+                        "dismiss": "none",
+                        "title": "Page down"
+                    }
+                ]
+            },
+            "settings": {
+                "items": [
+                    {
+                        "id": "settings_drawing",
+                        "glyph": "0xeb3c",
+                        "title": "Drawing",
+                        "dialog": "settings_drawing"
+                    },
+                    {
+                        "id": "settings_layers",
+                        "glyph": "0xe81e",
+                        "title": "Layers",
+                        "dialog": "settings_layers"
+                    },
+                    {
+                        "id": "settings_linetypes",
+                        "glyph": "0xe738",
+                        //"glyph": "0x2393",
+                        //"font": "Segoe UI Symbol",
+                        "title": "Line types",
+                        "dialog": "settings_linetypes"
+                    },
+                    {
+                        "id": "settings_textstyles",
+                        "glyph": "0xe8e8",
+                        "title": "Text styles",
+                        "dialog": "settings_textstyles"
+                    },
+                    {
+                        "id": "settings_arrowstyles",
+                        "glyph": "0xebe7",
+                        "title": "Arrow styles",
+                        "sticky": "no",
+                        "dialog": "settings_arrowstyles"
+                    },
+                    {
+                        "id": "settings_patterns",
+                        "glyph": "0x25a8",
+                        "font": "Segoe UI Symbol",
+                        "title": "Patterns",
+                        "sticky": "no",
+                        "dialog": "settings_patterns"
+                    },
+                    {
+                        "id": "settings_application",
+                        "glyph": "0xf71e",
+                        "title": "Application",
+                        "dialog": "settings_application"
+                    //},
+                    //{
+                    //    "id": "settings_support",
+                    //    "glyph": "0xea0d",
+                    //    "title": "Privacy & support",
+                    //    "sticky": "no",
+                    //    "dialog": "settings_support"
+                    }
+                ]
+            }
+        }
+    ]
+}

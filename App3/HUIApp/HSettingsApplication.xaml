@@ -1,0 +1,184 @@
+﻿<UserControl
+    x:Class="RedDog.HUIApp.HSettingsApplication"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RedDog.HUIApp"
+    xmlns:cirros="using:CirrosUI"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:rt="using:KT22.UI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="{Binding DialogWidth}"
+    mc:Ignorable="d"
+    d:DesignHeight="600"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <Style x:Key="StdComboBoxItemStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{ThemeResource ComboBoxItemForeground}"/>
+        </Style>
+        
+        <muxc:TeachingTip x:Name="_ttSettingsApplicationIntro" Title="Application Settings" Tag="intro" Target="{x:Bind _titleTextBlock}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close"  >
+            <muxc:TeachingTip.IconSource>
+                <muxc:FontIconSource FontFamily="Segoe MDL2 Assets" Glyph="&#xf71e;" />
+            </muxc:TeachingTip.IconSource>
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttSettingsApplicationVersion" Title="Application version" Tag="version" Target="{x:Bind _versionTTTarget}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttSettingsApplicationCursor" Title="Cursor type" Tag="cursor" Target="{x:Bind _cursorTypeComboBox}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttSettingsApplicationMouse" Title="Mouse pan button" Tag="mouse" Target="{x:Bind _mousePanButtonComboBox}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttSettingsApplicationLineCap" Title="Default line cap" Tag="cap" Target="{x:Bind _eolShapeComboBox}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttSettingsApplicationTouch" Title="Enable magnifier for touch input" Tag="touch" Target="{x:Bind _touchMagnifierCB}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttSettingsApplicationStylus" Title="Enable magnifier for stylus input" Tag="stylus" Target="{x:Bind _stylusMagnifierCB}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttSettingsApplicationPinchZoom" Title="Enable Pinch Zoom" Tag="pinch" Target="{x:Bind _pinchZoomCB}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+    </UserControl.Resources>
+    
+    <Grid Background="{StaticResource HDialogBackground}" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Fill="{StaticResource BrightBackground}" />
+        <TextBlock x:Name="_titleTextBlock" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
+                   Text="Application Settings" Style="{StaticResource HDialogTitle}" FontSize="{Binding UIFontSizeNormal}" />
+        <Button x:Name="_helpButton" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
+                Content="&#xE11B;" Click="_helpButton_Click" Style="{StaticResource HDialogTitleGlyphButton}" FontSize="{Binding UIFontSizeNormal}" />
+
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Application version" />
+            <TextBlock x:Name="_versionTextBlock" Grid.Column="2" Grid.Row="0" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="0.0.0.0" />
+            <Rectangle x:Name="_versionTTTarget" Stroke="Transparent"  Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" />
+
+            <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Cursor type" />
+            <ComboBox x:Name="_cursorTypeComboBox" Grid.Row="2" Grid.Column="2" Style="{StaticResource HDialogComboBox}" Height="{Binding UIControlHeightNormal}" FontSize="{Binding UIFontSizeNormal}">
+                <TextBlock Text="Full screen" Tag="0" Style="{StaticResource StdComboBoxItemStyle}" />
+                <TextBlock Text="Large cross" Tag="75" Style="{StaticResource StdComboBoxItemStyle}" />
+                <TextBlock Text="Medium cross" Tag="50" Style="{StaticResource StdComboBoxItemStyle}" />
+                <TextBlock Text="Small cross" Tag="25" Style="{StaticResource StdComboBoxItemStyle}" />
+            </ComboBox>
+
+            <TextBlock Grid.Column="0" Grid.Row="3" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Mouse pan button" />
+            <ComboBox x:Name="_mousePanButtonComboBox" Grid.Row="3" Grid.Column="2" Style="{StaticResource HDialogComboBox}" Height="{Binding UIControlHeightNormal}" FontSize="{Binding UIFontSizeNormal}" >
+                <TextBlock Text="Middle" Style="{StaticResource StdComboBoxItemStyle}" />
+                <TextBlock Text="Right" Style="{StaticResource StdComboBoxItemStyle}" />
+                <TextBlock Text="Button1" Style="{StaticResource StdComboBoxItemStyle}" />
+                <TextBlock Text="Button2" Style="{StaticResource StdComboBoxItemStyle}" />
+            </ComboBox>
+
+            <TextBlock Grid.Column="0" Grid.Row="4" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Default line cap" />
+            <ComboBox x:Name="_eolShapeComboBox" Grid.Row="4" Grid.Column="2" Style="{StaticResource HDialogComboBox}" Height="{Binding UIControlHeightNormal}" FontSize="{Binding UIFontSizeNormal}" >
+                <TextBlock Text="Flat" Style="{StaticResource StdComboBoxItemStyle}" />
+                <TextBlock Text="Round" Style="{StaticResource StdComboBoxItemStyle}" />
+                <TextBlock Text="Square" Style="{StaticResource StdComboBoxItemStyle}" />
+                <TextBlock Text="Triangle" Style="{StaticResource StdComboBoxItemStyle}" />
+            </ComboBox>
+
+            <CheckBox x:Name="_touchMagnifierCB" Grid.Row="5" Grid.ColumnSpan="3" Content="Enable magnifier for touch input"  Margin="0,10,0,2" 
+                      Style="{StaticResource HDialogCheckBox}" Height="{Binding UIControlHeightNormal}" FontSize="{Binding UIFontSizeNormal}" HorizontalAlignment="Stretch" />
+            <CheckBox x:Name="_stylusMagnifierCB" Grid.Row="6" Grid.ColumnSpan="3" Content="Enable magnifier for stylus input"  Margin="0,10,0,2" 
+                      Style="{StaticResource HDialogCheckBox}" Height="{Binding UIControlHeightNormal}" FontSize="{Binding UIFontSizeNormal}" HorizontalAlignment="Stretch" />
+            <CheckBox x:Name="_pinchZoomCB" Grid.Row="7" Grid.ColumnSpan="3" Content="Enable Pinch Zoom"  Margin="0,10,0,2"
+                      Style="{StaticResource HDialogCheckBox}" Height="{Binding UIControlHeightNormal}" FontSize="{Binding UIFontSizeNormal}" HorizontalAlignment="Stretch" />
+        </Grid>
+    </Grid>
+</UserControl>

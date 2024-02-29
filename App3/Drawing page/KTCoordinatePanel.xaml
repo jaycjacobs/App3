@@ -1,0 +1,128 @@
+﻿<UserControl
+    x:Class="KT22.Drawing_page.KTCoordinatePanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:KT22.Drawing_page"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" 
+    d:DesignHeight="260"
+    d:DesignWidth="250">
+
+    <Border BorderThickness="1" BorderBrush="{StaticResource DarkDarkGray}" Grid.Column="1" Grid.Row="2" Margin="5">
+        <Border.Resources>
+            <Style x:Key="labelStyle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontWeight" Value="SemiLight"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="TextAlignment" Value="Right"/>
+            </Style>
+            <Style x:Key="coordStyle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style x:Key="coordButton" TargetType="Button">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontWeight" Value="SemiLight"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            
+        </Border.Resources>
+        <Grid x:Name="_coordinatePanel" Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="5"/>
+            </Grid.RowDefinitions>
+
+            <Rectangle Fill="{StaticResource DarkDarkGray}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
+            <TextBlock Text="Location" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource SettingsText}" 
+                       FontSize="{Binding UIFontSizeNormal}" Foreground="White" VerticalAlignment="Center" />
+            <Button x:Name="_closeButton" FontFamily="Segoe MDL2 Assets" Grid.Column="0" Grid.ColumnSpan="3" Content="&#xE711;" Height="30" 
+                    Padding="0" Click="_closeButton_Click"  FontSize="{Binding UIFontSizeSmall}" 
+                    Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Right" Background="Transparent" />
+
+            <StackPanel Grid.Row="2" Orientation="Vertical" Background="White">
+
+                <Grid Margin="0,5,0,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="75"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Absolute" Style="{StaticResource labelStyle}" FontSize="{Binding UIFontSizeNormal}" />
+                    <TextBlock Grid.Column="3" Grid.Row="0" Text="0.0000" x:Name="_xValue" Style="{StaticResource coordStyle}" FontSize="{Binding UIFontSizeNormal}" Margin="0,3" />
+                    <TextBlock Grid.Column="4" Grid.Row="0" Text="0.0000" x:Name="_yValue" Style="{StaticResource coordStyle}" FontSize="{Binding UIFontSizeNormal}" Margin="0,3" />
+                    
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="Relative" Style="{StaticResource labelStyle}" FontSize="{Binding UIFontSizeNormal}" />
+                    <TextBlock Grid.Column="3" Grid.Row="1" Text="0.0000" x:Name="_dxValue" Style="{StaticResource coordStyle}" FontSize="{Binding UIFontSizeNormal}" Margin="0,3" />
+                    <TextBlock Grid.Column="4" Grid.Row="1" Text="0.0000" x:Name="_dyValue" Style="{StaticResource coordStyle}" FontSize="{Binding UIFontSizeNormal}" Margin="0,3" />
+                   
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text="Polar" Style="{StaticResource labelStyle}" FontSize="{Binding UIFontSizeNormal}" />
+                    <TextBlock Grid.Column="3" Grid.Row="2" Text="0.0000" x:Name="_distanceValue" Style="{StaticResource coordStyle}" FontSize="{Binding UIFontSizeNormal}" Margin="0,3" />
+                    <TextBlock Grid.Column="4" Grid.Row="2" Text="0.0000" x:Name="_angleValue" Style="{StaticResource coordStyle}" FontSize="{Binding UIFontSizeNormal}" Margin="0,3" />
+                </Grid>
+
+                <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="4" HorizontalAlignment="Stretch" Margin="10,4">
+                    <TextBlock x:Name="_promptText" Text="Enter coordinates" Style="{StaticResource labelStyle}" FontSize="{Binding UIFontSizeNormal}" TextAlignment="Left" VerticalAlignment="Bottom" />
+                    <Grid>
+                        <TextBox x:Name="_coordinateEntryBox" FontSize="{Binding UIFontSizeNormal}" Margin="0,2,0,2"
+                                 TextChanged="_coordinateEntryBox_TextChanged"
+                                 KeyDown="_coordinateEntryBox_KeyDown"
+                                 GotFocus="_coordinateEntryBox_GotFocus" />
+                        <ToggleButton x:Name="_coordEntryDisplayToggle" Content="" FontFamily="Segoe UI Symbol" FontSize="{Binding UIFontSizeSmall}" 
+                                  FontWeight="Light" HorizontalAlignment="Right" VerticalAlignment="Stretch" Background="White" 
+                                  Margin="0,4,2,4" Padding="3,0,4,3"/>
+                    </Grid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                        <ToggleButton x:Name="_absoluteButton" Click="_absoluteButton_Click"  Content="Absolute" Style="{StaticResource ContextMenuToggleButtonStyle}" FontSize="{Binding UIFontSizeNormal}" IsChecked="True" />
+                        <ToggleButton x:Name="_relativeButton" Click="_relativeButton_Click"  Content="Relative" Style="{StaticResource ContextMenuToggleButtonStyle}" FontSize="{Binding UIFontSizeNormal}" Margin="10,0,10,0"/>
+                        <ToggleButton x:Name="_polarButton" Click="_polarButton_Click"  Content="Polar" Style="{StaticResource ContextMenuToggleButtonStyle}" FontSize="{Binding UIFontSizeNormal}" />
+                    </StackPanel>
+                </StackPanel>
+
+                <Grid Margin="10" >
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Button x:Name="_leftButton" Content="&#xE72B;" ToolTipService.ToolTip="Step left" Click="_leftButton_Click"
+                            FontFamily="Segoe MDL2 Assets"/>
+                        <Button x:Name="_upButton" Content="&#xE74A;" ToolTipService.ToolTip="Step up" Click="_upButton_Click"
+                            FontFamily="Segoe MDL2 Assets"/>
+                        <Button x:Name="_downButton" Content="&#xE1FD;" ToolTipService.ToolTip="Step down" Click="_downButton_Click"
+                            FontFamily="Segoe MDL2 Assets"/>
+                        <Button x:Name="_rightButton" Content="&#xE72A;" ToolTipService.ToolTip="Step right" Click="_rightButton_Click"
+                            FontFamily="Segoe MDL2 Assets"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button x:Name="_enterButton" Content="&#xE8FB;" ToolTipService.ToolTip="Step left" Click="_enterButton_Click"
+                            FontFamily="Segoe MDL2 Assets"/>
+                    </StackPanel>
+                </Grid>
+
+            </StackPanel>
+        </Grid>
+
+    </Border>
+</UserControl>

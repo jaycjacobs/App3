@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="Size" Width="40" Height="40" UseLayoutRounding="False">
+	<Canvas x:Name="Layer_1" Width="40" Height="40" Canvas.Left="0" Canvas.Top="0">
+		<Rectangle x:Name="Rectangle" Width="27" Height="11" Canvas.Left="7" Canvas.Top="15" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF"/>
+		<Path x:Name="Line" Width="1" Height="4" Canvas.Left="10" Canvas.Top="16" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 11,16L 11,19"/>
+        <Path x:Name="Line_0" Width="1" Height="4" Canvas.Left="14" Canvas.Top="16" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 15,16L 15,19"/>
+        <Path x:Name="Line_1" Width="1" Height="5" Canvas.Left="18" Canvas.Top="16" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 19,16L 19,20"/>
+        <Path x:Name="Line_2" Width="1" Height="4" Canvas.Left="22" Canvas.Top="16" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 23,16L 23,19"/>
+        <Path x:Name="Line_3" Width="1" Height="4" Canvas.Left="26" Canvas.Top="16" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 27,16L 27,19"/>
+        <Path x:Name="Line_4" Width="1" Height="4" Canvas.Left="30" Canvas.Top="16" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 31.1562,16L 31.1562,19"/>
+	</Canvas>
+</Canvas>

@@ -1,0 +1,77 @@
+﻿<UserControl
+    x:Class="CirrosUI.Symbols.SymbolLibraryTreeView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CirrosUI.Symbols"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mux="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <Grid Grid.Row="0" Grid.Column="0">
+
+        <Grid.Resources>
+
+            <DataTemplate x:Key="FolderTemplate" x:DataType="local:SymbolTreeViewNode">
+                <mux:TreeViewItem AllowDrop="True" Loaded="TreeViewItem_Loaded">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="20" Source="ms-appx:///Assets/folder.png"/>
+                        <TextBlock Margin="0,0,10,0"/>
+                        <TextBlock Text="{x:Bind Content}" FontWeight="Bold" />
+                    </StackPanel>
+                </mux:TreeViewItem>
+            </DataTemplate>
+
+            <DataTemplate x:Key="FileTemplate" x:DataType="local:SymbolTreeViewNode">
+                <mux:TreeViewItem AllowDrop="True" Loaded="TreeViewItem_Loaded">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="20" Source="ms-appx:///Assets/file.png"/>
+                        <TextBlock Margin="0,0,10,0"/>
+                        <TextBlock Text="{x:Bind Content}" />
+                    </StackPanel>
+                </mux:TreeViewItem>
+            </DataTemplate>
+
+            <local:LibraryItemTemplateSelector 
+                x:Key="local:LibraryItemTemplateSelector"
+                FolderTemplate="{StaticResource FolderTemplate}"
+                FileTemplate="{StaticResource FileTemplate}" />
+
+            <Style TargetType="FlyoutPresenter" x:Key="FlyoutPresenterStyle">
+                <Setter Property="Background" Value="Red"/>
+            </Style>
+        </Grid.Resources>
+
+        <Canvas x:Name="_canvas" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="1" Background="Transparent">
+            <TextBlock x:Name="_fly" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="3" PointerPressed="_fly_PointerPressed" >
+                <FlyoutBase.AttachedFlyout>
+                    <Flyout x:Name="_renameFlyout" >
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock Text="New name" Margin="20" />
+                                <TextBox x:Name="_renameBox" Width="300" Height="32"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button x:Name="_renameOk" Click="_renameOk_Click" Margin="4" Content="Rename" />
+                                <Button x:Name="_renameCancel" Content="Cancel" Margin="4" Click="_renameCancel_Click" />
+                            </StackPanel>   
+                        </StackPanel>
+                    </Flyout>
+                </FlyoutBase.AttachedFlyout>
+            </TextBlock>
+        </Canvas>
+
+        <!--ItemsSource="{x:Bind FolderTreeData}"-->
+        <mux:TreeView Name="_treeView" Margin="2"
+                HorizontalAlignment="Stretch" VerticalAlignment="Top" CanDragItems="True" AllowDrop="True" CanReorderItems="True" SelectionMode="Multiple"
+                      DragItemsCompleted="_treeView_DragItemsCompleted" DragItemsStarting="_treeView_DragItemsStarting"
+                ItemTemplateSelector="{StaticResource local:LibraryItemTemplateSelector}">
+            <mux:TreeView.Resources>
+                <MenuFlyout x:Name="_treeViewSymbolMenuFlyout" local:FlyoutMenuExtension.FlyoutItems="{Binding SymbolOptionItems}" />
+                <MenuFlyout x:Name="_treeViewFolderMenuFlyout" local:FlyoutMenuExtension.FlyoutItems="{Binding FolderOptionItems}" />
+                <MenuFlyout x:Name="_treeViewGroupMenuFlyout" local:FlyoutMenuExtension.FlyoutItems="{Binding GroupOptionItems}" />
+            </mux:TreeView.Resources>
+        </mux:TreeView>
+    </Grid>
+</UserControl>

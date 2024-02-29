@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="AppBarDeleteVertex" Width="40" Height="40" UseLayoutRounding="False">
+	<Canvas x:Name="Layer_1" Width="40" Height="40" Canvas.Left="0" Canvas.Top="0">
+		<Path x:Name="Line" Width="20" Height="2" Canvas.Left="10" Canvas.Top="19" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 29,20L 11,20"/>
+		<Path x:Name="Path" Width="5" Height="5" Canvas.Left="28.8137" Canvas.Top="17.5" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 32.7279,18.5858C 33.509,19.3668 33.509,20.6332 32.7279,21.4142C 31.9469,22.1953 30.6805,22.1953 29.8995,21.4142C 29.1184,20.6332 29.1184,19.3668 29.8995,18.5858C 30.6805,17.8047 31.9469,17.8047 32.7279,18.5858 Z "/>
+		<Path x:Name="Path_0" Width="5" Height="5" Canvas.Left="6.1863" Canvas.Top="17.5" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 10.1005,18.5858C 10.8816,19.3668 10.8816,20.6332 10.1005,21.4142C 9.31946,22.1953 8.05313,22.1953 7.27208,21.4142C 6.49103,20.6332 6.49103,19.3668 7.27208,18.5858C 8.05313,17.8047 9.31946,17.8047 10.1005,18.5858 Z "/>
+		<Path x:Name="Line_1" Width="11" Height="11" Canvas.Left="14.5" Canvas.Top="14.5" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 15,15L 25,25"/>
+		<Path x:Name="Line_2" Width="11" Height="11" Canvas.Left="14.5" Canvas.Top="14.5" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 25,15L 15,25"/>
+		<Path x:Name="Path_3" Width="5" Height="5" Canvas.Left="17.5" Canvas.Top="17.5" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 21.4142,18.5858C 22.1953,19.3668 22.1953,20.6332 21.4142,21.4142C 20.6332,22.1953 19.3668,22.1953 18.5858,21.4142C 17.8047,20.6332 17.8047,19.3668 18.5858,18.5858C 19.3668,17.8047 20.6332,17.8047 21.4142,18.5858 Z "/>
+	</Canvas>
+</Canvas>

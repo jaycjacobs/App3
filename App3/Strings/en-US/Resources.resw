@@ -1,0 +1,648 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PrimitiveTypeArc" xml:space="preserve">
+    <value>Arc</value>
+  </data>
+  <data name="PrimitiveTypeArc3" xml:space="preserve">
+    <value>3-point arc</value>
+  </data>
+  <data name="PrimitiveTypeArrow" xml:space="preserve">
+    <value>Arrow</value>
+  </data>
+  <data name="PrimitiveTypeBezier" xml:space="preserve">
+    <value>Bezier</value>
+  </data>
+  <data name="PrimitiveTypeBSpline" xml:space="preserve">
+    <value>Curve</value>
+  </data>
+  <data name="PrimitiveTypeDimension" xml:space="preserve">
+    <value>Dimension</value>
+  </data>
+  <data name="PrimitiveTypeDoubleline" xml:space="preserve">
+    <value>Doubleline</value>
+  </data>
+  <data name="PrimitiveTypeEllipse" xml:space="preserve">
+    <value>Ellipse</value>
+  </data>
+  <data name="PrimitiveTypeGroup" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="PrimitiveTypeInstance" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="PrimitiveTypeLine" xml:space="preserve">
+    <value>Line</value>
+  </data>
+  <data name="PrimitiveTypePolygon" xml:space="preserve">
+    <value>Polygon</value>
+  </data>
+  <data name="PrimitiveTypeRectangle" xml:space="preserve">
+    <value>Rectangle</value>
+  </data>
+  <data name="PrimitiveTypeText" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="AlertConfirmDelete" xml:space="preserve">
+    <value>This will perminantly delete the selected drawing(s).</value>
+  </data>
+  <data name="AlertDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="arrowstyles" xml:space="preserve">
+    <value>Arrow style definitions</value>
+  </data>
+  <data name="layers" xml:space="preserve">
+    <value>Layer definitions</value>
+  </data>
+  <data name="linetypes" xml:space="preserve">
+    <value>Line type definitions</value>
+  </data>
+  <data name="textstyles" xml:space="preserve">
+    <value>Text style definitions</value>
+  </data>
+  <data name="AlertNameInUse" xml:space="preserve">
+    <value>The name entered is already in use.</value>
+  </data>
+  <data name="AlertNullName" xml:space="preserve">
+    <value>The name can't be blank.</value>
+  </data>
+  <data name="LayerAttributes" xml:space="preserve">
+    <value>{0} Attributes</value>
+  </data>
+  <data name="AlertNullLength" xml:space="preserve">
+    <value>The value must be greater than zero.</value>
+  </data>
+  <data name="AlertNullValue" xml:space="preserve">
+    <value>The value must be greater than zero.</value>
+  </data>
+  <data name="AlertCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="AlertConfirmDeleteTitle" xml:space="preserve">
+    <value>Delete Drawings</value>
+  </data>
+  <data name="UnitNameCentimeters" xml:space="preserve">
+    <value>cm</value>
+  </data>
+  <data name="UnitNameFeet" xml:space="preserve">
+    <value>Feet</value>
+  </data>
+  <data name="UnitNameInches" xml:space="preserve">
+    <value>Inches</value>
+  </data>
+  <data name="UnitNameMeters" xml:space="preserve">
+    <value>M</value>
+  </data>
+  <data name="UnitNameMillimeters" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="general" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="AlertConfirmSaveAs" xml:space="preserve">
+    <value>Do you want to save your changes?</value>
+  </data>
+  <data name="AlertConfirmSaveFormat" xml:space="preserve">
+    <value>Do you want to save your changes to "{0}?"</value>
+  </data>
+  <data name="AlertContinue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="AlertDiscard" xml:space="preserve">
+    <value>Discard</value>
+  </data>
+  <data name="AlertInvalidDrawingConfirmFormat" xml:space="preserve">
+    <value>{0} is corrupt or is not a valid drawing.</value>
+  </data>
+  <data name="AlertInvalidDrawingTitle" xml:space="preserve">
+    <value>There is a problem with this drawing.</value>
+  </data>
+  <data name="AlertModifiedTitle" xml:space="preserve">
+    <value>This drawing has been modified.</value>
+  </data>
+  <data name="AlertNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="AlertShowMe" xml:space="preserve">
+    <value>Show me</value>
+  </data>
+  <data name="AlertUnsavedConfirm" xml:space="preserve">
+    <value>Do you want to discard them?</value>
+  </data>
+  <data name="AlertUnsavedTitle" xml:space="preserve">
+    <value>You have unsaved changes to your current drawing.</value>
+  </data>
+  <data name="AlertYes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="AlertInvalidGroupNameFormat" xml:space="preserve">
+    <value>{0} is not a valid symbol name.</value>
+  </data>
+  <data name="AlertNoGroups" xml:space="preserve">
+    <value>The symbol library is empty.</value>
+  </data>
+  <data name="debug" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="DuplicateGroupName" xml:space="preserve">
+    <value>A group with that name already exists.</value>
+  </data>
+  <data name="PropertiesTitle" xml:space="preserve">
+    <value>{0} properties</value>
+  </data>
+  <data name="TextSampleFormat" xml:space="preserve">
+    <value>This is a sample of the "{0}" text style</value>
+  </data>
+  <data name="PrimitiveTypeSet" xml:space="preserve">
+    <value>Multiple object</value>
+  </data>
+  <data name="SelectionString" xml:space="preserve">
+    <value>{0} objects are selected.</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="AlertInvalidDrawingConfirm" xml:space="preserve">
+    <value>The drawing file is corrupt or invalid.  We recommend that you send this drawing to customer support for analysis.</value>
+  </data>
+  <data name="AlertRestoreErrorConfirm" xml:space="preserve">
+    <value>The current drawing could not be recovered.</value>
+  </data>
+  <data name="AlertUplevelConfirm" xml:space="preserve">
+    <value>Please upgrade "Back to the Drawing Board" to ensure compatibility.</value>
+  </data>
+  <data name="AlertUplevelDrawingTitle" xml:space="preserve">
+    <value>This drawing was created using a newer app version.</value>
+  </data>
+  <data name="AlertUplevelSymbolTitle" xml:space="preserve">
+    <value>This symbol was created using a newer app version.</value>
+  </data>
+  <data name="tooltip_T_Annotation" xml:space="preserve">
+    <value>Draw text, dimensions and arrows</value>
+  </data>
+  <data name="tooltip_T_Draw" xml:space="preserve">
+    <value>Draw lines, shapes and other objects</value>
+  </data>
+  <data name="tooltip_T_File" xml:space="preserve">
+    <value>Save drawing, clear, or open a new drawing</value>
+  </data>
+  <data name="tooltip_T_Groups" xml:space="preserve">
+    <value>Group objects, create symbols and add them to the drawing</value>
+  </data>
+  <data name="tooltip_T_Home" xml:space="preserve">
+    <value>Return to the home page</value>
+  </data>
+  <data name="tooltip_T_Info" xml:space="preserve">
+    <value>Get properties or measure distances and angles</value>
+  </data>
+  <data name="tooltip_T_Modify" xml:space="preserve">
+    <value>Move, copy, delete or modify objects</value>
+  </data>
+  <data name="tooltip_T_View" xml:space="preserve">
+    <value>Pan, zoom, or change the drawing view</value>
+  </data>
+  <data name="AlertAttemptToHideActiveDimensionLayer" xml:space="preserve">
+    <value>'{0}' is the active dimension layer.  You can't hide an active layer</value>
+  </data>
+  <data name="AlertAttemptToHideActiveLayer" xml:space="preserve">
+    <value>'{0}' is the active layer.  You can't hide an active layer</value>
+  </data>
+  <data name="AlertAttemptToHideActiveTextLayer" xml:space="preserve">
+    <value>'{0}' is the active text layer.  You can't hide an active layer</value>
+  </data>
+  <data name="AlertInvisibleLayer" xml:space="preserve">
+    <value>The active layer is not visible.  Would you like to make it visibile?</value>
+  </data>
+  <data name="AlertInvisibleLayerContinue" xml:space="preserve">
+    <value>Make it visible</value>
+  </data>
+  <data name="AlertTrailModeExpired" xml:space="preserve">
+    <value>Your free trial has expired.</value>
+  </data>
+  <data name="AlertTrailModeExpiresToday" xml:space="preserve">
+    <value>Your free trial will expire today.</value>
+  </data>
+  <data name="AlertTrialModeBuy" xml:space="preserve">
+    <value>Buy the full version</value>
+  </data>
+  <data name="AlertTrialModeClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="AlertTrialModeContinue" xml:space="preserve">
+    <value>Continue the trial</value>
+  </data>
+  <data name="AlertTrialModeMessageFormat" xml:space="preserve">
+    <value>Your free trial will expire in {0} days.</value>
+  </data>
+  <data name="AlertTrialModeMessageTitle" xml:space="preserve">
+    <value>Thank you for trying "Back to the Drawing Board!"</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Privacy policy</value>
+  </data>
+  <data name="tooltip_A_Alignment" xml:space="preserve">
+    <value>Set the horizontal and vertical alignment for new text</value>
+  </data>
+  <data name="tooltip_A_ArcRadius" xml:space="preserve">
+    <value>Set the radius for new arcs</value>
+  </data>
+  <data name="tooltip_A_ArrowEnds" xml:space="preserve">
+    <value>Select whether arrows should appear at the start or ends of lines</value>
+  </data>
+  <data name="tooltip_A_ArrowStyle" xml:space="preserve">
+    <value>Set the style for new arrows</value>
+  </data>
+  <data name="tooltip_A_CircleRadius" xml:space="preserve">
+    <value>Set the radius for new circles</value>
+  </data>
+  <data name="tooltip_A_ClearSelection" xml:space="preserve">
+    <value>Clear the current selection</value>
+  </data>
+  <data name="tooltip_A_Construction" xml:space="preserve">
+    <value>Select how entering points define new objects</value>
+  </data>
+  <data name="tooltip_A_DbWidth" xml:space="preserve">
+    <value>Set the width for new doublelines</value>
+  </data>
+  <data name="tooltip_A_Done" xml:space="preserve">
+    <value>Finish the current task and start a new one</value>
+  </data>
+  <data name="tooltip_A_EditDeleteVertex" xml:space="preserve">
+    <value>Delete a point from the selected object</value>
+  </data>
+  <data name="tooltip_A_EditExtendTrim" xml:space="preserve">
+    <value>Extend or trim lines in the current object</value>
+  </data>
+  <data name="tooltip_A_EditOffset" xml:space="preserve">
+    <value>Move line segments parallel to their original position</value>
+  </data>
+  <data name="tooltip_A_EditGap" xml:space="preserve">
+    <value>Add a gap to the current object</value>
+  </data>
+  <data name="tooltip_A_EditInsertVertex" xml:space="preserve">
+    <value>Insert a new point in the selected object</value>
+  </data>
+  <data name="tooltip_A_EditLast" xml:space="preserve">
+    <value>Modify the object that was just created</value>
+  </data>
+  <data name="tooltip_A_EditPoints" xml:space="preserve">
+    <value>Move the points that define the selected object</value>
+  </data>
+  <data name="tooltip_A_EditText" xml:space="preserve">
+    <value>Change the contents of the selected text object</value>
+  </data>
+  <data name="tooltip_A_Fill" xml:space="preserve">
+    <value>Select the color used to fill new objects</value>
+  </data>
+  <data name="tooltip_A_Layer" xml:space="preserve">
+    <value>Set the layer on which new objects are drawn</value>
+  </data>
+  <data name="tooltip_A_NameGroup" xml:space="preserve">
+    <value>Name the current group (make it a symbol)</value>
+  </data>
+  <data name="tooltip_A_PickGroup" xml:space="preserve">
+    <value>Select a symbol from your drawing symbol library</value>
+  </data>
+  <data name="tooltip_A_RectSize" xml:space="preserve">
+    <value>Set the size of new rectangles</value>
+  </data>
+  <data name="tooltip_A_SaveSymbol" xml:space="preserve">
+    <value>Save the current group as a symbol</value>
+  </data>
+  <data name="tooltip_A_SelectCopy" xml:space="preserve">
+    <value>Make a copy of the selected object(s)</value>
+  </data>
+  <data name="tooltip_A_SelectFlip" xml:space="preserve">
+    <value>Mirror the selected object(s)</value>
+  </data>
+  <data name="tooltip_A_SelectMove" xml:space="preserve">
+    <value>Move the selected object(s)</value>
+  </data>
+  <data name="tooltip_A_SelectProperties" xml:space="preserve">
+    <value>View or change properties of the selected object</value>
+  </data>
+  <data name="tooltip_A_SelectRotate" xml:space="preserve">
+    <value>Rotate the selected object(s)</value>
+  </data>
+  <data name="tooltip_A_SelectScale" xml:space="preserve">
+    <value>Resize the selected object(s)</value>
+  </data>
+  <data name="tooltip_A_SelectTransform" xml:space="preserve">
+    <value>Scale and/or rotate the selected object(s) by value</value>
+  </data>
+  <data name="tooltip_A_SelectUngroup" xml:space="preserve">
+    <value>Ungroup the objects in the selected group</value>
+  </data>
+  <data name="tooltip_A_TextStyle" xml:space="preserve">
+    <value>Set the style for new text</value>
+  </data>
+  <data name="tooltip_BR_CPanel" xml:space="preserve">
+    <value>Show or hide the control panel</value>
+  </data>
+  <data name="tooltip_BR_Grid" xml:space="preserve">
+    <value>Show or hide the grid</value>
+  </data>
+  <data name="tooltip_BR_GSnap" xml:space="preserve">
+    <value>Enable or disable grid and object snap</value>
+  </data>
+  <data name="tooltip_BR_Help" xml:space="preserve">
+    <value>Get help for the current activity</value>
+  </data>
+  <data name="tooltip_BR_Pan" xml:space="preserve">
+    <value>Pan the current view left, right, up or down</value>
+  </data>
+  <data name="tooltip_BR_PanDown" xml:space="preserve">
+    <value>Pan the current view down</value>
+  </data>
+  <data name="tooltip_BR_PanLeft" xml:space="preserve">
+    <value>Pan the current view to the left</value>
+  </data>
+  <data name="tooltip_BR_PanRight" xml:space="preserve">
+    <value>Pan the current view to the right</value>
+  </data>
+  <data name="tooltip_BR_PanUp" xml:space="preserve">
+    <value>Pan the current view up</value>
+  </data>
+  <data name="tooltip_BR_Rulers" xml:space="preserve">
+    <value>Show or hide the rulers</value>
+  </data>
+  <data name="tooltip_BR_Settings" xml:space="preserve">
+    <value>Open the settings panel</value>
+  </data>
+  <data name="tooltip_BR_ShowAll" xml:space="preserve">
+    <value>Show the entire drawing</value>
+  </data>
+  <data name="tooltip_BR_Undo" xml:space="preserve">
+    <value>Undo the last action</value>
+  </data>
+  <data name="tooltip_BR_ZoomIn" xml:space="preserve">
+    <value>Zoom in to show more detail</value>
+  </data>
+  <data name="tooltip_BR_ZoomOut" xml:space="preserve">
+    <value>Zoom out to show more of the drawing</value>
+  </data>
+  <data name="tooltip_C_GetSymbol" xml:space="preserve">
+    <value>Get saved symbols from your disk or the cloud</value>
+  </data>
+  <data name="AlertTrialModeFull" xml:space="preserve">
+    <value>All features of "Back to the Drawing Board"are now fully enabled.</value>
+  </data>
+  <data name="AlertTrialModeThanks" xml:space="preserve">
+    <value>Thank you for your purchase!</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>Support</value>
+  </data>
+  <data name="tooltip_A_AddExitPoint" xml:space="preserve">
+    <value>Locate the exit point (for line gapping)</value>
+  </data>
+  <data name="tooltip_A_InsertLocation" xml:space="preserve">
+    <value>Define the insert location (for line gapping)</value>
+  </data>
+  <data name="DxfContentErrorTitle" xml:space="preserve">
+    <value>The contents of the DXF file are not valid</value>
+  </data>
+  <data name="DxfErrorConfirm" xml:space="preserve">
+    <value>The drawing could not be converted</value>
+  </data>
+  <data name="DxfFormatErrorTitle" xml:space="preserve">
+    <value>The format of the DXF file is not valid</value>
+  </data>
+  <data name="DxfIOErrorTitle" xml:space="preserve">
+    <value>An I/O error occurred while reading the file</value>
+  </data>
+  <data name="SaveErrorTitle" xml:space="preserve">
+    <value>An I/O error occurred while writing the file</value>
+  </data>
+  <data name="SendToSupport" xml:space="preserve">
+    <value>Send drawing to support</value>
+  </data>
+  <data name="ShareBadDrawingConfirm" xml:space="preserve">
+    <value>Selecting continue will invoke the Windows Sharing panel.  Please email the drawing to "support@drawingboardapp.com."  Thank you.</value>
+  </data>
+  <data name="ShareBadDrawingTitle" xml:space="preserve">
+    <value>Share drawing with customer support</value>
+  </data>
+  <data name="PrivacyAndSupport" xml:space="preserve">
+    <value>Privacy and support</value>
+  </data>
+  <data name="symbols" xml:space="preserve">
+    <value>Symbols and groups</value>
+  </data>
+  <data name="tooltip_A_ArcAngles" xml:space="preserve">
+    <value>Set the start and included angles for new arcs</value>
+  </data>
+  <data name="tooltip_A_DBClose" xml:space="preserve">
+    <value>Set whether doubleline ends are open or closed</value>
+  </data>
+  <data name="tooltip_A_DimType" xml:space="preserve">
+    <value>Select baseline or incremental dimensioning</value>
+  </data>
+  <data name="tooltip_A_EllipseOption" xml:space="preserve">
+    <value>Set the axis size and angle, and the start and included angles</value>
+  </data>
+  <data name="tooltip_A_SelectDelete" xml:space="preserve">
+    <value>Delete the selected object(s)</value>
+  </data>
+  <data name="FirstRunMessage" xml:space="preserve">
+    <value>If you are new a new user, you will find a lot of useful information in our help documentation and tutorials.  If you've just installed an update to Version 3, please take a look at the release notes.  There are some exciting new features in this release.    You will find links to our help system, tutorials and release notes below in the bottom App Bar.</value>
+  </data>
+  <data name="FirstRunTitle" xml:space="preserve">
+    <value>Welcome to Back to the Drawing Board!</value>
+  </data>
+  <data name="tooltip_C_PickObject" xml:space="preserve">
+    <value>Pick an object to insert from your drawing</value>
+  </data>
+  <data name="AlertShowingActiveLayerFormat" xml:space="preserve">
+    <value>The active layer "{0}" has been made visible so that newly created objects can be seen.</value>
+  </data>
+  <data name="AlertShowingActiveLayerProblem" xml:space="preserve">
+    <value>An attempt was made to draw on a hidden layer</value>
+  </data>
+  <data name="AlertInvalidSvgFormat" xml:space="preserve">
+    <value>The SVG importer failed with the following message: {0}</value>
+  </data>
+  <data name="AlertInvalidSvgTitle" xml:space="preserve">
+    <value>Invalid SVG file</value>
+  </data>
+  <data name="AlertMissingFontsFormat" xml:space="preserve">
+    <value>This drawing contains the following fonts which are not installed on your computer: {0}.   These fonts have been replaced with Segoe UI.  You may need to adjust their font sizes.</value>
+  </data>
+  <data name="AlertMissingFontsTitle" xml:space="preserve">
+    <value>Missing Fonts</value>
+  </data>
+  <data name="DxfIOErrorConfirm" xml:space="preserve">
+    <value>The file could not be read from the location specified.</value>
+  </data>
+  <data name="SaveErrorConfirm" xml:space="preserve">
+    <value>The file could not be saved.</value>
+  </data>
+  <data name="ComingSoonMessage" xml:space="preserve">
+    <value>This feature is not available in the current release but it will be available very soon.  Please watch for updates.</value>
+  </data>
+  <data name="ComingSoonTitle" xml:space="preserve">
+    <value>Coming soon!</value>
+  </data>
+  <data name="IOErrorConfirm" xml:space="preserve">
+    <value>The file could not be read from the location specified.</value>
+  </data>
+  <data name="IOErrorTitle" xml:space="preserve">
+    <value>An I/O error occurred while reading the file</value>
+  </data>
+  <data name="FirstRunUpgradeMessage" xml:space="preserve">
+    <value>Thanks for upgrading to Version 3.1.  This release contains a preview of Back to the Drawing Board's Image Management Suite.  These features are still in 'beta test' mode.  They are stable and usable, but they will probably change for the final release.  Please try them out and let us know what you think.  You can review the documentation by tapping the button below.</value>
+  </data>
+  <data name="FirstRunUpgradeNotes" xml:space="preserve">
+    <value>View beta notes</value>
+  </data>
+  <data name="FirstRunUpgradeTitle" xml:space="preserve">
+    <value>Welcome to Back to the Drawing Board Version 3.1!</value>
+  </data>
+  <data name="PrimitiveTypeImage" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="ScaledImageTooLargeFormat" xml:space="preserve">
+    <value>The reference size specified for this image ({0} by {1}) exceeds the size of your drawing.  The maximum model size for objects in this drawing is {2} by {3}.</value>
+  </data>
+  <data name="ScaledImageTooLargeTitle" xml:space="preserve">
+    <value>The reference size specified is too large</value>
+  </data>
+  <data name="NoCamera" xml:space="preserve">
+    <value>Make sure your camera is properly connected and is not being used by another application.</value>
+  </data>
+  <data name="NoCameraTitle" xml:space="preserve">
+    <value>No camera was found</value>
+  </data>
+  <data name="NoImageSelected" xml:space="preserve">
+    <value>Select an image from your photo library using the 'Get image' button or take a new photo using the 'Take photo' button.</value>
+  </data>
+  <data name="NoImageSelectedTitle" xml:space="preserve">
+    <value>No image is selected</value>
+  </data>
+  <data name="RotateScaledImageWarning" xml:space="preserve">
+    <value>Rotating a scaled image will invalidate the reference rectangle.  If you continue, this will no longer be a scaled image.  You can redefine the reference rectangle after the image is rotated.</value>
+  </data>
+  <data name="RotateScaledImageWarningTitle" xml:space="preserve">
+    <value>This is a scaled image</value>
+  </data>
+  <data name="AlertPremiumFeatureAdFree" xml:space="preserve">
+    <value>Ads can be removed from this app by purchasing the 'Ad-free Package.'  You can purchase this package by tapping the 'Purchase package' button below.</value>
+  </data>
+</root>

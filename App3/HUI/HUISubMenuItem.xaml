@@ -1,0 +1,34 @@
+﻿<UserControl
+    x:Class="HUI.HUISubMenuItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HUI"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:rt="using:KT22.UI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:huiapp="using:CirrosUWP.HUIApp" d:DataContext="{d:DesignInstance Type=huiapp:HDataContext}"
+    mc:Ignorable="d"
+    Height="{Binding MenuIconSize.Height}"
+    Width="{Binding MenuPlusIconWidth}"
+    d:DesignHeight="48"
+    d:DesignWidth="248"
+    >
+
+    <Grid x:Name="_contentGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource HUIIconGridLength}" x:Name="_iconColumn"/>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Rectangle x:Name="_field" Fill="{StaticResource HSubMenuBackground}" Grid.ColumnSpan="2" />
+
+        <ContentControl x:Name="_icon" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <TextBlock x:Name="_glyphBlock" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       FontSize="{Binding UIControlHeightSmall}" Foreground="Black" Text="⏲" />
+        </ContentControl>
+
+        <TextBlock x:Name="_titleBlock" FontFamily="Segoe UI" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                   FontSize="{Binding UIFontSizeNormal}" Foreground="Black" Text="Title" Width="{Binding MenuTextWidth}" />
+    </Grid>
+</UserControl>

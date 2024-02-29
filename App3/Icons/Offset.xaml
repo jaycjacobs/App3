@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="Offset" Width="80" Height="60">
+	<Canvas x:Name="Layer_1" Width="80" Height="60" Canvas.Left="0" Canvas.Top="0">
+		<Path x:Name="Path" Width="45.8812" Height="45.9956" Canvas.Left="19.0393" Canvas.Top="10.4717" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 20.0393,55.4673L 49.7539,38.3116L 41.7074,24.2964L 63.9205,11.4717"/>
+		<Path x:Name="Path_0" Width="45.9615" Height="45.8564" Canvas.Left="14.9991" Canvas.Top="3.61308" Stretch="Fill" StrokeThickness="2" StrokeLineJoin="Round" Stroke="#67FFFFFF" Data="F1 M 15.9991,48.4695L 38.5158,35.4695L 30.5158,21.6131L 59.9607,4.61308"/>
+	</Canvas>
+</Canvas>

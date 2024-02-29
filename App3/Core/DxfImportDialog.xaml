@@ -1,0 +1,188 @@
+﻿<ContentDialog
+    x:Class="Cirros.Dialogs.DxfImportDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Cirros.Dialogs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    
+    Background="WhiteSmoke"
+    Title="DXF Paper Size"
+    PrimaryButtonText="Continue"
+    SecondaryButtonText="Cancel"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+    <Grid Width="400" Height="auto">
+        <Grid.Resources>
+            <Style x:Key="DxfDialogNumberBox" TargetType="TextBox">
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="{StaticResource ApplicationForegroundThemeBrush}"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Margin" Value="1"/>
+            </Style>
+            <Style x:Key="DxfDialogComboBox" TargetType="ComboBox">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="{StaticResource ApplicationForegroundThemeBrush}"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="1"/>
+                <Setter Property="Padding" Value="12,0"/>
+            </Style>
+            <Style x:Key="DxfDialogComboBoxItem" TargetType="ComboBoxItem">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}"/>
+                <Setter Property="Margin" Value="1"/>
+            </Style>
+            <Style x:Key="DxfDialogText" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="Padding" Value="0"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="12" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="4" Margin="0,6">
+            <Run Text="This DXF file does not contain any viewport information."/>
+            <LineBreak/>
+            <Run Text="Confirm the paper size and drawing scale below."/>
+        </TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource DxfDialogText}" Margin="0,7" >
+            Model extents
+        </TextBlock>
+        <TextBlock x:Name="_modelExtents" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource DxfDialogText}" Margin="2" VerticalAlignment="Center">
+            width x height
+        </TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource DxfDialogText}">
+            Sheet size
+        </TextBlock>
+        <ComboBox x:Name="_sheetSizeComboBox" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource DxfDialogComboBox}"
+                  SelectionChanged="_sheetSizeComboBox_SelectionChanged">
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="Custom" Tag="" />
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="ANSI A (landscape)" Tag="11,8.5" />
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="ANSI B (landscape)" Tag="17,11" />
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="ANSI C (landscape)" Tag="22,17"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="ANSI D (landscape)" Tag="22,34"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="ANSI E (landscape)" Tag="44,34"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="ANSI F (landscape)" Tag="40,28"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="ANSI A (portrait)" Tag="8.5,11" />
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="ANSI B (portrait)" Tag="11,17" />
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="ANSI C (portrait)" Tag="17,22"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="ANSI D (portrait)" Tag="22,34"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="ANSI E (portrait)" Tag="34,44"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="ANSI F (portrait)" Tag="28,40"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="ISO A0 (landscape)" Tag="46.81102362,33.11023622"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="ISO A1 (landscape)" Tag="33.11023622,23.38582677"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="ISO A2 (landscape)" Tag="23.38582677,16.53543307"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="ISO A3 (landscape)" Tag="16.53543307,11.69291339"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="ISO A4 (landscape)" Tag="11.69291339,8.267716535"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="ISO A0 (portrait)" Tag="33.11023622,46.81102362"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="ISO A1 (portrait)" Tag="23.38582677,33.11023622"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="ISO A2 (portrait)" Tag="16.53543307,23.38582677"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="ISO A3 (portrait)" Tag="11.69291339,16.53543307"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="ISO A4 (portrait)" Tag="8.267716535,11.69291339"/>
+        </ComboBox>
+        <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource DxfDialogText}">
+            Paper width
+        </TextBlock>
+        <TextBox x:Name="_widthBox" Grid.Row="3" Grid.Column="2" Style="{StaticResource DxfDialogNumberBox}" Text="11" LostFocus="sizeBox_LostFocus"/>
+        <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource DxfDialogText}">
+            Paper height
+        </TextBlock>
+        <TextBox x:Name="_heightBox" Grid.Row="4" Grid.Column="2" Style="{StaticResource DxfDialogNumberBox}" Text="8.5" LostFocus="sizeBox_LostFocus"/>
+        <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource DxfDialogText}">
+            Units (model/paper)
+        </TextBlock>
+        <ComboBox x:Name="_unitComboBox" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource DxfDialogComboBox}"
+                  SelectionChanged="_unitComboBox_SelectionChanged">
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="Inches" Tag="in,in" />
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="Feet/Inches" Tag="ft,in" />
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="Millimeters" Tag="mm,mm" />
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="Centimeters/Millimeters" Tag="cm,mm" />
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="Meters/Millimeters" Tag="m,mm" />
+        </ComboBox>
+        <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource DxfDialogText}">
+            Drawing scale
+        </TextBlock>
+        <ComboBox x:Name="_scaleComboBox" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource DxfDialogComboBox}"
+                  SelectionChanged="_scaleComboBox_SelectionChanged" >
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="None (fit model to sheet)" Tag="-1"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="1:1 (full)" Tag="1"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="1:2" Tag="2"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="1:4" Tag="4"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="1:5" Tag="5"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="1:8" Tag="8"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="1:10" Tag="10"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="1:12" Tag="12"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="1:16" Tag="16"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="1:20" Tag="20"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="1:24" Tag="24"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="1:32" Tag="32"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="1:48" Tag="48"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="1:50" Tag="50"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="1:64" Tag="64"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="1:96" Tag="96"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="1:100" Tag="100"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="1:128" Tag="128"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="1:200" Tag="200"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="1:500" Tag="500"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="1:1000" Tag="1000"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="1:1250" Tag="1250"/>
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="Custom" Tag="0"/>
+        </ComboBox>
+        <TextBlock x:Name="_scaleValueText"  Grid.Row="7" Grid.Column="0" Style="{StaticResource DxfDialogText}">
+            Scale value (paper/model)
+        </TextBlock>
+        <TextBlock x:Name="_scaleErrorText"  Grid.Row="7" Grid.Column="3" Style="{StaticResource DxfDialogText}"
+                   Margin="2" Foreground="Red" Visibility="Collapsed">
+            Exceeds limits
+        </TextBlock>
+        <TextBox x:Name="_scaleBox" Grid.Row="7" Grid.Column="2" Style="{StaticResource DxfDialogNumberBox}"
+                 TextChanged="_scaleBox_TextChanged" />
+        <TextBlock Grid.Row="8" Grid.Column="0" Style="{StaticResource DxfDialogText}">
+            Drawing theme
+        </TextBlock>
+        <ComboBox x:Name="_themeComboBox" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource DxfDialogComboBox}"
+                  SelectionChanged="_themeComboBox_SelectionChanged">
+        </ComboBox>
+        <TextBlock x:Name="_symbolText"  Grid.Row="9" Grid.Column="0" Style="{StaticResource DxfDialogText}">
+            Symbol library source
+        </TextBlock>
+        <ComboBox x:Name="_symbolComboBox" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource DxfDialogComboBox}"
+                  SelectionChanged="_symbolComboBox_SelectionChanged">
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="DesignCenter blocks only" Tag="designcenter" IsSelected="True" />
+            <ComboBoxItem Style="{StaticResource DxfDialogComboBoxItem}" Content="All named blocks" Tag="all" />
+        </ComboBox>
+    </Grid>
+</ContentDialog>

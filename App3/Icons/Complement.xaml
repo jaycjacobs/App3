@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="Complement" Width="40" Height="40" UseLayoutRounding="False">
+	<Canvas x:Name="Layer_1" Width="40" Height="40" Canvas.Left="0" Canvas.Top="0">
+		<Ellipse x:Name="Ellipse_0" Width="23" Height="23" Canvas.Left="8.49999" Canvas.Top="8.50004" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF6D7070"/>
+		<Path x:Name="Path" Width="22.4525" Height="23" Canvas.Left="8.49999" Canvas.Top="8.50004" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 20,31C 13.9249,31 8.99999,26.0751 8.99999,20C 8.99999,13.9249 13.9249,9.00004 20,9.00004C 24.875,9.00004 29.0094,12.1714 30.4525,16.5635"/>
+	</Canvas>
+</Canvas>

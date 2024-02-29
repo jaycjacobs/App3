@@ -1,0 +1,44 @@
+﻿<UserControl
+    x:Class="Cirros.Core.Alerts.SupportRequest"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Cirros.Core.Alerts"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Height="300"
+    Width="600">
+
+
+    <Border BorderBrush="Black" BorderThickness="2" Background="White">
+        <StackPanel Orientation="Vertical" Margin="30">
+            <TextBlock HorizontalAlignment="Left" Style="{StaticResource DialogText}" TextWrapping="Wrap" VerticalAlignment="Top" >
+                Back to the Drawing Board failed to shut down properly two times recently.
+                Would you mind sharing your email address with our support team so that we can contact you about this problem?
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Left" Style="{StaticResource DialogText}" TextWrapping="Wrap" VerticalAlignment="Top" >
+                If you would prefer, you can contact us at support@drawingboardapp.com.
+            </TextBlock>
+            <Grid Margin="6,20" HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="6,0,20,0" Text="Email address" Style="{StaticResource DialogText}" />
+                <TextBox x:Name="_emailBox" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" TextChanged="_emailBox_TextChanged" />
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="6,0,20,0" Text="Name (optional)" Style="{StaticResource DialogText}" />
+                <TextBox x:Name="_nameBox" Grid.Row="1" Grid.Column="1" />
+            </Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="_sendButton" Content="Send" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="_sendButton_Click"/>
+                <Button x:Name="_ignoreButton" Content="Don't send" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="_ignoreButton_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

@@ -1,0 +1,971 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>App3</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Platforms>x86;x64;ARM64</Platforms>
+    <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+    <PublishProfile>win10-$(Platform).pubxml</PublishProfile>
+    <UseWinUI>true</UseWinUI>
+    <EnableMsixTooling>true</EnableMsixTooling>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Console\**" />
+    <Compile Remove="Core\**" />
+    <Compile Remove="Data\**" />
+    <Compile Remove="Drawing page\**" />
+    <Compile Remove="Export\**" />
+    <Compile Remove="Home page\**" />
+    <Compile Remove="HUIApp\**" />
+    <Compile Remove="HUI\**" />
+    <Compile Remove="Icons\**" />
+    <Compile Remove="New drawing page\**" />
+    <Compile Remove="Photo Editor\**" />
+    <Compile Remove="Popup panels\**" />
+    <Compile Remove="Red Dog\**" />
+    <Compile Remove="Strings\**" />
+    <Compile Remove="Symbol picker\**" />
+    <Compile Remove="UI\**" />
+    <EmbeddedResource Remove="Console\**" />
+    <EmbeddedResource Remove="Core\**" />
+    <EmbeddedResource Remove="Data\**" />
+    <EmbeddedResource Remove="Drawing page\**" />
+    <EmbeddedResource Remove="Export\**" />
+    <EmbeddedResource Remove="Home page\**" />
+    <EmbeddedResource Remove="HUIApp\**" />
+    <EmbeddedResource Remove="HUI\**" />
+    <EmbeddedResource Remove="Icons\**" />
+    <EmbeddedResource Remove="New drawing page\**" />
+    <EmbeddedResource Remove="Photo Editor\**" />
+    <EmbeddedResource Remove="Popup panels\**" />
+    <EmbeddedResource Remove="Red Dog\**" />
+    <EmbeddedResource Remove="Strings\**" />
+    <EmbeddedResource Remove="Symbol picker\**" />
+    <EmbeddedResource Remove="UI\**" />
+    <None Remove="Console\**" />
+    <None Remove="Core\**" />
+    <None Remove="Data\**" />
+    <None Remove="Drawing page\**" />
+    <None Remove="Export\**" />
+    <None Remove="Home page\**" />
+    <None Remove="HUIApp\**" />
+    <None Remove="HUI\**" />
+    <None Remove="Icons\**" />
+    <None Remove="New drawing page\**" />
+    <None Remove="Photo Editor\**" />
+    <None Remove="Popup panels\**" />
+    <None Remove="Red Dog\**" />
+    <None Remove="Strings\**" />
+    <None Remove="Symbol picker\**" />
+    <None Remove="UI\**" />
+    <Page Remove="Console\**" />
+    <Page Remove="Core\**" />
+    <Page Remove="Data\**" />
+    <Page Remove="Drawing page\**" />
+    <Page Remove="Export\**" />
+    <Page Remove="Home page\**" />
+    <Page Remove="HUIApp\**" />
+    <Page Remove="HUI\**" />
+    <Page Remove="Icons\**" />
+    <Page Remove="New drawing page\**" />
+    <Page Remove="Photo Editor\**" />
+    <Page Remove="Popup panels\**" />
+    <Page Remove="Red Dog\**" />
+    <Page Remove="Strings\**" />
+    <Page Remove="Symbol picker\**" />
+    <Page Remove="UI\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="MainPage.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Data\HUICommands.json" />
+    <Content Include="Data\teachingtips.json" />
+    <Content Include="Data\trial-mode.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Storage.Common" Version="12.18.1" />
+    <PackageReference Include="EmailValidation" Version="1.0.10" />
+    <PackageReference Include="Jint" Version="3.0.1" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.3" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.3" />
+    <PackageReference Include="Microsoft.Graphics.Win2D" Version="1.0.5.1" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.4.240211001" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="SharpDX" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct2D1" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DXGI" Version="4.2.0" />
+    <PackageReference Include="WriteableBitmapEx" Version="1.6.8" />
+    <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+
+  <!-- 
+    Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
+    Tools extension to be activated for this project even if the Windows App SDK Nuget
+    package has not yet been restored.
+  -->
+  <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+    <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <!-- 
+    Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution 
+    Explorer "Package and Publish" context menu entry to be enabled for this project even if 
+    the Windows App SDK Nuget package has not yet been restored.
+  -->
+  <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+    <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <DefineConstants>$(DefineConstants);UWP;KT22</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DefineConstants>$(DefineConstants);UWP;KT22</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <DefineConstants>$(DefineConstants);UWP;KT22</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <DefineConstants>$(DefineConstants);UWP;KT22</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DefineConstants>$(DefineConstants);UWP;KT22</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <DefineConstants>$(DefineConstants);UWP;KT22</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <PRIResource Remove="Console\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="Core\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="Data\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="Drawing page\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="Export\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="Home page\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="HUI\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="HUIApp\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="Icons\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="New drawing page\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="Photo Editor\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="Popup panels\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="Red Dog\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="Strings\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="Strings\en-US\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="Symbol picker\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="UI\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="KTAlerts.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Console\CommandEntryControl.xaml.cs" />
+    <Compile Include="Console\CommandParser.cs" />
+    <Compile Include="Console\KTCommandLanguage.cs" />
+    <Compile Include="Console\KTCommandProcessor.cs" />
+    <Compile Include="Console\ModalCommand.cs" />
+    <Compile Include="Console\Scripting.cs" />
+    <Compile Include="Core\Action.cs" />
+    <Compile Include="Core\Analytics.cs" />
+    <Compile Include="Core\ArrowStyle.cs" />
+    <Compile Include="Core\CommandDispatcher.cs" />
+    <Compile Include="Core\CommandProcessor.cs" />
+    <Compile Include="Core\Construct.cs" />
+    <Compile Include="Core\ConstructHandles.cs" />
+    <Compile Include="Core\CopyAlongArcCommandProcessor.cs" />
+    <Compile Include="Core\CopyAlongLineCommandProcessor.cs" />
+    <Compile Include="Core\CopyPasteCommand.cs" />
+    <Compile Include="Core\Crosshatch.cs" />
+    <Compile Include="Core\DistanceCommandProcessor.cs" />
+    <Compile Include="Core\Drawing.cs" />
+    <Compile Include="Core\DrawingDocument.cs" />
+    <Compile Include="Core\DrawingHeader.cs" />
+    <Compile Include="Core\DrawingTools.cs" />
+    <Compile Include="Core\DX.cs" />
+    <Compile Include="Core\EditCommandProcessor.cs" />
+    <Compile Include="Core\EditCommands.cs" />
+    <Compile Include="Core\EditGroupCommandProcessor.cs" />
+    <Compile Include="Core\FileIO.cs" />
+    <Compile Include="Core\Geometry.cs" />
+    <Compile Include="Core\Gleam.cs" />
+    <Compile Include="Core\Globals.cs" />
+    <Compile Include="Core\Group.cs" />
+    <Compile Include="Core\Handles.cs" />
+    <Compile Include="Core\IDrawingCanvas.cs" />
+    <Compile Include="Core\IDrawingContainer.cs" />
+    <Compile Include="Core\IDrawingInput.cs" />
+    <Compile Include="Core\IDrawingPage.cs" />
+    <Compile Include="Core\IDrawingView.cs" />
+    <Compile Include="Core\IPointerHandler.cs" />
+    <Compile Include="Core\IVectorCanvas.cs" />
+    <Compile Include="Core\Layer.cs" />
+    <Compile Include="Core\LineType.cs" />
+    <Compile Include="Core\MouseHandler.cs" />
+    <Compile Include="Core\PArc.cs" />
+    <Compile Include="Core\PArc3.cs" />
+    <Compile Include="Core\PArrow.cs" />
+    <Compile Include="Core\patterns.cs" />
+    <Compile Include="Core\PBSpline.cs" />
+    <Compile Include="Core\PDimension.cs" />
+    <Compile Include="Core\PDoubleline.cs" />
+    <Compile Include="Core\PEllipse.cs" />
+    <Compile Include="Core\PImage.cs" />
+    <Compile Include="Core\PInstance.cs" />
+    <Compile Include="Core\PLine.cs" />
+    <Compile Include="Core\PPolygon.cs" />
+    <Compile Include="Core\PRectangle.cs" />
+    <Compile Include="Core\Primitives.cs" />
+    <Compile Include="Core\PrimitiveUtilities.cs" />
+    <Compile Include="Core\PropertiesCommandProcessor.cs" />
+    <Compile Include="Core\PText.cs" />
+    <Compile Include="Core\PTextEdit.cs" />
+    <Compile Include="Core\RubberBand.cs" />
+    <Compile Include="Core\SelectCommand.cs" />
+    <Compile Include="Core\Selector.cs" />
+    <Compile Include="Core\StandardAlerts.cs" />
+    <Compile Include="Core\StandardColors.cs" />
+    <Compile Include="Core\Status.cs" />
+    <Compile Include="Core\StylusPointerHandler.cs" />
+    <Compile Include="Core\SymbolFile.cs" />
+    <Compile Include="Core\SymbolHeader.cs" />
+    <Compile Include="Core\TextStyle.cs" />
+    <Compile Include="Core\TextUtilities.cs" />
+    <Compile Include="Core\Themes.cs" />
+    <Compile Include="Core\TouchPointerHandler.cs" />
+    <Compile Include="Core\UIDataContext.cs" />
+    <Compile Include="Core\Utilities.cs" />
+    <Compile Include="Core\VectorEntity.cs" />
+    <Compile Include="Core\VectorList.cs" />
+    <Compile Include="Core\VHandles.cs" />
+    <Compile Include="Core\VRubberBand.cs" />
+    <Compile Include="Core\WallJoint.cs" />
+    <Compile Include="Core\Win2DTextRenderer.cs" />
+    <Compile Include="Core\Win2dVectorListControl.xaml.cs" />
+    <Compile Include="Core\Win2DVectorRenderer.cs" />
+    <Compile Include="Core\XWorkCanvas.cs" />
+    <Compile Include="Drawing page\KT22Priniting.cs" />
+    <Compile Include="Drawing page\KTContextMenu.cs" />
+    <Compile Include="Drawing page\KTDrawingPage.xaml.cs" />
+    <Compile Include="Export\ExportPage.xaml.cs" />
+    <Compile Include="Home page\IHomePage.cs" />
+    <Compile Include="Home page\KTHomePage.xaml.cs" />
+    <Compile Include="Home page\RecentDrawingsControl.xaml.cs" />
+    <Compile Include="HUIApp\HAnnotationArrowDialog.xaml.cs" />
+    <Compile Include="HUIApp\HAnnotationDimensionDialog.xaml.cs" />
+    <Compile Include="HUIApp\HAnnotationTextDialog.xaml.cs" />
+    <Compile Include="HUIApp\HArrayLinearDialog.xaml.cs" />
+    <Compile Include="HUIApp\HArrayRadialDialog.xaml.cs" />
+    <Compile Include="HUIApp\HColorDialog.xaml.cs" />
+    <Compile Include="HUIApp\HDataContext.cs" />
+    <Compile Include="HUIApp\HDrawArcDialog.xaml.cs" />
+    <Compile Include="HUIApp\HDrawAttributesControl.xaml.cs" />
+    <Compile Include="HUIApp\HDrawCircleDialog.xaml.cs" />
+    <Compile Include="HUIApp\HDrawCurveDialog.xaml.cs" />
+    <Compile Include="HUIApp\HDrawDoublelineDialog.xaml.cs" />
+    <Compile Include="HUIApp\HDrawEllipseDialog.xaml.cs" />
+    <Compile Include="HUIApp\HDrawLineDialog.xaml.cs" />
+    <Compile Include="HUIApp\HDrawPolygonDialog.xaml.cs" />
+    <Compile Include="HUIApp\HDrawRectangleDialog.xaml.cs" />
+    <Compile Include="HUIApp\HGlobals.cs" />
+    <Compile Include="HUIApp\HGroupPanel.xaml.cs" />
+    <Compile Include="HUIApp\HInsertGroupDialog.xaml.cs" />
+    <Compile Include="HUIApp\HInsertImageDialog.xaml.cs" />
+    <Compile Include="HUIApp\HLayerPanel.xaml.cs" />
+    <Compile Include="HUIApp\HLayerTile.xaml.cs" />
+    <Compile Include="HUIApp\HManageSymbols.cs" />
+    <Compile Include="HUIApp\HPageControl.xaml.cs" />
+    <Compile Include="HUIApp\HPredefinedSymbolPanel.xaml.cs" />
+    <Compile Include="HUIApp\HSettingsApplication.xaml.cs" />
+    <Compile Include="HUIApp\HSettingsArrowStyles.xaml.cs" />
+    <Compile Include="HUIApp\HSettingsDrawing.xaml.cs" />
+    <Compile Include="HUIApp\HSettingsLayers.xaml.cs" />
+    <Compile Include="HUIApp\HSettingsLineTypes.xaml.cs" />
+    <Compile Include="HUIApp\HSettingsPatterns.xaml.cs" />
+    <Compile Include="HUIApp\HSettingsPrivacySupport.xaml.cs" />
+    <Compile Include="HUIApp\HSettingsTextStyles.xaml.cs" />
+    <Compile Include="HUIApp\HSnapPanel.xaml.cs" />
+    <Compile Include="HUIApp\HSymbolLibrary.xaml.cs" />
+    <Compile Include="HUIApp\HSymbolLibraryItem.xaml.cs" />
+    <Compile Include="HUIApp\HUIDispatcher.cs" />
+    <Compile Include="HUIApp\HVisibleLayersPanel.xaml.cs" />
+    <Compile Include="HUIApp\HXAMLControl.xaml.cs" />
+    <Compile Include="HUI\HUIButton.xaml.cs" />
+    <Compile Include="HUI\HUIDialog.xaml.cs" />
+    <Compile Include="HUI\HUIMenu.xaml.cs" />
+    <Compile Include="HUI\HUISubMenu.xaml.cs" />
+    <Compile Include="HUI\HUISubMenuItem.xaml.cs" />
+    <Compile Include="HUI\HUIUtilities.cs" />
+    <Compile Include="HUI\HUIView.xaml.cs" />
+    <Compile Include="New drawing page\NewDrawingControl.xaml.cs" />
+    <Compile Include="New drawing page\NewDrawingPage.xaml.cs" />
+    <Compile Include="Popup panels\AnglePanel.xaml.cs" />
+    <Compile Include="Popup panels\AreaPanel.xaml.cs" />
+    <Compile Include="Popup panels\DistancePanel.xaml.cs" />
+    <Compile Include="Popup panels\GroupAttributesPanel.xaml.cs" />
+    <Compile Include="Red Dog\RedDogArrowButton.xaml.cs" />
+    <Compile Include="Red Dog\RedDogCoordinatePanel.xaml.cs" />
+    <Compile Include="Red Dog\RedDogGlobals.cs" />
+    <Compile Include="Red Dog\RedDogTeachingTipEditor.xaml.cs" />
+    <Compile Include="Red Dog\RedDogUtilities.cs" />
+    <Compile Include="Symbol picker\SymbolGridCell.xaml.cs" />
+    <Compile Include="Symbol picker\SymbolPicker.xaml.cs" />
+    <Compile Include="UI\AttributePropertyPanel.xaml.cs" />
+    <Compile Include="UI\ColorItemControl.xaml.cs" />
+    <Compile Include="UI\ColorNameItems.cs" />
+    <Compile Include="UI\ColorPicker.xaml.cs" />
+    <Compile Include="UI\CopyAlongArcContextMenuPanel.xaml.cs" />
+    <Compile Include="UI\CopyAlongLineContextMenuPanel.xaml.cs" />
+    <Compile Include="UI\CopyPasteContextMenuPanel.xaml.cs" />
+    <Compile Include="UI\EditContextMenuPanel.xaml.cs" />
+    <Compile Include="UI\EditGroupContextMenuPanel.xaml.cs" />
+    <Compile Include="UI\ExpandoTextBox.xaml.cs" />
+    <Compile Include="UI\FillComboBox.cs" />
+    <Compile Include="UI\Hint.xaml.cs" />
+    <Compile Include="UI\HtmlTextBlock.xaml.cs" />
+    <Compile Include="UI\IContextMenu.cs" />
+    <Compile Include="UI\LayerTile.xaml.cs" />
+    <Compile Include="UI\NumberBox.cs" />
+    <Compile Include="UI\NumberComboBox.xaml.cs" />
+    <Compile Include="UI\PatternSwatch.xaml.cs" />
+    <Compile Include="UI\PropertiesContextPanel.xaml.cs" />
+    <Compile Include="UI\Ruler.xaml.cs" />
+    <Compile Include="UI\SelectContextMenuPanel.xaml.cs" />
+    <Compile Include="UI\StateButton.xaml.cs" />
+    <Compile Include="UI\XamlUtilities.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\patterns.pat" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icons\Array.design" />
+    <Content Include="Icons\HArc.design" />
+    <Content Include="Icons\HCircle.design" />
+    <Content Include="Icons\HCurve.design" />
+    <Content Include="Icons\HDimension.design" />
+    <Content Include="Icons\HDoubleline.design" />
+    <Content Include="Icons\HEllipse.design" />
+    <Content Include="Icons\HGroup.design" />
+    <Content Include="Icons\HLine.design" />
+    <Content Include="Icons\HPrint.design" />
+    <Content Include="Icons\HRectangle.design" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Console\CommandEntryControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Core\Win2dVectorListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Drawing page\KTDrawingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Export\ExportPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Home page\KTHomePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Home page\RecentDrawingsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HAnnotationArrowDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HAnnotationDimensionDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HAnnotationTextDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HArrayLinearDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HArrayRadialDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HColorDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HDrawArcDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HDrawAttributesControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HDrawCircleDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HDrawCurveDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HDrawDoublelineDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HDrawEllipseDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HDrawLineDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HDrawPolygonDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HDrawRectangleDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HGroupPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HInsertGroupDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HInsertImageDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HLayerPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HLayerTile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HManageSymbols.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HPageControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HPredefinedSymbolPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HSettingsApplication.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HSettingsArrowStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HSettingsDrawing.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HSettingsLayers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HSettingsLineTypes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HSettingsPatterns.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HSettingsPrivacySupport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HSettingsTextStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HSnapPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HSymbolLibrary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HSymbolLibraryItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HVisibleLayersPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUIApp\HXAMLControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUI\HUIButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUI\HUIDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUI\HUIMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUI\HUISubMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUI\HUISubMenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HUI\HUIView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Content Include="Icons\AppBarAngle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarArray.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarArrow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarArrowEnds.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarDbEndCap.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarDeleteVertex.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarDimType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarDropper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarFlip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarGap.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarGroup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarInsertLocation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarInsertVertex.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarLine.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarOffset.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarPan.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarPanDown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarPanLeft.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarPanRight.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarPanUp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarPicureLibrary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarResize.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarShape.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarTransform.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarTrim.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\AppBarUngroup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Arc.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Arc2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Arc3.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\ArcF.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\ArcFR.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\ArcR.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Array.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Arrow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\ArrowB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\ArrowE.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\ArrowS.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\BetaImage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Circle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Circle3.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\CircleR.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Complement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\CopyAlongArc.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\CopyAlongLine.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Curve.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Dimension.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\DimensionAB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\DimensionAI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\DimensionB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\DimensionI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\DimensionP.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Doubleline.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\DoublelineB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\DoublelineE.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\DoublelineN.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\DoublelineS.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\EditLine.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Ellipse.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\EllipseAxis.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\EllipseBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\EllipseCenter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Fillet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\FlipHorizontal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\FlipVertical.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Free.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Grid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\GridSnap.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Group.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\HArc.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\HCircle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\HCurve.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\HDimension.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\HDoubleline.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\HEllipse.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\HGroup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\HLine.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\HPrint.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\InsertCenter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\InsertExit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\InsertGroup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\InsertNone.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\InsertOrigin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\IrregularPolygon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Layers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Line.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\ObjectSnap.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Offset.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Origin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Pan.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\PictureLibrary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Polygon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\PolygonIrregular.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Polyline.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Print.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Protractor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Rectangle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\RectangleSize.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Ruler.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Size.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Text.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Text1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\Text2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\TextCA.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\TextCB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\TextCO.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\TextLA.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\TextLB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\TextLO.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\TextRA.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\TextRB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Content Include="Icons\TextRO.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
+    <Page Include="New drawing page\NewDrawingControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="New drawing page\NewDrawingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popup panels\AnglePanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popup panels\AreaPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popup panels\DistancePanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popup panels\GroupAttributesPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Red Dog\RedDogArrowButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Red Dog\RedDogCoordinatePanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Red Dog\RedDogTeachingTipEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Symbol picker\SymbolGridCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Symbol picker\SymbolPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\AttributePropertyPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\ColorItemControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\ColorPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\CopyAlongArcContextMenuPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\CopyAlongLineContextMenuPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\CopyPasteContextMenuPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\EditContextMenuPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\EditGroupContextMenuPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\ExpandoTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Hint.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\HtmlTextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\LayerTile.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\NumberComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\PatternSwatch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\PropertiesContextPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Ruler.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\SelectContextMenuPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\StateButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>

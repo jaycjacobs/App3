@@ -1,0 +1,123 @@
+﻿<UserControl
+    x:Class="CirrosUI.EditContextMenuPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CirrosUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" 
+    d:DesignHeight="400"
+    d:DesignWidth="260">
+
+    <Border BorderThickness="1" BorderBrush="{StaticResource DarkDarkGray}" Grid.Column="1" Grid.Row="2" Margin="0">
+        <StackPanel x:Name="_menuPanel" Background="White" Orientation="Vertical" MinWidth="260"
+                    SizeChanged="_menuPanel_SizeChanged">
+
+            <Grid Background="{StaticResource DarkDarkGray}">
+                <Rectangle Fill="{StaticResource DarkDarkGray}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
+                <TextBlock x:Name="_title" Text="Edit group" Grid.Column="0" Grid.ColumnSpan="4" 
+                           Style="{StaticResource PopupTitleText}" FontSize="{Binding UIFontSizeNormal}" />
+                <StackPanel x:Name="_jumpIconPanel" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button FontFamily="Segoe MDL2 Assets" Content="&#xe1e3;" Margin="0"
+                        Height="30" Padding="4,0" Click="SelectObjectsClick" PointerExited="Button_PointerExited"
+                        FontSize="{Binding UIFontSizeSmall}" Foreground="White" VerticalAlignment="Center" 
+                        Background="Transparent" />
+                    <Button FontFamily="Segoe MDL2 Assets" Content="&#xe74c;" Margin="0" 
+                        Height="30" Padding="4,0" Click="EditGroupClick" PointerExited="Button_PointerExited"
+                        FontSize="{Binding UIFontSizeSmall}" Foreground="White" VerticalAlignment="Center" 
+                        Background="Transparent" />
+                    <Button FontFamily="Segoe MDL2 Assets" Content="&#xe77f;" Margin="0" 
+                        Height="30" Padding="4,0" Click="CopyPasteButton_Click"
+                        FontSize="{Binding UIFontSizeSmall}" Foreground="White" VerticalAlignment="Center" 
+                        Background="Transparent" PointerExited="Button_PointerExited" />
+                    <Button FontFamily="Segoe UI Symbol" Content="&#xe21c;" Margin="0" 
+                        Height="30" Padding="4,0" Click="CloseButton_Click" PointerExited="Button_PointerExited"
+                        FontSize="{Binding UIFontSizeSmall}" Foreground="White" VerticalAlignment="Center" 
+                        Background="Transparent" />
+                </StackPanel>
+            </Grid>
+
+            <StackPanel x:Name="_row0" Orientation="Horizontal" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,4,5,0">
+                <ToggleButton Content="Move Point" Style="{StaticResource ContextMenuToggleButtonStyle}" IsChecked="True" />
+                <ToggleButton Content="Insert Point" Style="{StaticResource ContextMenuToggleButtonStyle}" />
+                <ToggleButton Content="Delete Point" Style="{StaticResource ContextMenuToggleButtonStyle}" />
+            </StackPanel>
+
+            <StackPanel x:Name="_row1" Orientation="Horizontal" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0">
+                <ToggleButton Content="Offset move" Style="{StaticResource ContextMenuToggleButtonStyle}" />
+                <ToggleButton Content="Offset copy" Style="{StaticResource ContextMenuToggleButtonStyle}" />
+            </StackPanel>
+
+            <StackPanel x:Name="_row2" Orientation="Horizontal" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0">
+                <ToggleButton Content="Extend/trim" Style="{StaticResource ContextMenuToggleButtonStyle}" />
+                <ToggleButton Content="Gap" Style="{StaticResource ContextMenuToggleButtonStyle}" />
+                <ToggleButton Content="Properties" Style="{StaticResource ContextMenuToggleButtonStyle}" />
+            </StackPanel>
+
+            <StackPanel x:Name="_noSelectionPanel" Orientation="Vertical" Margin="10" Visibility="Visible">
+                <TextBlock TextAlignment="Center" FontSize="{Binding UIFontSizeNormal}" >
+                    Select an object to edit
+                </TextBlock>
+            </StackPanel>
+
+            <StackPanel x:Name="_offsetOptions" Orientation="Vertical" Visibility="Collapsed">
+
+                <Line StrokeThickness="1" Margin="0,3" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" 
+                    X2="1" Stretch="Fill" StrokeEndLineCap="Square" StrokeStartLineCap="Square" Stroke="DarkGray"/>
+
+                <Grid Margin="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Text="Offset distance" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="{Binding UIFontSizeNormal}" />
+                    <local:NumberBox1 x:Name="_offsetDistanceBox" Grid.Column="2" Style="{StaticResource DialogNumberBox}" FontSize="{Binding UIFontSizeNormal}" IsDistance="True"
+                                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Value="0" InputScope="Number" Unit="Model" />
+                </Grid>
+                <Button Content="Apply" Style="{StaticResource ContextMenuButton}" FontSize="{Binding UIFontSizeNormal}" Click="Apply_Click"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" />
+            </StackPanel>
+
+            <StackPanel x:Name="_textAttributeOptions" Orientation="Vertical" Visibility="Collapsed">
+
+                <Line StrokeThickness="1" Margin="03" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" 
+                    X2="1" Stretch="Fill" StrokeEndLineCap="Square" StrokeStartLineCap="Square" Stroke="DarkGray"/>
+
+                <Grid Margin="4,0">
+                    <TextBlock x:Name="_promptLabel" Grid.Column="1" Grid.Row="1" Text="Prompt" HorizontalAlignment="Left" FontSize="{Binding UIFontSizeNormal}" VerticalAlignment="Center" Margin="3" />
+                    <TextBlock x:Name="_ofLabel" Grid.Column="2" Grid.Row="1" Text="1 of 1" HorizontalAlignment="Right" FontSize="{Binding UIFontSizeNormal}" VerticalAlignment="Center" Margin="3" />
+                </Grid>
+
+                <StackPanel x:Name="_attributeStackPanel"  Orientation="Vertical" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2">
+                    <TextBox x:Name="_attributeBox" AcceptsReturn="True" TextChanged="_attributeBox_TextChanged" KeyDown="_attributeBox_KeyDown"
+                             Margin="6,0" FontSize="{Binding UIFontSizeNormal}" />
+                    <Button x:Name="_nextAttributeButton" Content="Next" Style="{StaticResource ContextMenuButton}" Click="_nextAttributeButton_Click" FontSize="{Binding UIFontSizeNormal}"
+                            HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" />
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel x:Name="_propertiesPanel" Orientation="Vertical" Visibility="Collapsed">
+
+                <Line StrokeThickness="1" Margin="0,3" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" 
+                    X2="1" Stretch="Fill" StrokeEndLineCap="Square" StrokeStartLineCap="Square" Stroke="DarkGray"/>
+
+                <ContentControl x:Name="_propertiesContentControl" Margin="0,2" HorizontalAlignment="Stretch" />
+
+                <!--<Line StrokeThickness="1" Margin="0,5,0,2" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" 
+                    X2="1" Stretch="Fill" StrokeEndLineCap="Square" StrokeStartLineCap="Square" Stroke="DarkGray"/>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="2" Grid.Column="1" Grid.Row="4">
+                    <Button x:Name="_orderFrontButton" Content="Bring to front" Style="{StaticResource ContextMenuButton}" FontSize="{Binding UIFontSizeNormal}"
+                            HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" Click="_orderButton_Click" />
+                    <Button x:Name="_orderBackButton" Content="Send to back" Style="{StaticResource ContextMenuButton}" FontSize="{Binding UIFontSizeNormal}"
+                            HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" Click="_orderButton_Click" />
+                </StackPanel>-->
+            </StackPanel>
+            
+            <Rectangle Fill="White" Height="4" />
+        </StackPanel>
+    </Border>
+</UserControl>

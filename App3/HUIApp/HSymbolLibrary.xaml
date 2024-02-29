@@ -1,0 +1,48 @@
+﻿<UserControl
+    x:Class="RedDog.HUIApp.HSymbolLibrary"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RedDog.HUIApp"
+    xmlns:cirros="using:CirrosUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="600"
+    d:DesignWidth="336">
+
+    <Grid Margin="10" Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="24" />
+            <RowDefinition Height="10" />
+            <RowDefinition x:Name="_iconRow" Height="*" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition x:Name="_iconColumn" Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Fill="{StaticResource BrightBackground}" />
+        <TextBlock x:Name="_titleTextBlock" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="Symbol library" FontSize="16" Foreground="{StaticResource HLightMenuText}"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,4,0,0" />
+
+            <StackPanel x:Name="_vstack" Grid.Column="1" Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Stretch">
+            <StackPanel Style="{StaticResource HSymbolRow}" >
+                <local:HSymbolLibraryItem Grid.Row="0" Grid.Column="0" Label="Default" Width="92" Margin="0" />
+                <local:HSymbolLibraryItem Grid.Row="0" Grid.Column="1" Label="Default" Width="92" Margin="10,0,10,0" />
+                <local:HSymbolLibraryItem Grid.Row="0" Grid.Column="2" Label="Default" Width="92" Margin="0" />
+            </StackPanel>
+            <StackPanel Style="{StaticResource HSymbolRow}" >
+                <local:HSymbolLibraryItem Grid.Row="0" Grid.Column="0" Label="Default" Width="92" Margin="0" />
+                <local:HSymbolLibraryItem Grid.Row="0" Grid.Column="1" Label="Default" Width="92" Margin="10,0,10,0" />
+                <local:HSymbolLibraryItem Grid.Row="0" Grid.Column="2" Label="Default" Width="92" Margin="0" />
+            </StackPanel>
+            <StackPanel Style="{StaticResource HSymbolRow}" >
+                <local:HSymbolLibraryItem Grid.Row="0" Grid.Column="0" Label="Default" Width="92" Margin="0" />
+                <local:HSymbolLibraryItem Grid.Row="0" Grid.Column="1" Label="Default" Width="92" Margin="10,0,10,0" />
+            </StackPanel>
+            <local:HPageControl Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Top" />
+        </StackPanel>
+    </Grid>
+</UserControl>

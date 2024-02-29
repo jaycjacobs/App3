@@ -1,0 +1,21 @@
+﻿<Page
+    x:Class="Cirros8.NewDrawingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Cirros8"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition />
+            <RowDefinition Height="100" />
+        </Grid.RowDefinitions>
+        <Button x:Name="_backButton" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Width="90" Height="70"
+                HorizontalAlignment="Left" Content="&#xE72B;" Style="{StaticResource HomePageBackButtonStyle}" Background="Transparent"
+                Margin="20,5,5,0" Click="_backButton_Click" />
+        <local:NewDrawingControl x:Name="_newDrawingControl"  Grid.Row="1" Grid.Column="1" />
+    </Grid>
+</Page>

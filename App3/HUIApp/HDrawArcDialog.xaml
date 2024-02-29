@@ -1,0 +1,204 @@
+﻿<UserControl
+    x:Class="RedDog.HUIApp.HDrawArcDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RedDog.HUIApp"
+    xmlns:cirros="using:CirrosUI"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:rt="using:KT22.UI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="{Binding DialogWidth}"
+    mc:Ignorable="d"
+    d:DesignHeight="600"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <muxc:TeachingTip x:Name="_ttDrawArcIntro" Title="Arc" Tag="intro" Target="{x:Bind _titleTextBlock}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.IconSource>
+                <muxc:FontIconSource FontFamily="Segoe UI Symbol" Glyph="&#x25e0;" />
+            </muxc:TeachingTip.IconSource>
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttDrawArcCenterStartEnd" Title="Center/start/end" Tag="centerstartend" Target="{x:Bind _centerStartEndIcon}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttDrawArcThreePoint" Title="3 point" Tag="threepoint" Target="{x:Bind _threePointIcon}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttDrawArcSemiCircle" Title="Semi circle" Tag="semicircle" Target="{x:Bind _semiCircleIcon}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttDrawArcRadiusCenterPoint" Title="Radius" Tag="centerradius" Target="{x:Bind _centerRadiusIcon}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttDrawArcRadiusAngles" Title="Radius &amp; angles" Tag="radiusangles" Target="{x:Bind _radiusAnglesIcon}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttDrawArcFillet" Title="Fillet" Tag="fillet" Target="{x:Bind _filletIcon}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttDrawArcFilletRadius" Title="Fillet &amp; radius" Tag="filletradius" Target="{x:Bind _filletRadiusIcon}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttDrawArcRadius" Title="Radius" Tag="radius" Target="{x:Bind _radiusBox}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttDrawArcStartAngle" Title="Start angle" Tag="start" Target="{x:Bind _startBox}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttDrawArcIncludedAngle" Title="Included angle" Tag="included" Target="{x:Bind _includedBox}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource HDialogBackground}" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Fill="{StaticResource BrightBackground}" />
+        <TextBlock x:Name="_titleTextBlock" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
+                   Text="Arc" Style="{StaticResource HDialogTitle}" FontSize="{Binding UIFontSizeNormal}" />
+        <Button x:Name="_helpButton" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
+                Content="&#xE11B;" Click="_helpButton_Click" Style="{StaticResource HDialogTitleGlyphButton}" FontSize="{Binding UIFontSizeNormal}" />
+
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="130" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel x:Name="_iconRow1" Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                <local:HXAMLControl x:Name="_centerStartEndIcon" Title="Center/start/end" IconSource="Arc.xaml" Id="center-start-end" Style="{StaticResource HXAMLIcon}" />
+                <local:HXAMLControl x:Name="_threePointIcon" Title="3 point" IconSource="Arc3.xaml"  Id="three-point" Style="{StaticResource HXAMLIcon}" />
+                <local:HXAMLControl x:Name="_semiCircleIcon" Title="Semi circle" IconSource="Arc2.xaml"  Id="semi-circle" Style="{StaticResource HXAMLIcon}" />
+                <local:HXAMLControl x:Name="_centerRadiusIcon" Title="Radius" IconSource="ArcR.xaml"  Id="radius" Style="{StaticResource HXAMLIcon}" />
+            </StackPanel>
+
+            <StackPanel x:Name="_iconRow2" Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                <local:HXAMLControl x:Name="_radiusAnglesIcon" Title="Radius &amp; angles" IconSource="ArcR.xaml"  Id="radius-angles" Style="{StaticResource HXAMLIcon}" />
+                <local:HXAMLControl x:Name="_filletIcon" Title="Fillet" IconSource="ArcF.xaml" Id="fillet" Style="{StaticResource HXAMLIcon}" IsSelected="True" />
+                <local:HXAMLControl x:Name="_filletRadiusIcon" Title="Fillet &amp; radius" IconSource="ArcFR.xaml" Id="fillet-radius" Style="{StaticResource HXAMLIcon}" />
+            </StackPanel>
+
+            <TextBlock x:Name="_radiusLabel" Grid.Column="0" Grid.Row="3" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Radius" />
+            <TextBlock x:Name="_startLabel" Grid.Column="0" Grid.Row="4" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Start angle" />
+            <TextBlock x:Name="_includedLabel" Grid.Column="0" Grid.Row="5" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Included angle" />
+
+            <cirros:NumberBox1 x:Name="_radiusBox" Tag="radius" Grid.Column="1" Grid.Row="3" Style="{StaticResource HDialogTextBox}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" Value="1" IsDistance="True" Text="1" />
+            <cirros:NumberBox1 x:Name="_startBox" Tag="start-angle" Grid.Column="1" Grid.Row="4" Style="{StaticResource HDialogTextBox}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" Value="0" IsAngle="True" />
+            <cirros:NumberBox1 x:Name="_includedBox" Tag="included-angle" Grid.Column="1" Grid.Row="5" Style="{StaticResource HDialogTextBox}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" Value="180" IsAngle="True" />
+        </Grid>
+
+        <local:HDrawAttributesControl x:Name="_attributesControl" Grid.Column="1" Grid.Row="4" FillKey="fill" LayerKey="shape-layer" />
+    </Grid>
+</UserControl>

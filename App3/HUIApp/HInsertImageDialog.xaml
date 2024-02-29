@@ -1,0 +1,177 @@
+﻿<UserControl
+    x:Class="RedDog.HUIApp.HInsertImageDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RedDog.HUIApp"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:rt="using:KT22.UI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="{Binding DialogWidth}"
+    mc:Ignorable="d"
+    d:DesignHeight="600"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <muxc:TeachingTip x:Name="_ttInsertImageIntro" Title="Insert Image" Tag="intro" Target="{x:Bind _titleTextBlock}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.IconSource>
+                <muxc:FontIconSource FontFamily="Segoe MDL2 Assets" Glyph="&#xeb9f;" />
+            </muxc:TeachingTip.IconSource>
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttInsertImageFile" Title="From file" Tag="file" Target="{x:Bind _fileIcon}" 
+                    Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttInsertImageCamera" Title="From camera" Tag="camera" Target="{x:Bind _cameraIcon}" 
+                    Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttInsertImageLayer" Title="Layer" Tag="layer" Target="{x:Bind _layerComboBox}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttInsertImageOpacity" Title="Opacity" Tag="opacity" Target="{x:Bind _opacitySlider}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttInsertImageThumbnail" Title="Thumbnail" Tag="thumbnail" Target="{x:Bind _selectedImage}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttInsertImageEdit" Title="Edit image" Tag="edit" Target="{x:Bind _editImageButton}"
+                    Style="{StaticResource TeachingTipBottomStyle}"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource HDialogBackground}" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="162" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Fill="{StaticResource BrightBackground}" />
+        <TextBlock x:Name="_titleTextBlock" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
+                   Text="Insert image" Style="{StaticResource HDialogTitle}" FontSize="{Binding UIFontSizeNormal}" />
+        <Button x:Name="_helpButton" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
+                Content="&#xE11B;" Click="_helpButton_Click" Style="{StaticResource HDialogTitleGlyphButton}" FontSize="{Binding UIFontSizeNormal}" />
+
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="130" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel x:Name="_iconRow1" Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                <local:HXAMLControl x:Name="_fileIcon" Title="From file" IconSource="0xe132" Id="insert_image_from_file" Style="{StaticResource HXAMLIcon}" />
+                <local:HXAMLControl x:Name="_cameraIcon" Title="From camera" IconSource="0xe114" Id="insert_image_from_camera" Style="{StaticResource HXAMLIcon}" />
+            </StackPanel>
+
+            <TextBlock x:Name="_layerLabel" Grid.Column="0" Grid.Row="2" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Layer" />
+            <TextBlock x:Name="_opacityLabel" Grid.Column="0" Grid.Row="3" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Opacity" />
+
+            <ComboBox x:Name="_layerComboBox" Grid.Column="1" Grid.Row="2" Style="{StaticResource HDialogComboBox}" Height="{Binding UIControlHeightNormal}" FontSize="{Binding UIFontSizeNormal}">
+                <ComboBoxItem Content="Layer 0" Tag="Layer 0" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Layer 1" Tag="Layer 1" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Layer 2" Tag="Layer 2" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Layer 3" Tag="Layer 3" Style="{StaticResource StdComboBoxItemStyle}" />
+                <ComboBoxItem Content="Layer 4" Tag="Layer 4" Style="{StaticResource StdComboBoxItemStyle}" />
+            </ComboBox>
+
+            <Slider x:Name="_opacitySlider" Grid.Column="1" Grid.Row="3" Minimum="0" Maximum="1" Value=".7" 
+                    StepFrequency=".05" TickPlacement="Outside" TickFrequency=".1" />
+        </Grid>
+            
+        <Grid Grid.Column="1" Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="120" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <local:HSymbolLibraryItem x:Name="_selectedImage" Grid.Column="1" Grid.Row="1" Label="No image is selected" FontStyle="Italic"
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <Button x:Name="_editImageButton" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" IsEnabled="False"
+                    Foreground="#ff404040" Margin="0,0,0,20" Padding="4" Click="_editImageButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="14" Text="" Margin="0,0,4,0" />
+                    <TextBlock FontFamily="Segoe UI" FontSize="14" Text="Edit image" />
+                </StackPanel>
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>

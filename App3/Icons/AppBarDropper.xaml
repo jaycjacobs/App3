@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="AppBarDropper" Width="40" Height="40" UseLayoutRounding="False">
+	<Canvas x:Name="Layer_1" Width="40" Height="40" Canvas.Left="0" Canvas.Top="0">
+		<Path x:Name="Path" Width="8.31369" Height="8.3137" Canvas.Left="20.8787" Canvas.Top="10.8076" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 20.8787,14.8787L 24.9497,10.8076L 29.1924,15.0503L 25.1213,19.1213L 20.8787,14.8787 Z "/>
+		<Path x:Name="Path_0" Width="6" Height="6" Canvas.Left="24.0711" Canvas.Top="9.92894" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 24.9497,10.8076C 26.1213,9.63605 28.0208,9.63604 29.1924,10.8076C 30.364,11.9792 30.364,13.8787 29.1924,15.0503C 28.0208,16.2218 26.1213,16.2218 24.9497,15.0503C 23.7782,13.8787 23.7782,11.9792 24.9497,10.8076 Z "/>
+		<Path x:Name="Path_1" Width="13.0208" Height="13.0208" Canvas.Left="10.3076" Canvas.Top="16.6716" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFFFF" Data="F1 M 20,17.1716L 12.2218,24.9497L 10.8076,29.1924L 15.0502,27.7782L 22.8284,20"/>
+		<Path x:Name="Path_2" Width="7.77817" Height="7.77818" Canvas.Left="18.5858" Canvas.Top="13.636" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 18.5858,15.7574L 20.7071,13.636L 26.364,19.2929L 24.2426,21.4142L 18.5858,15.7574 Z "/>
+	</Canvas>
+</Canvas>

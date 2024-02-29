@@ -1,0 +1,29 @@
+﻿<UserControl
+    x:Class="RedDog.HUIApp.HPredefinedSymbolPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RedDog.HUIApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="180">
+    <GridView x:Name="_gridView" Grid.Column="0" Padding="0" MaxWidth="200" SelectionChanged="GridView_SelectionChanged"
+                  Background="White" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}">
+        <Image Width="120" Margin="10,0" Source="ms-appx:///Assets/predefined-capillary.jpg" Tag="predefined-capillary.dbsx"/>
+        <Image Width="120" Margin="10,0" Source="ms-appx:///Assets/predefined-undefined.jpg" Tag="predefined-undefined.dbsx"/>
+        <Image Width="120" Margin="10,0" Source="ms-appx:///Assets/predefined-pneumatic-1.jpg" Tag="predefined-pneumatic-1.dbsx"/>
+        <Image Width="120" Margin="10,0" Source="ms-appx:///Assets/predefined-pneumatic-2.jpg" Tag="predefined-pneumatic-2.dbsx"/>
+        <Image Width="120" Margin="10,0" Source="ms-appx:///Assets/predefined-electric-1.jpg" Tag="predefined-electric-1.dbsx"/>
+        <Image Width="120" Margin="10,0" Source="ms-appx:///Assets/predefined-electric-2.jpg" Tag="predefined-electric-2.dbsx"/>
+        <Image Width="120" Margin="10,0" Source="ms-appx:///Assets/predefined-hydraulic.jpg" Tag="predefined-hydraulic.dbsx"/>
+        <Image Width="120" Margin="10,0" Source="ms-appx:///Assets/predefined-data-1.jpg" Tag="predefined-data-1.dbsx"/>
+        <Image Width="120" Margin="10,0" Source="ms-appx:///Assets/predefined-data-2.jpg" Tag="predefined-data-2.dbsx"/>
+        <Image Width="120" Margin="10,0" Source="ms-appx:///Assets/predefined-data-3.jpg" Tag="predefined-data-3.dbsx"/>
+        <Image Width="120" Margin="10,0" Source="ms-appx:///Assets/predefined-mechanical.jpg" Tag="predefined-mechanical.dbsx"/>
+        <Image Width="120" Margin="10,0" Source="ms-appx:///Assets/predefined-box.jpg" Tag="predefined-box.dbsx"/>
+        <Image Width="120" Margin="10,0" Source="ms-appx:///Assets/predefined-electromagnetic-1.jpg" Tag="predefined-electromagnetic-1.dbsx"/>
+        <Image Width="120" Margin="10,0" Source="ms-appx:///Assets/predefined-electromagnetic-2.jpg" Tag="predefined-electromagnetic-2.dbsx"/>
+        <Image Width="120" Margin="10,0" Source="ms-appx:///Assets/predefined-electromagnetic-3.jpg" Tag="predefined-electromagnetic-3.dbsx"/>
+    </GridView>
+</UserControl>

@@ -1,0 +1,230 @@
+﻿<UserControl
+    x:Class="RedDog.HUIApp.HSettingsLineTypes"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RedDog.HUIApp"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:rt="using:KT22.UI"
+    xmlns:cirros="using:CirrosUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="{Binding DialogWidth}"
+    mc:Ignorable="d"
+    d:DesignHeight="600"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <muxc:TeachingTip x:Name="_ttSettingsLineTypesIntro" Title="Line Type Definitions" Tag="intro" Target="{x:Bind _titleTextBlock}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.IconSource>
+                <muxc:FontIconSource FontFamily="Segoe MDL2 Assets" Glyph="&#xe738;" />
+            </muxc:TeachingTip.IconSource>
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttSettingsLineTypesName" Title="Line type name" Tag="name" Target="{x:Bind _lineTypeComboBox}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttSettingsLineTypesRename" Title="Rename line type" Tag="rename" Target="{x:Bind _renameLineTypeButton}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttSettingsLineTypesSample" Title="Line type sample" Tag="sample" Target="{x:Bind _sampleField}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttSettingsLineTypesLengths" Title="Dash and gap lengths" Tag="lengths" Target="{x:Bind _dashgrid}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttSettingsLineTypesCount" Title="Object count" Tag="count" Target="{x:Bind _objectCountPanel}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttSettingsLineTypesLayerCount" Title="Layer count" Tag="layer-count" Target="{x:Bind _layerCountPanel}"
+	                Style="{StaticResource TeachingTipRightStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttSettingsLineTypesAdd" Title="Add a new line type" Tag="add" Target="{x:Bind _newLineTypeButton}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    ActionButtonContent="Next" ActionButtonClick="_teachingTip_ActionButtonClick"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+        <muxc:TeachingTip x:Name="_ttSettingsLineTypesDelete" Title="Delete selected line type" Tag="delete" Target="{x:Bind _deleteLineTypeButton}"
+	                Style="{StaticResource TeachingTipBottomStyle}"
+                    CloseButtonContent="Close" >
+            <muxc:TeachingTip.Content>
+                <Border>
+                    <rt:HtmlTextBlock Style="{StaticResource TeachingTipHtmlStyle}" />
+                </Border>
+            </muxc:TeachingTip.Content>
+        </muxc:TeachingTip>
+
+    </UserControl.Resources>
+    
+    <Grid Background="{StaticResource HDialogBackground}" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="22" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Fill="{StaticResource BrightBackground}" />
+        <TextBlock x:Name="_titleTextBlock" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
+                   Text="Line Type Definitions" Style="{StaticResource HDialogTitle}" FontSize="{Binding UIFontSizeNormal}" />
+        <Button x:Name="_helpButton" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
+                Content="&#xE11B;" Click="_helpButton_Click" Style="{StaticResource HDialogTitleGlyphButton}" FontSize="{Binding UIFontSizeNormal}" />
+
+        <Grid x:Name="_grid" Grid.Column="1" Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition x:Name="_canvasHeight"  Height="34" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Name" />
+            <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" x:Name="_renameLineTypeButton" Content="&#xe104;" HorizontalAlignment="Right"
+                    ToolTipService.ToolTip="Rename layer" Click="_renameLineTypeButton_Click"  Style="{StaticResource HDialogGlyphButton}" Height="32" Margin="2,0" />
+            <TextBox Grid.Column="2" Grid.Row="0" x:Name="_lineTypeNameBox" Tag="layer_name" Visibility="Collapsed" SelectionHighlightColor="{StaticResource RedDogHighlightColor}"
+                     Style="{StaticResource HDialogTextBox}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" Text="Unassigned" Padding="11,4" />
+            <ComboBox Grid.Column="2" Grid.Row="0" x:Name="_lineTypeComboBox" Tag="layer_name" Visibility="Visible"
+                      Style="{StaticResource HDialogComboBox}" Height="{Binding UIControlHeightNormal}" FontSize="{Binding UIFontSizeNormal}" Text="Unassigned" />
+
+            <Canvas x:Name="_sampleField" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Background="White" Height="10" SizeChanged="_sampleField_SizeChanged">
+                <Line x:Name="_line" StrokeThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"  X1="0" Y1="4" X2="350" Y2="4" 
+                   Stretch="Fill" StrokeEndLineCap="Square" StrokeStartLineCap="Square" Stroke="DarkGray"/>
+            </Canvas>
+
+            <Grid x:Name="_dashgrid" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Margin="0,10,0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="44" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Dash length" HorizontalAlignment="Center" />
+                <TextBlock Grid.Column="3" Grid.Row="0" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Gap length" HorizontalAlignment="Center" />
+
+                <cirros:NumberBox1 Grid.Column="1" Grid.Row="1" x:Name="_dash1Box" Tag="0" Style="{StaticResource HDialogTextBox}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" HorizontalAlignment="Center"
+                                  IsDistance="True" Unit="Paper" Text="" OnValueChanged="_dashBox_OnValueChanged" />
+                <cirros:NumberBox1 Grid.Column="3" Grid.Row="1" x:Name="_gap1Box" Tag="1" Style="{StaticResource HDialogTextBox}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" HorizontalAlignment="Center"
+                                  IsDistance="True" Unit="Paper" Text="" OnValueChanged="_dashBox_OnValueChanged"  />
+
+                <cirros:NumberBox1 Grid.Column="1" Grid.Row="2" x:Name="_dash2Box" Tag="2" Style="{StaticResource HDialogTextBox}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" HorizontalAlignment="Center"
+                                  IsDistance="True" Unit="Paper" Text="" OnValueChanged="_dashBox_OnValueChanged"  />
+                <cirros:NumberBox1 Grid.Column="3" Grid.Row="2" x:Name="_gap2Box" Tag="3" Style="{StaticResource HDialogTextBox}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" HorizontalAlignment="Center"
+                                  IsDistance="True" Unit="Paper" Text="" OnValueChanged="_dashBox_OnValueChanged"  />
+
+                <cirros:NumberBox1 Grid.Column="1" Grid.Row="3" x:Name="_dash3Box" Tag="4"  Style="{StaticResource HDialogTextBox}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" HorizontalAlignment="Center"
+                                  IsDistance="True" Unit="Paper" Text="" OnValueChanged="_dashBox_OnValueChanged"  />
+                <cirros:NumberBox1 Grid.Column="3" Grid.Row="3" x:Name="_gap3Box" Tag="5" Style="{StaticResource HDialogTextBox}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" HorizontalAlignment="Center"
+                                  IsDistance="True" Unit="Paper" Text="" OnValueChanged="_dashBox_OnValueChanged"  />
+
+                <cirros:NumberBox1 Grid.Column="1" Grid.Row="4" x:Name="_dash4Box" Tag="6" Style="{StaticResource HDialogTextBox}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" HorizontalAlignment="Center"
+                                  IsDistance="True" Unit="Paper" Text="" OnValueChanged="_dashBox_OnValueChanged"  />
+                <cirros:NumberBox1 Grid.Column="3" Grid.Row="4" x:Name="_gap4Box" Tag="7" Style="{StaticResource HDialogTextBox}" FontSize="{Binding UIFontSizeNormal}" Height="{Binding UIControlHeightNormal}" HorizontalAlignment="Center"
+                                  IsDistance="True" Unit="Paper" Text="" OnValueChanged="_dashBox_OnValueChanged"  />
+            </Grid>
+
+            <StackPanel x:Name="_objectCountPanel" HorizontalAlignment="Stretch" Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3">
+                <TextBlock Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Number of objects using this line type: " />
+                <TextBlock x:Name="_objectCount" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Margin="10,0,0,4" Text="0" />
+            </StackPanel>
+            
+            <StackPanel x:Name="_layerCountPanel" HorizontalAlignment="Stretch" Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3">
+                <TextBlock  Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Text="Number of layers containing this line type: " />
+                <TextBlock x:Name="_layerCount" Style="{StaticResource HDialogText}" FontSize="{Binding UIFontSizeNormal}" Margin="10,0,0,4" Text="0" />
+            </StackPanel>
+
+            <StackPanel  Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="_newLineTypeButton" Content="Add a new line type" Click="_newLineTypeButton_Click" Margin="4,0" />
+                <Button x:Name="_deleteLineTypeButton" Content="Delete selected line type" Click="_deleteLineTypeButton_Click" Margin="4,0" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>
