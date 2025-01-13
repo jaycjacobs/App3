@@ -97,7 +97,7 @@
   <ItemGroup>
     <PackageReference Include="Azure.Storage.Common" Version="12.18.1" />
     <PackageReference Include="EmailValidation" Version="1.0.10" />
-    <PackageReference Include="Jint" Version="3.0.1" />
+    <PackageReference Include="Jint" Version="2.11.58" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.3" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.3" />
     <PackageReference Include="Microsoft.Graphics.Win2D" Version="1.0.5.1" />
@@ -182,9 +182,6 @@
     <PRIResource Remove="New drawing page\**" />
   </ItemGroup>
   <ItemGroup>
-    <PRIResource Remove="Photo Editor\**" />
-  </ItemGroup>
-  <ItemGroup>
     <PRIResource Remove="Popup panels\**" />
   </ItemGroup>
   <ItemGroup>
@@ -229,6 +226,44 @@
     <Compile Include="Core\DrawingHeader.cs" />
     <Compile Include="Core\DrawingTools.cs" />
     <Compile Include="Core\DX.cs" />
+    <Compile Include="Core\Dxf3DFaceEntity.cs" />
+    <Compile Include="Core\DxfArcEntity.cs" />
+    <Compile Include="Core\DxfAttdefEntity.cs" />
+    <Compile Include="Core\DxfBlock.cs" />
+    <Compile Include="Core\DxfBlockRecord.cs" />
+    <Compile Include="Core\DxfCircleEntity.cs" />
+    <Compile Include="Core\DxfContext.cs" />
+    <Compile Include="Core\DxfDimensionEntity.cs" />
+    <Compile Include="Core\DxfDimstyle.cs" />
+    <Compile Include="Core\DxfDocument.cs" />
+    <Compile Include="Core\DxfEllipseEntity.cs" />
+    <Compile Include="Core\DxfEntity.cs" />
+    <Compile Include="Core\DxfExport.cs" />
+    <Compile Include="Core\DxfGroup.cs" />
+    <Compile Include="Core\DxfHatchEntity.cs" />
+    <Compile Include="Core\DxfImportDialog.xaml.cs" />
+    <Compile Include="Core\DxfImporter.cs" />
+    <Compile Include="Core\DxfInsertEntity.cs" />
+    <Compile Include="Core\DxfIO.cs" />
+    <Compile Include="Core\DxfLayer.cs" />
+    <Compile Include="Core\DxfLeaderEntity.cs" />
+    <Compile Include="Core\DxfLineEntity.cs" />
+    <Compile Include="Core\DxfLtype.cs" />
+    <Compile Include="Core\DxfLwpolylineEntity.cs" />
+    <Compile Include="Core\DxfPoint3.cs" />
+    <Compile Include="Core\DxfPointEntity.cs" />
+    <Compile Include="Core\DxfPolylineEntity.cs" />
+    <Compile Include="Core\DxfReader.cs" />
+    <Compile Include="Core\DxfSolidEntity.cs" />
+    <Compile Include="Core\DxfSplineEntity.cs" />
+    <Compile Include="Core\DxfStyle.cs" />
+    <Compile Include="Core\DxfTextEntity.cs" />
+    <Compile Include="Core\DxfTraceEntity.cs" />
+    <Compile Include="Core\DxfUcs.cs" />
+    <Compile Include="Core\DxfVertexEntity.cs" />
+    <Compile Include="Core\DxfView.cs" />
+    <Compile Include="Core\DxfViewportEntity.cs" />
+    <Compile Include="Core\DxfVport.cs" />
     <Compile Include="Core\EditCommandProcessor.cs" />
     <Compile Include="Core\EditCommands.cs" />
     <Compile Include="Core\EditGroupCommandProcessor.cs" />
@@ -243,6 +278,9 @@
     <Compile Include="Core\IDrawingInput.cs" />
     <Compile Include="Core\IDrawingPage.cs" />
     <Compile Include="Core\IDrawingView.cs" />
+    <Compile Include="Core\ImageCommandProcessor.cs" />
+    <Compile Include="Core\ImageEdgeDetectionMatrix.cs" />
+    <Compile Include="Core\InsertCommandProcessor.cs" />
     <Compile Include="Core\IPointerHandler.cs" />
     <Compile Include="Core\IVectorCanvas.cs" />
     <Compile Include="Core\Layer.cs" />
@@ -253,6 +291,8 @@
     <Compile Include="Core\PArrow.cs" />
     <Compile Include="Core\patterns.cs" />
     <Compile Include="Core\PBSpline.cs" />
+    <Compile Include="Core\PDF.cs" />
+    <Compile Include="Core\PdfExport.cs" />
     <Compile Include="Core\PDimension.cs" />
     <Compile Include="Core\PDoubleline.cs" />
     <Compile Include="Core\PEllipse.cs" />
@@ -273,8 +313,14 @@
     <Compile Include="Core\StandardColors.cs" />
     <Compile Include="Core\Status.cs" />
     <Compile Include="Core\StylusPointerHandler.cs" />
+    <Compile Include="Core\svg.cs" />
+    <Compile Include="Core\SvgDom.cs" />
+    <Compile Include="Core\SvgDomReader.cs" />
+    <Compile Include="Core\SvgImport.cs" />
+    <Compile Include="Core\SvgReader.cs" />
     <Compile Include="Core\SymbolFile.cs" />
     <Compile Include="Core\SymbolHeader.cs" />
+    <Compile Include="Core\Tesselator.cs" />
     <Compile Include="Core\TextStyle.cs" />
     <Compile Include="Core\TextUtilities.cs" />
     <Compile Include="Core\Themes.cs" />
@@ -350,6 +396,7 @@
     <Compile Include="Popup panels\DistancePanel.xaml.cs" />
     <Compile Include="Popup panels\GroupAttributesPanel.xaml.cs" />
     <Compile Include="Red Dog\RedDogArrowButton.xaml.cs" />
+    <Compile Include="Red Dog\RedDogCommands.cs" />
     <Compile Include="Red Dog\RedDogCoordinatePanel.xaml.cs" />
     <Compile Include="Red Dog\RedDogGlobals.cs" />
     <Compile Include="Red Dog\RedDogTeachingTipEditor.xaml.cs" />
@@ -398,6 +445,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Console\CommandEntryControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Core\DxfImportDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Core\Win2dVectorListControl.xaml">
@@ -544,87 +594,6 @@
     <Page Include="HUI\HUIView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Content Include="Icons\AppBarAngle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarArray.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarArrow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarArrowEnds.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarDbEndCap.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarDeleteVertex.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarDimType.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarDropper.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarEdit.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarFlip.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarGap.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarGroup.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarInsertLocation.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarInsertVertex.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarLine.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarOffset.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarPan.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarPanDown.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarPanLeft.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarPanRight.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarPanUp.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarPicureLibrary.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarResize.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarShape.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarTransform.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarTrim.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
-    <Content Include="Icons\AppBarUngroup.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Content>
     <Content Include="Icons\Arc.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Content>
@@ -967,5 +936,11 @@
     <Page Include="UI\StateButton.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="Photo Editor\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Photo Editor\" />
   </ItemGroup>
 </Project>

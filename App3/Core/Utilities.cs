@@ -290,12 +290,12 @@ namespace Cirros.Utility
             return iNo2;
         }
 
-#if UWP
-        public static IAsyncAction ExecuteOnUIThread(Windows.UI.Core.DispatchedHandler action)
-        {
-            return Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, action);
-        }
-#endif
+//#if UWP
+//        public static IAsyncAction ExecuteOnUIThread(Windows.UI.Core.DispatchedHandler action)
+//        {
+//            return Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, action);
+//        }
+//#endif
         /*
         public static T FindParent<T>(UIElement control) where T : UIElement
         {
@@ -1731,7 +1731,56 @@ namespace Cirros.Utility
                     _originalBitmap.Invalidate();
 
                     file = await Globals.TemporaryImageFolder.CreateFileAsync(jpegName, CreationCollisionOption.ReplaceExisting);
-#if SIBERIA
+#if TRUE
+                    SoftwareBitmap outputBitmap = SoftwareBitmap.CreateCopyFromBuffer(
+                            _originalBitmap.PixelBuffer,
+                            BitmapPixelFormat.Bgra8,
+                            _originalBitmap.PixelWidth,
+                            _originalBitmap.PixelHeight
+                        );
+
+                    using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                    {
+                        // Create an encoder with the desired format
+                        BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.JpegEncoderId, stream);
+
+                        // Set the software bitmap
+                        encoder.SetSoftwareBitmap(outputBitmap);
+
+                        // Set additional encoding parameters, if needed
+                        encoder.BitmapTransform.ScaledWidth = 320;
+                        encoder.BitmapTransform.ScaledHeight = 240;
+                        encoder.BitmapTransform.Rotation = Windows.Graphics.Imaging.BitmapRotation.Clockwise90Degrees;
+                        encoder.BitmapTransform.InterpolationMode = BitmapInterpolationMode.Fant;
+                        encoder.IsThumbnailGenerated = true;
+
+                        try
+                        {
+                            await encoder.FlushAsync();
+                        }
+                        catch (Exception err)
+                        {
+                            const int WINCODEC_ERR_UNSUPPORTEDOPERATION = unchecked((int)0x88982F81);
+                            switch (err.HResult)
+                            {
+                                case WINCODEC_ERR_UNSUPPORTEDOPERATION:
+                                    // If the encoder does not support writing a thumbnail, then try again
+                                    // but disable thumbnail generation.
+                                    encoder.IsThumbnailGenerated = false;
+                                    break;
+                                default:
+                                    throw;
+                            }
+                        }
+
+                        if (encoder.IsThumbnailGenerated == false)
+                        {
+                            await encoder.FlushAsync();
+                        }
+
+
+                    }
+#else
                     using (IRandomAccessStream fileStream = await file.OpenAsync(FileAccessMode.ReadWrite), memStream = new InMemoryRandomAccessStream())
                     {
                         await _originalBitmap.ToStreamAsJpeg(fileStream);

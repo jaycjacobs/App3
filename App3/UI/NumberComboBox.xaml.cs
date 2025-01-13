@@ -89,9 +89,9 @@ namespace CirrosUI
             double top = p.Y;
             double bottom = top + _menuDropDown.ActualHeight;
 
-            if (bottom > App.Window.CoreWindow.Bounds.Bottom)
+            if (bottom > App.Window.Bounds.Bottom)
             {
-                _menuPopup.VerticalOffset = App.Window.CoreWindow.Bounds.Bottom - bottom;
+                _menuPopup.VerticalOffset = App.Window.Bounds.Bottom - bottom;
             }
         }
 

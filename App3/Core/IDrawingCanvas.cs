@@ -475,7 +475,7 @@ namespace Cirros.Core
             }
         }
 
-        protected virtual bool HandleKeyDown(string key)
+        public virtual bool HandleKeyDown(string key)
         {
             bool gmk = _gmkEnabled;
 
@@ -484,7 +484,7 @@ namespace Cirros.Core
             return gmk;
         }
 
-        protected virtual void HandleKeyUp(string key)
+        public virtual void HandleKeyUp(string key)
         {
             _keyCount = 0;
             _keyDirection = 0;

@@ -1,10 +1,15 @@
 ﻿//#define VERBOSE_SAVE_FILE_PICKER
 using App3;
+using Cirros.Alerts;
 using Cirros.Core.Primitives;
+using Cirros.Dialogs;
 using Cirros.Drawing;
 using Cirros.Primitives;
+using Cirros.Svg;
 using Cirros.Utility;
 using CirrosCore;
+using CirrosCore.Dxf;
+using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,6 +17,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Serialization;
 using Windows.Foundation;
 using Windows.Storage;
@@ -2230,7 +2236,7 @@ namespace Cirros
             {
                 savePicker.FileTypeChoices.Add("DXF Document", new List<string>() { ".dxf" });
             }
-#if SIBERIA
+
             // Default file name if the user does not type one in or select a file to replace
             if (string.IsNullOrEmpty(_currentDrawingName))
             {
@@ -2312,10 +2318,9 @@ namespace Cirros
             {
                 // cancelled
             }
-#endif
             return success;
         }
-#if SIBERIA
+
         private async static Task ExportDrawingToSvgAsync(StorageFile file, bool showFrame)
         {
             bool deferred = false;
@@ -2394,7 +2399,7 @@ namespace Cirros
                 }
             }
         }
-#endif
+
         public static async Task CreateThumbnail(string name)
         {
             DateTime then = DateTime.Now;
@@ -2588,7 +2593,6 @@ namespace Cirros
         public static async Task<int> ImportDxfAsync(StorageFile file)
         {
             int result = 0;
-#if SIBERIA
 #if true
             BasicProperties props = await file.GetBasicPropertiesAsync();
             Globals.Events.DrawingLoading(file.Name, props.Size);
@@ -2642,14 +2646,12 @@ namespace Cirros
 #else
             result = await Cirros.Dxf.DxfIO.ImportDxfAsync(file);
 #endif
-#endif
             return result;
         }
 
         public static async Task<int> ImportSvgAsync(StorageFile file)
         {
             int status = 0;
-#if SIBERIA
 
             if (file != null)
             {
@@ -2688,7 +2690,6 @@ namespace Cirros
                     status = -1;
                 }
             }
-#endif
             return status;
         }
 

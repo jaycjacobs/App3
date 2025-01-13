@@ -59,9 +59,7 @@ namespace Cirros8
 
             if (await Cirros.Alerts.StandardAlerts.LastChanceToSaveAsync())
             {
-#if SIBERIA
                 App.Navigate(typeof(KTDrawingPage), "restore");
-#endif
             }
 
             loadSettings();

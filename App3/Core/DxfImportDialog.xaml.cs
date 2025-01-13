@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Windows.Foundation;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using App3;
 
 
 namespace Cirros.Dialogs
@@ -26,6 +27,11 @@ namespace Cirros.Dialogs
             this.InitializeComponent();
             this.Loaded += DxfImportDialog_Loaded;
 
+            if (App.Window.Frame.Content is UIElement u)
+            {
+                XamlRoot = u.XamlRoot;
+            }
+                
             _context = context;
         }
 

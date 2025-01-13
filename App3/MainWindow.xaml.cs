@@ -17,6 +17,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using WinRT.Interop;
 using KT22;
+using AppWindowTitleBar = Microsoft.UI.Windowing.AppWindowTitleBar;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -34,6 +35,7 @@ namespace App3
         {
             this.InitializeComponent();
 
+            this.Closed += MainWindow_Closed;
             m_AppWindow = GetAppWindowForCurrentWindow();
 
             // Check to see if customization is supported.
@@ -57,6 +59,11 @@ namespace App3
                 // TODO Show alternative UI for any functionality in
                 // the title bar, such as the back button, if used
             }
+        }
+
+        private void MainWindow_Closed(object sender, WindowEventArgs args)
+        {
+            Frame.Content = null;
         }
 
         public Frame Frame { get { return PageFrame; } }

@@ -13,6 +13,7 @@ using Microsoft.UI.Xaml.Media;
 using Windows.Foundation;
 using Cirros.Utility;
 using Windows.UI;
+using Microsoft.UI;
 
 namespace Cirros.Pdf
 {

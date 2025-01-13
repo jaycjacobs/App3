@@ -1,21 +1,28 @@
 ﻿using System;
 using Cirros;
+using Microsoft.Graphics.Canvas.Printing;
+using Microsoft.UI.Xaml.Controls;
 using Windows.Foundation;
 using Windows.Graphics.Printing;
 using Windows.Graphics.Printing.OptionDetails;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.Graphics.Canvas.Printing;
 using Cirros.Core.Display;
 using Microsoft.Graphics.Canvas;
 using Cirros.Utility;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
+using Cirros.Alerts;
+using Cirros.Core;
+using WinRT.Interop;
+using App3;
+using Microsoft.UI.Dispatching;
 
 namespace KT22
 {
     public sealed partial class KTDrawingPage : Page
     {
-        // TODO Windows.Graphics.Printing.PrintManager is not yet supported in WindowsAppSDK. For more details see https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/migrate-to-windows-app-sdk/what-is-supported
-        private PrintManager _printManager;
+        private PrintManager _printManager = null;
         private CanvasPrintDocument _printDocument;
 
         int _pageCount = 0;
@@ -26,12 +33,34 @@ namespace KT22
         Win2DVectorRenderer _renderer;
         bool _needsRegen = false;
 
+        int _printHandlerCount = 0;
+
+        DispatcherQueue _dq = null;
+
         private void AddPrintHandlers()
         {
-            // TODO Windows.Graphics.Printing.PrintManager.GetForCurrentView is not longer supported. For more details see https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/migrate-to-windows-app-sdk/what-is-supported
-            // TODO Windows.Graphics.Printing.PrintManager is not yet supported in WindowsAppSDK. For more details see https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/migrate-to-windows-app-sdk/what-is-supported
-                        _printManager = PrintManager.GetForCurrentView();
-            _printManager.PrintTaskRequested += printManager_PrintTaskRequested;
+            _dq = DispatcherQueue.GetForCurrentThread();
+            if (_printHandlerCount > 0)
+            {
+                // print handler was not removed
+                Analytics.ReportEvent("print-handler-assigned", new Dictionary<string, string> {
+                    { "_printHandlerCount", _printHandlerCount.ToString() },
+                });
+            }
+            else if (_printManager != null)
+            {
+                // _printManager is not null
+                Analytics.ReportEvent("print-handler-not-null", new Dictionary<string, string> {
+                    { "_printHandlerCount", _printHandlerCount.ToString() },
+                });
+            }
+            else
+            {
+                _printManager = PrintManagerInterop.GetForWindow(App.WindowHandle);
+
+                _printManager.PrintTaskRequested += printManager_PrintTaskRequested;
+                _printHandlerCount++;
+            }
         }
 
         private void _printDocument_PrintTaskOptionsChanged(CanvasPrintDocument sender, CanvasPrintTaskOptionsChangedEventArgs args)
@@ -45,6 +74,8 @@ namespace KT22
                 sender.InvalidatePreview();
 
                 _renderer.DestinationRect = new Rect(new Point(0, 0), pageDesc.PageSize);
+                _renderer.DestinationRect = pageDesc.ImageableRect;
+                _renderer.DestinationRect = new Rect(new Point(0, 0), new Size(pageDesc.ImageableRect.Width, pageDesc.ImageableRect.Height));
 
                 PrintTaskOptionDetails details = PrintTaskOptionDetails.GetFromPrintTaskOptions(args.PrintTaskOptions);
                 if ((string)details.Options["scale"].Value == "fit")
@@ -93,70 +124,83 @@ namespace KT22
                 _printDocument = null;
             }
 
+            //if (_printManager == null)
+            //{
+            //    IntPtr hWnd = WindowNative.GetWindowHandle(this);
+            //    _printManager = PrintManagerInterop.GetForWindow(hWnd);
+            //}
+
             if (_printManager != null)
             {
                 _printManager.PrintTaskRequested -= printManager_PrintTaskRequested;
+                _printManager = null;
+                --_printHandlerCount;
             }
         }
 
-        async void printManager_PrintTaskRequested(// TODO Windows.Graphics.Printing.PrintManager is not yet supported in WindowsAppSDK. For more details see https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/migrate-to-windows-app-sdk/what-is-supported
-PrintManager sender, PrintTaskRequestedEventArgs e)
+        async void printManager_PrintTaskRequested(PrintManager sender, PrintTaskRequestedEventArgs e)
         {
             var deferral = e.Request.GetDeferral();
 
             try
             {
-                if (_printDocument == null)
+                if (_printDocument == null && _dq != null)
                 {
                     // printer is not ready
                     // return;
-                    await Utilities.ExecuteOnUIThread(() =>
-                    {
+                    _dq.TryEnqueue(() => {
                         _printDocument = new CanvasPrintDocument();
                         _printDocument.PrintTaskOptionsChanged += _printDocument_PrintTaskOptionsChanged;
                         _printDocument.Print += _printDocument_Print;
                         _printDocument.Preview += _printDocument_Preview;
+
+                        PrintTask printTask = null;
+
+                        if (_vectorList == null)
+                        {
+                            _vectorList = new VectorList();
+                        }
+                        if (_renderer == null)
+                        {
+                            _renderer = new Win2DVectorRenderer(_printDocument.Device, new Rect(0, 0, 1000, 1000));
+                            _needsRegen = true;
+                        }
+
+                        printTask = e.Request.CreatePrintTask("Back to the Drawing Board", sourceRequestedArgs =>
+                        {
+                            PrintTaskOptionDetails printDetailedOptions = PrintTaskOptionDetails.GetFromPrintTaskOptions(printTask.Options);
+
+                            printDetailedOptions.DisplayedOptions.Clear();
+
+                            printDetailedOptions.DisplayedOptions.Add(Windows.Graphics.Printing.StandardPrintTaskOptions.MediaSize);
+                            printDetailedOptions.DisplayedOptions.Add(Windows.Graphics.Printing.StandardPrintTaskOptions.Orientation);
+                            printDetailedOptions.DisplayedOptions.Add(Windows.Graphics.Printing.StandardPrintTaskOptions.ColorMode);
+                            printDetailedOptions.DisplayedOptions.Add(Windows.Graphics.Printing.StandardPrintTaskOptions.Copies);
+
+                            PrintCustomItemListOptionDetails pageFormat =
+                                printDetailedOptions.CreateItemListOption("scale", "Scale");
+
+                            pageFormat.AddItem("clip", "Print full size (clipped)");
+                            pageFormat.AddItem("tile", "Tile drawing at full size");
+                            pageFormat.AddItem("fit", "Fit drawing to page");
+
+                            printDetailedOptions.DisplayedOptions.Add("scale");
+
+                            printDetailedOptions.OptionChanged += printDetailedOptions_OptionChanged;
+
+                            sourceRequestedArgs.SetSource(_printDocument);
+                        });
+
+                        printTask.Completed += PrintTask_Completed;
                     });
+                    //await Utilities.ExecuteOnUIThread(() =>
+                    //{
+                    //    _printDocument = new CanvasPrintDocument();
+                    //    _printDocument.PrintTaskOptionsChanged += _printDocument_PrintTaskOptionsChanged;
+                    //    _printDocument.Print += _printDocument_Print;
+                    //    _printDocument.Preview += _printDocument_Preview;
+                    //});
                 }
-
-                PrintTask printTask = null;
-
-                if (_vectorList == null)
-                {
-                    _vectorList = new VectorList();
-                }
-                if (_renderer == null)
-                {
-                    _renderer = new Win2DVectorRenderer(_printDocument.Device, new Rect(0, 0, 1000, 1000));
-                    _needsRegen = true;
-                }
-
-                printTask = e.Request.CreatePrintTask("Back to the Drawing Board", sourceRequestedArgs =>
-                {
-                    PrintTaskOptionDetails printDetailedOptions = PrintTaskOptionDetails.GetFromPrintTaskOptions(printTask.Options);
-
-                    printDetailedOptions.DisplayedOptions.Clear();
-
-                    printDetailedOptions.DisplayedOptions.Add(Windows.Graphics.Printing.StandardPrintTaskOptions.MediaSize);
-                    printDetailedOptions.DisplayedOptions.Add(Windows.Graphics.Printing.StandardPrintTaskOptions.Orientation);
-                    printDetailedOptions.DisplayedOptions.Add(Windows.Graphics.Printing.StandardPrintTaskOptions.ColorMode);
-                    printDetailedOptions.DisplayedOptions.Add(Windows.Graphics.Printing.StandardPrintTaskOptions.Copies);
-
-                    PrintCustomItemListOptionDetails pageFormat =
-                        printDetailedOptions.CreateItemListOption("scale", "Scale");
-
-                    pageFormat.AddItem("clip", "Print full size (clipped)");
-                    pageFormat.AddItem("tile", "Tile drawing at full size");
-                    pageFormat.AddItem("fit", "Fit drawing to page");
-
-                    printDetailedOptions.DisplayedOptions.Add("scale");
-
-                    printDetailedOptions.OptionChanged += printDetailedOptions_OptionChanged;
-
-                    sourceRequestedArgs.SetSource(_printDocument);
-                });
-
-                printTask.Completed += PrintTask_Completed;
             }
             finally
             {
@@ -194,18 +238,45 @@ PrintManager sender, PrintTaskRequestedEventArgs e)
                     }
                 }
             }
+            catch
+            {
+
+            }
             finally
             {
                 deferral.Complete();
             }
         }
 
-        private void PrintTask_Completed(PrintTask sender, PrintTaskCompletedEventArgs args)
+        private async void PrintTask_Completed(PrintTask sender, PrintTaskCompletedEventArgs args)
         {
             if (_printDocument != null)
             {
                 _printDocument.Dispose();
                 _printDocument = null;
+            }
+
+            if (_renderer != null)
+            {
+                _renderer = null;
+            }
+
+            switch (args.Completion)
+            {
+                case PrintTaskCompletion.Abandoned:
+                    break;
+                case PrintTaskCompletion.Canceled:
+                    break;
+                case PrintTaskCompletion.Failed:
+                    //await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                    //{
+                    //    await StandardAlerts.SimpleAlertAsync("Print task failed", "The drawing couldn't be printed on the selected printer");
+                    //});
+                    break;
+                case PrintTaskCompletion.Submitted:
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -223,15 +294,24 @@ PrintManager sender, PrintTaskRequestedEventArgs e)
         async Task PrintPage(CanvasDrawingSession ds, uint pageNumber, PrintPageDescription desc)
         {
             int page = Math.Max(1, (int)pageNumber);
-            double left = ((page - 1) % _printCols) * desc.ImageableRect.Width;
-            double top = ((page - 1) / _printCols) * desc.ImageableRect.Height;
+            double left = ((page - 1) % _printCols) * desc.ImageableRect.Width - desc.ImageableRect.Left;
+            double top = ((page - 1) / _printCols) * desc.ImageableRect.Height - desc.ImageableRect.Top;
 
             _renderer.XOffset = -left;
             _renderer.YOffset = -top;
 
             if (_needsRegen)
             {
+                Theme _saveTheme = Globals.ActiveDrawing.Theme;
+                if (Globals.Themes.ContainsKey("light"))
+                {
+                    Globals.ActiveDrawing.Theme = Globals.Themes["light"];
+                }
+
                 await _renderer.Regenerate(_vectorList);
+
+                Globals.ActiveDrawing.Theme = _saveTheme;
+
                 _needsRegen = false;
             }
 

@@ -137,128 +137,130 @@ namespace Cirros.Drawing
         {
             try
             {
-                IDrawingPage dp = (IDrawingPage)App.Window.Frame;
-                _toolsOverlay = dp.ToolsOverlay;
-                _toolsOptions = dp.DrawingToolsTools;
-
-                //_toolsOverlay.PointerReleased += _toolsOverlay_PointerReleased;
-                _toolsOverlay.PointerMoved += _toolsOverlay_PointerMoved;
-                _toolsOverlay.PointerPressed += _toolsOverlay_PointerPressed;
-
-                if (_toolsOverlay != null)
+                if (App.Window.Frame.Content is IDrawingPage dp)
                 {
-                    try
+                    _toolsOverlay = dp.ToolsOverlay;
+                    _toolsOptions = dp.DrawingToolsTools;
+
+                    //_toolsOverlay.PointerReleased += _toolsOverlay_PointerReleased;
+                    _toolsOverlay.PointerMoved += _toolsOverlay_PointerMoved;
+                    _toolsOverlay.PointerPressed += _toolsOverlay_PointerPressed;
+
+                    if (_toolsOverlay != null)
                     {
-                        ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
-                        if (localSettings.Containers.ContainsKey("drawing_tools"))
+                        try
                         {
-                            ApplicationDataContainer toolsSettings = localSettings.Containers["drawing_tools"];
-                            _triangleLocation.X = (double)toolsSettings.Values["location_x"];
-                            _triangleLocation.Y = (double)toolsSettings.Values["location_y"];
-                            _scale = (double)toolsSettings.Values["scale"];
-                            _rotation = (double)toolsSettings.Values["rotation"];
-                            _triangleType = (string)toolsSettings.Values["type"] == "30" ? TriangleType.Triangle30 : TriangleType.Triangle45;
-                            _strokeColor = (uint)toolsSettings.Values["stroke"];
-                            _fillColor = (uint)toolsSettings.Values["fill"];
-                            _alphaChannel = toolsSettings.Values.ContainsKey("alpha") ? (uint)toolsSettings.Values["alpha"] : 0x40000000;
+                            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+                            if (localSettings.Containers.ContainsKey("drawing_tools"))
+                            {
+                                ApplicationDataContainer toolsSettings = localSettings.Containers["drawing_tools"];
+                                _triangleLocation.X = (double)toolsSettings.Values["location_x"];
+                                _triangleLocation.Y = (double)toolsSettings.Values["location_y"];
+                                _scale = (double)toolsSettings.Values["scale"];
+                                _rotation = (double)toolsSettings.Values["rotation"];
+                                _triangleType = (string)toolsSettings.Values["type"] == "30" ? TriangleType.Triangle30 : TriangleType.Triangle45;
+                                _strokeColor = (uint)toolsSettings.Values["stroke"];
+                                _fillColor = (uint)toolsSettings.Values["fill"];
+                                _alphaChannel = toolsSettings.Values.ContainsKey("alpha") ? (uint)toolsSettings.Values["alpha"] : 0x40000000;
+                            }
+                            else
+                            {
+                                _triangleFirstRun = true;
+
+                                _triangleLocation.X = _toolsOverlay.ActualWidth * .3;
+                                _triangleLocation.Y = _toolsOverlay.ActualHeight * .6;
+                                _scale = (Math.Max(_toolsOverlay.ActualWidth, _toolsOverlay.ActualHeight) / 1000) * .3;
+                                _rotation = 0;
+                                _triangleType = TriangleType.Triangle30;
+                            }
+                        }
+                        catch
+                        {
+                            _triangleLocation.X = _toolsOverlay.ActualWidth * .3;
+                            _triangleLocation.Y = _toolsOverlay.ActualHeight * .6;
+                            _scale = (Math.Max(_toolsOverlay.ActualWidth, _toolsOverlay.ActualHeight) / 1000) * .3; ;
+                            _rotation = 0;
+                            _triangleType = TriangleType.Triangle45;
+                        }
+
+                        _triangleTransform.Rotation = _rotation;
+
+                        if (_toolsOptions == null)
+                        {
+                            //foreach (FrameworkElement e in _toolsOverlay.Children)
+                            //{
+                            //    if (e is Grid)
+                            //    {
+                            //        _toolsOptions = e as Grid;
+                            //        _toolsOptions.SetValue(Canvas.ZIndexProperty, 100002);
+
+                            //        SetToolHandlers(_toolsOptions);
+                            //    }
+                            //}
                         }
                         else
                         {
-                            _triangleFirstRun = true;
-
-                            _triangleLocation.X = _toolsOverlay.ActualWidth * .3;
-                            _triangleLocation.Y = _toolsOverlay.ActualHeight * .6;
-                            _scale = (Math.Max(_toolsOverlay.ActualWidth, _toolsOverlay.ActualHeight) / 1000) * .3;
-                            _rotation = 0;
-                            _triangleType = TriangleType.Triangle30;
+                            _toolsOptions.SetValue(Canvas.ZIndexProperty, 100002);
+                            SetToolHandlers(_toolsOptions);
                         }
+
+                        _maxScale = (_toolsOverlay.ActualWidth + _toolsOverlay.ActualHeight) / 2000;
+                        _minScale = _maxScale / 4;
+
+                        ResetTriangle(_triangleType);
+
+                        _toolsOptions.SetValue(Canvas.ZIndexProperty, 100001);
+
+                        if (_veTriangle == null)
+                        {
+                            _veTriangle = new VectorEntity(1100003, 1100000);
+
+                            _veTriangle.Color = Utilities.ColorFromColorSpec(_strokeColor);
+                            _veTriangle.Fill = true;
+                            _veTriangle.FillColor = Utilities.ColorFromColorSpec(_fillColor);
+                            _veTriangle.FillEvenOdd = true;
+                            _veTriangle.LineWidth = Globals.View.DisplayToPaper(.5);
+                            _veTriangle.IsVisible = false;
+
+                            Globals.DrawingCanvas.VectorListControl.AddOverlaySegment(_veTriangle);
+
+                            TriangleChanged();
+                        }
+
+                        if (_veHandle == null)
+                        {
+                            _veHandle = new VectorEntity(1100000, 1100000);
+
+                            _veHandle.Color = Globals.ActiveDrawing.Theme.HandleColor;
+                            _veHandle.Fill = true;
+                            _veHandle.FillColor = Globals.ActiveDrawing.Theme.HandleFillColor;
+                            _veHandle.LineWidth = Globals.View.DisplayToPaper(.5);
+                            _veHandle.IsVisible = false;
+
+                            _vmHandle = new VectorMarkerEntity();
+                            _vmHandle.Type = Display.HandleType.Diamond;
+                            _vmHandle.Size = cHandleSize * 2;
+                            _vmHandle.Opacity = 1;
+                            _veHandle.AddChild(_vmHandle);
+
+                            Globals.DrawingCanvas.VectorListControl.AddOverlaySegment(_veHandle);
+                        }
+
+                        if (_veRotateHandle == null)
+                        {
+                            _veRotateHandle = new VectorEntity(1100001, 1100000);
+
+                            _veRotateHandle.Color = Globals.ActiveDrawing.Theme.HandleColor;
+                            _veRotateHandle.Fill = true;
+                            _veRotateHandle.FillColor = Globals.ActiveDrawing.Theme.HandleFillColor;
+                            _veRotateHandle.LineWidth = Globals.View.DisplayToPaper(.5);
+                            _veRotateHandle.IsVisible = false;
+
+                            Globals.DrawingCanvas.VectorListControl.AddOverlaySegment(_veRotateHandle);
+                        }
+
+                        Globals.DrawingCanvas.VectorListControl.RedrawOverlay();
                     }
-                    catch
-                    {
-                        _triangleLocation.X = _toolsOverlay.ActualWidth * .3;
-                        _triangleLocation.Y = _toolsOverlay.ActualHeight * .6;
-                        _scale = (Math.Max(_toolsOverlay.ActualWidth, _toolsOverlay.ActualHeight) / 1000) * .3; ;
-                        _rotation = 0;
-                        _triangleType = TriangleType.Triangle45;
-                    }
-
-                    _triangleTransform.Rotation = _rotation;
-
-                    if (_toolsOptions == null)
-                    {
-                        //foreach (FrameworkElement e in _toolsOverlay.Children)
-                        //{
-                        //    if (e is Grid)
-                        //    {
-                        //        _toolsOptions = e as Grid;
-                        //        _toolsOptions.SetValue(Canvas.ZIndexProperty, 100002);
-
-                        //        SetToolHandlers(_toolsOptions);
-                        //    }
-                        //}
-                    }
-                    else
-                    {
-                        _toolsOptions.SetValue(Canvas.ZIndexProperty, 100002);
-                        SetToolHandlers(_toolsOptions);
-                    }
-
-                    _maxScale = (_toolsOverlay.ActualWidth + _toolsOverlay.ActualHeight) / 2000;
-                    _minScale = _maxScale / 4;
-
-                    ResetTriangle(_triangleType);
-
-                    _toolsOptions.SetValue(Canvas.ZIndexProperty, 100001);
-
-                    if (_veTriangle == null)
-                    {
-                        _veTriangle = new VectorEntity(1100003, 1100000);
-
-                        _veTriangle.Color = Utilities.ColorFromColorSpec(_strokeColor);
-                        _veTriangle.Fill = true;
-                        _veTriangle.FillColor = Utilities.ColorFromColorSpec(_fillColor);
-                        _veTriangle.FillEvenOdd = true;
-                        _veTriangle.LineWidth = Globals.View.DisplayToPaper(.5);
-                        _veTriangle.IsVisible = false;
-
-                        Globals.DrawingCanvas.VectorListControl.AddOverlaySegment(_veTriangle);
-
-                        TriangleChanged();
-                    }
-
-                    if (_veHandle == null)
-                    {
-                        _veHandle = new VectorEntity(1100000, 1100000);
-
-                        _veHandle.Color = Globals.ActiveDrawing.Theme.HandleColor;
-                        _veHandle.Fill = true;
-                        _veHandle.FillColor = Globals.ActiveDrawing.Theme.HandleFillColor;
-                        _veHandle.LineWidth = Globals.View.DisplayToPaper(.5);
-                        _veHandle.IsVisible = false;
-
-                        _vmHandle = new VectorMarkerEntity();
-                        _vmHandle.Type = Display.HandleType.Diamond;
-                        _vmHandle.Size = cHandleSize * 2;
-                        _vmHandle.Opacity = 1;
-                        _veHandle.AddChild(_vmHandle);
-
-                        Globals.DrawingCanvas.VectorListControl.AddOverlaySegment(_veHandle);
-                    }
-
-                    if (_veRotateHandle == null)
-                    {
-                        _veRotateHandle = new VectorEntity(1100001, 1100000);
-
-                        _veRotateHandle.Color = Globals.ActiveDrawing.Theme.HandleColor;
-                        _veRotateHandle.Fill = true;
-                        _veRotateHandle.FillColor = Globals.ActiveDrawing.Theme.HandleFillColor;
-                        _veRotateHandle.LineWidth = Globals.View.DisplayToPaper(.5);
-                        _veRotateHandle.IsVisible = false;
-
-                        Globals.DrawingCanvas.VectorListControl.AddOverlaySegment(_veRotateHandle);
-                    }
-
-                    Globals.DrawingCanvas.VectorListControl.RedrawOverlay();
                 }
             }
             catch

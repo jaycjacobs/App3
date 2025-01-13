@@ -16,10 +16,7 @@
     <!--<SolidColorBrush x:Key="SettingsDarkForeground" Color="DarkSlateGray" />-->
     <SolidColorBrush x:Key="SettingsDarkForeground" Color="#FF363636" />
     <SolidColorBrush x:Key="SettingsMediumForeground" Color="SlateGray" />
-    <!--<SolidColorBrush x:Key="AppBarBackground" Color="DarkSlateGray" />-->
-    <SolidColorBrush x:Key="AppBarBackground" Color="#FF363636" />
     <SolidColorBrush x:Key="IconForeground" Color="White" />
-    <!--<SolidColorBrush x:Key="AppBarBackground" Color="#493C34" />-->
 
     <SolidColorBrush x:Key="ListBoxItemPointerOverBackgroundThemeBrush" Color="LightGray" />
     <SolidColorBrush x:Key="ListBoxItemSelectedBackgroundThemeBrush" Color="LightSteelBlue" />

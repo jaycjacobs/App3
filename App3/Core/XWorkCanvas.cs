@@ -20,6 +20,7 @@ using Windows.Networking.Connectivity;
 using Microsoft.Windows.System;
 using Windows.System;
 using Windows.UI;
+using App3;
 
 namespace Cirros.Core
 {
@@ -450,9 +451,9 @@ namespace Cirros.Core
 
             Initialize();
 
-            await Analytics.TraceAsync("WorkCanvas.WorkCanvas_Loaded:_parameter", _parameter.ToString());
             if (_parameter is string)
             {
+                await Analytics.TraceAsync("WorkCanvas.WorkCanvas_Loaded:_parameter", _parameter.ToString());
                 string parameter = _parameter as string;
 
                 if (parameter == "restore" || await Cirros.Alerts.StandardAlerts.LastChanceToSaveAsync())
@@ -644,10 +645,6 @@ namespace Cirros.Core
             this.PointerExited += ScrollingWorkCanvas_PointerExited;
             this.PointerWheelChanged += ScrollingWorkCanvas_PointerWheelChanged;
 
-            // WINUI3 TODO
-            System.Diagnostics.Debugger.Break();
-            //App.Window.CoreWindow.KeyDown += CoreWindow_KeyDown;
-            //App.Window.CoreWindow.KeyUp += CoreWindow_KeyUp;
             Analytics.Trace("WorkCanvas.InitializeInput", "exit");
         }
 
@@ -659,11 +656,6 @@ namespace Cirros.Core
             this.PointerEntered -= ScrollingWorkCanvas_PointerEntered;
             this.PointerExited -= ScrollingWorkCanvas_PointerExited;
             this.PointerWheelChanged -= ScrollingWorkCanvas_PointerWheelChanged;
-
-            // WINUI3 TODO
-            System.Diagnostics.Debugger.Break();
-            //App.Window.CoreWindow.KeyDown -= CoreWindow_KeyDown;
-            //App.Window.CoreWindow.KeyUp -= CoreWindow_KeyUp;
 
             if (_focusTarget != null)
             {
@@ -971,7 +963,7 @@ namespace Cirros.Core
             }
         }
 
-        protected override bool HandleKeyDown(string key)
+        public override bool HandleKeyDown(string key)
         {
             object fe = FocusManager.GetFocusedElement();
             bool gmk = _gmkEnabled && !(fe is TextBox || fe is Button || fe is ComboBoxItem || fe is Popup);
@@ -995,7 +987,7 @@ namespace Cirros.Core
 
         bool _stillDown = false;
 
-        protected override void HandleKeyUp(string key)
+        public override void HandleKeyUp(string key)
         {
             base.HandleKeyUp(key);
 
@@ -1265,8 +1257,8 @@ namespace Cirros.Core
                 else
                 {
                     // WINUI3 TODO
-                    System.Diagnostics.Debugger.Break();
                     //App.Window.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 1);
+                    this.ProtectedCursor = InputSystemCursor.Create(InputSystemCursorShape.Arrow);
                 }
             }
         }
@@ -1310,40 +1302,38 @@ namespace Cirros.Core
 
         private void selectCursor()
         {
-            // WINUI3 TODO
-            System.Diagnostics.Debugger.Break();
-            //switch (_cursorType)
-            //{
-            //    case CursorType.Arrow:
-            //        App.Window.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 1);
-            //        _vectorListControl.ShowCursor(false);
-            //        _gmkEnabled = false;
-            //        break;
+            switch (_cursorType)
+            {
+                case CursorType.Arrow:
+                    this.ProtectedCursor = InputSystemCursor.Create(InputSystemCursorShape.Arrow);
+                    _vectorListControl.ShowCursor(false);
+                    _gmkEnabled = false;
+                    break;
 
-            //    case CursorType.Wait:
-            //        App.Window.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Wait, 1);
-            //        _vectorListControl.ShowCursor(false);
-            //        _gmkEnabled = false;
-            //        break;
+                case CursorType.Wait:
+                    this.ProtectedCursor = InputSystemCursor.Create(InputSystemCursorShape.Wait);
+                    _vectorListControl.ShowCursor(false);
+                    _gmkEnabled = false;
+                    break;
 
-            //    case CursorType.Hand:
-            //        App.Window.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Hand, 1);
-            //        _vectorListControl.ShowCursor(false);
-            //        _gmkEnabled = true;
-            //        break;
+                case CursorType.Hand:
+                    this.ProtectedCursor = InputSystemCursor.Create(InputSystemCursorShape.Hand);
+                    _vectorListControl.ShowCursor(false);
+                    _gmkEnabled = true;
+                    break;
 
-            //    case CursorType.Draw:
-            //        App.Window.CoreWindow.PointerCursor = null;
-            //        _vectorListControl.ShowCursor(true);
-            //        _gmkEnabled = true;
-            //        break;
+                case CursorType.Draw:
+                    this.ProtectedCursor.Dispose();
+                    _vectorListControl.ShowCursor(true);
+                    _gmkEnabled = true;
+                    break;
 
-            //    case CursorType.Pan:
-            //        App.Window.CoreWindow.PointerCursor = null;
-            //        _vectorListControl.ShowCursor(true);
-            //        _gmkEnabled = true;
-            //        break;
-            //}
+                case CursorType.Pan:
+                    this.ProtectedCursor.Dispose();
+                    _vectorListControl.ShowCursor(true);
+                    _gmkEnabled = true;
+                    break;
+            }
         }
 
         public override void SelectCursor(CursorType cursorType)

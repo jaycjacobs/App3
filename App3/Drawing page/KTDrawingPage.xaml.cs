@@ -118,8 +118,8 @@ namespace KT22
                 Globals.Events.OnShowMenu += Events_OnShowMenu;
                 Globals.Events.OnCoordinateDisplay += Events_OnCoordinateDisplay;
 
-                DataTransferManager dataTransferManager = DataTransferManager.GetForCurrentView();
-                dataTransferManager.DataRequested += dataTransferManager_DataRequested;
+                //DataTransferManager dataTransferManager = DataTransferManager.GetForCurrentView();
+                //dataTransferManager.DataRequested += dataTransferManager_DataRequested;
 
                 this.SizeChanged += DrawingPage_SizeChanged;
 
@@ -140,12 +140,23 @@ namespace KT22
 
         private void KTDrawingPage_KeyUp(object sender, KeyRoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (Globals.DrawingCanvas is WorkCanvas xw)
+            {
+                string k = e.Key.ToString().ToLower();
+                xw.HandleKeyUp(k);
+            }
         }
 
         private void KTDrawingPage_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (Globals.DrawingCanvas is WorkCanvas xw)
+            {
+                string k = e.Key.ToString().ToLower();
+                if (xw.HandleKeyDown(k))
+                {
+                    e.Handled = true;
+                }
+            }
         }
 
         private void SetUIFontSize()
@@ -434,7 +445,7 @@ namespace KT22
             else
             {
                 // TODO Windows.UI.ViewManagement.ApplicationView is no longer supported. Use Microsoft.UI.Windowing.AppWindow instead. For more details see https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/migrate-to-windows-app-sdk/guides/windowing
-                App.Window.Title = "";
+                App.Window.Title = "XYZ";
             }
         }
 

@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using Windows.Foundation;
 using Windows.UI;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI;
 
 namespace Cirros.Svg
 {

@@ -41,7 +41,7 @@
         </Style>
 
         <DataTemplate x:Key="MruItemTemplate">
-            <Border BorderBrush="{StaticResource HomePageDarkForeground}" BorderThickness="1" Margin="4,4,4,14" >
+            <Border BorderBrush="{StaticResource HomePageDarkForeground}" BorderThickness="{Binding BorderThickness}" Margin="4,4,4,14" >
                 <Grid Width="{Binding MruTileSize.Width}" Height="{Binding MruTileSize.Height}" Background="White" 
                       ToolTipService.ToolTip="{Binding Path}"  >
                     <Grid.RowDefinitions>

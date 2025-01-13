@@ -31,7 +31,7 @@
                 <SymbolIcon Symbol="Back" />
             </AppBarButton>
             <TextBlock x:Name="TitleTextBlock" 
-               Text="Photo Lab" 
+               Text="Back to the Drawing Board" 
                Style="{StaticResource CaptionTextBlockStyle}"
                Grid.Column="2"
                VerticalAlignment="Center"

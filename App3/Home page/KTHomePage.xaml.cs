@@ -1,5 +1,6 @@
 ﻿using App3;
 using Cirros;
+using Cirros.Alerts;
 using Cirros.Core;
 using Cirros8;
 using CirrosUWP.HUIApp;
@@ -169,36 +170,6 @@ namespace KT22
             _recentDrawingsControl.UpdateRowsAndColumns(mh);
         }
 
-        //bool _appBarOpenedByHover = false;
-        //DispatcherTimer _appBarTimer = new DispatcherTimer();
-
-        //private void KTHomePage_PointerExited(object sender, PointerRoutedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        Point p = App.Window.CoreWindow.PointerPosition;
-        //        Rect r = App.Window.CoreWindow.Bounds;
-
-        //        for (int i = 0; i < 20; i++)
-        //        {
-        //            if (p.Y <= r.Top || p.X <= r.Left || p.X >= r.Right)
-        //            {
-        //                break;
-        //            }
-        //            else if (p.Y >= (r.Bottom - 2))
-        //            {
-        //                break;
-        //            }
-
-        //            p = App.Window.CoreWindow.PointerPosition;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Analytics.ReportError("KTHomePage_PointerExited menu failed", ex, 3, 522);
-        //    }
-        //}
-
         async void KTHomePage_Loaded(object sender, RoutedEventArgs e)
         {
             //CheckLicenseState();
@@ -365,8 +336,6 @@ namespace KT22
                         Analytics.Trace("KTHomePage.OnNavigatedTo", "_firstRun");
                         if (_firstRun)
                         {
-                            //_bottomAppBar.Expand();
-                            //_appBar.IsOpen = true;
                             await StandardAlerts8.FirstRunAlertAsync();
                         }
                         else
@@ -430,7 +399,6 @@ namespace KT22
 
         async Task DoOpenDrawing(object o = null)
         {
-#if SIBERIA
             Analytics.Trace("KTHomePage.DoOpenDrawing");
             if (await Cirros.Alerts.StandardAlerts.LastChanceToSaveAsync())
             {
@@ -448,7 +416,6 @@ namespace KT22
             {
                 App.Navigate(typeof(KTDrawingPage), "open_drawing");
             }
-#endif
         }
 
         private void DoCreateNewDrawing()
@@ -475,9 +442,7 @@ namespace KT22
                     await Analytics.TraceAsync("homeButton_PointerReleased", "LastChanceToSaveAsync");
                     if (await Cirros.Alerts.StandardAlerts.LastChanceToSaveAsync())
                     {
-#if SIBERIA
                         App.Navigate(typeof(KTDrawingPage), "restore");
-#endif
                     }
                     else if (g.Tag is string)
                     {
@@ -488,19 +453,18 @@ namespace KT22
                                 App.Navigate(typeof(NewDrawingPage), "new");
                                 break;
 
-#if SIBERIA
                             case "import":
                                 App.Navigate(typeof(KTDrawingPage), "import");
                                 break;
-
+#if SIBERIA
                             case "dwg":
                                 App.Navigate(typeof(KTDrawingPage), "import-dwg");
                                 break;
+#endif
                             default:
                                 await Analytics.TraceAsync("homeButton_PointerReleased:default", g.Tag as string);
                                 App.Navigate(typeof(KTDrawingPage), g.Tag as string);
                                 break;
-#endif
                         }
                     }
                 }
@@ -706,7 +670,6 @@ namespace KT22
 
         private async void SelectionButton_Click(object sender, RoutedEventArgs e)
         {
-#if SIBERIA
             switch ((string)((Button)sender).Tag)
             {
                 case "delete":
@@ -717,17 +680,9 @@ namespace KT22
                         string cancel = resourceLoader.GetString("AlertCancel");
                         string title = resourceLoader.GetString("AlertConfirmDeleteTitle");
 
-                        var messageDialog = new MessageDialog(confirm, title);
+                        string result = await StandardAlerts._alertPlatform.AlertYNC(title, confirm, delete, "Don't delete", cancel);
 
-                        messageDialog.Commands.Add(new UICommand(delete, null, "delete"));
-                        messageDialog.Commands.Add(new UICommand(cancel, null, "cancel"));
-
-                        messageDialog.DefaultCommandIndex = 1;  // Default command index
-                        messageDialog.CancelCommandIndex = 1;   // Cancel index
-
-                        IUICommand command = await messageDialog.ShowAsync();
-
-                        if ((string)command.Id == "delete")
+                        if (result == "yes")
                         {
                             foreach (RecentDrawingItem item in _mruSelection)
                             {
@@ -744,15 +699,9 @@ namespace KT22
                                 }
                             }
 
-                            // Recreating the GalleryControl does a more pleasing animation
-                            // than just updating the contents of the GridView
-                            //Child = new GalleryControl(this);
                             await _recentDrawingsControl.UpdateMruList();
 
                             MruSelection = null;
-                        }
-                        else if ((string)command.Id == "cancel")
-                        {
                         }
                     }
                     break;
@@ -766,10 +715,6 @@ namespace KT22
                         }
 
                         MruSelection = null;
-
-                        // Recreating the GalleryControl does a more pleasing animation
-                        // than just updating the contents of the GridView
-                        //Child = new GalleryControl(this);
                         await _recentDrawingsControl.UpdateMruList();
                     }
                     break;
@@ -778,7 +723,6 @@ namespace KT22
                     _recentDrawingsControl.ClearSelection();
                     break;
             }
-#endif
         }
 
         private void _ttHomeUxPreview_ActionButtonClick(Microsoft.UI.Xaml.Controls.TeachingTip sender, object args)
@@ -787,22 +731,16 @@ namespace KT22
 
             _ttHomeUxPreview.IsOpen = false;
 
-            //_appBar.IsOpen = true;
             Globals.UIVersion = 1;
             WriteSettingsEntry("uiversion", "1");
-
-            //_bottomAppBar.ShowUXTeachingTip();
         }
 
         private void _ttHomeUxPreview_CloseButtonClick(Microsoft.UI.Xaml.Controls.TeachingTip sender, object args)
         {
             Analytics.ReportEvent("reddog-intro", new Dictionary<string, string> { { "choice", "legacy" } });
 
-            //_appBar.IsOpen = true;
             Globals.UIVersion = 0;
             WriteSettingsEntry("uiversion", "0");
-
-            //_bottomAppBar.ShowUXTeachingTip();
         }
 
         private async void _facebook_Click(object sender, RoutedEventArgs e)

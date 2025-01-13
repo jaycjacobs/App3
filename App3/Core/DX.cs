@@ -17,6 +17,8 @@ using Microsoft.UI.Xaml.Media;
 using AlphaMode = SharpDX.Direct2D1.AlphaMode;
 using Bitmap = SharpDX.WIC.Bitmap;
 using PixelFormat = SharpDX.Direct2D1.PixelFormat;
+using Microsoft.UI.Dispatching;
+
 #if sharpdx3
 using SharpDX.Mathematics.Interop;
 using System.Numerics;
@@ -951,10 +953,13 @@ namespace Cirros.Core
                 var renderTargetProperties = new RenderTargetProperties(RenderTargetType.Default, new PixelFormat(Format.Unknown, AlphaMode.Unknown), 0, 0, RenderTargetUsage.None, FeatureLevel.Level_DEFAULT);
                 var renderTarget = new WicRenderTarget(_d2dFactory, wicBitmap, renderTargetProperties);
 
-                await ExecuteOnUIThread(() =>
-                {
-                    Render(renderTarget, scale, Globals.ActiveDrawing, showFrame, showGrid);
-                });
+                DispatcherQueue dispatcherQueue = DispatcherQueue.GetForCurrentThread();
+                dispatcherQueue.TryEnqueue(() => { Render(renderTarget, scale, Globals.ActiveDrawing, showFrame, showGrid); });
+
+                //await ExecuteOnUIThread(() =>
+                //{
+                //    Render(renderTarget, scale, Globals.ActiveDrawing, showFrame, showGrid);
+                //});
 
                 using (Stream sstream = await file.OpenStreamForWriteAsync())
                 {
@@ -1038,10 +1043,13 @@ namespace Cirros.Core
 
             Windows.Foundation.Point offset = new Windows.Foundation.Point(-group.PaperBounds.Left + xoff, -group.PaperBounds.Top + yoff);
             System.Diagnostics.Debug.WriteLine($"Name: {group.Name}, Scale={scale}, ss={ss}");
-            await ExecuteOnUIThread(() =>
-            {
-                RenderGroup(group, renderTarget, scale, ms, offset);
-            });
+            DispatcherQueue dispatcherQueue = DispatcherQueue.GetForCurrentThread();
+            dispatcherQueue.TryEnqueue(() => { RenderGroup(group, renderTarget, scale, ms, offset); });
+
+            //await ExecuteOnUIThread(() =>
+            //{
+            //    RenderGroup(group, renderTarget, scale, ms, offset);
+            //});
 
             Stream sstream = await file.OpenStreamForWriteAsync();
             var stream = new WICStream(_wicFactory, sstream);
@@ -1090,9 +1098,9 @@ namespace Cirros.Core
             renderTarget.Dispose();
         }
 
-        private static IAsyncAction ExecuteOnUIThread(Windows.UI.Core.DispatchedHandler action)
-        {
-            return Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, action);
-        }
+        //private static IAsyncAction ExecuteOnUIThread(Windows.UI.Core.DispatchedHandler action)
+        //{
+        //    return Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, action);
+        //}
     }
 }

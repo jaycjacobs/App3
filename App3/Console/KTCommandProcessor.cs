@@ -19,6 +19,9 @@ using Windows.Foundation;
 using Windows.Storage;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
+using Windows.Graphics.Printing;
+using App3;
+using Microsoft.UI.Dispatching;
 
 namespace KT22.Console
 {
@@ -2882,7 +2885,11 @@ namespace KT22.Console
 
                 case RedDogGlobals.GS_PrintCommand:
                     // TODO Windows.Graphics.Printing.PrintManager is not yet supported in WindowsAppSDK. For more details see https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/migrate-to-windows-app-sdk/what-is-supported
-                    await Windows.Graphics.Printing.PrintManager.ShowPrintUIAsync();
+                    //await PrintManager.ShowPrintUIAsync();
+                    if (PrintManager.IsSupported())
+                    {
+                        await PrintManagerInterop.ShowPrintUIForWindowAsync(App.WindowHandle);
+                    }
                     break;
 
                 case RedDogGlobals.GS_SettingsCommand:

@@ -13,6 +13,7 @@ using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Input;
 using App3;
+using System.Runtime.CompilerServices;
 
 namespace Cirros8
 {
@@ -124,6 +125,15 @@ namespace Cirros8
                     _mruGrid.SelectedItems.Remove(item);
                 }
             }
+            foreach (RecentDrawingItem item in e.AddedItems)
+            {
+                item.IsSelected = true;
+            }
+            foreach (RecentDrawingItem item in e.RemovedItems)
+            {
+                item.IsSelected = false;
+            }
+
 
             _homePage.MruSelection = _mruGrid.SelectedItems;
         }
@@ -274,6 +284,22 @@ namespace Cirros8
         protected ImageSource _thumbSource = null;
         protected StorageFile _file = null;
 
+        private bool _IsSelected = false;
+
+        public bool IsSelected
+        {
+            get { return _IsSelected; }
+            set
+            {
+                if (value != _IsSelected)
+                {
+                    _IsSelected = value;
+                    OnPropertyChanged();
+                    OnPropertyChanged("BorderThickness");
+                }
+            }
+        }
+
         public RecentDrawingItem()
         {
         }
@@ -339,6 +365,14 @@ namespace Cirros8
             }
 
             await UpdateThmbnail();
+        }
+
+        public Thickness BorderThickness
+        {
+            get
+            {
+                return new Thickness(IsSelected ? 4 : 1);
+            }
         }
 
         public double UIFontSizeSmall
@@ -498,13 +532,13 @@ namespace Cirros8
             }
         }
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged(string propertyName)
+        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             if (this.PropertyChanged != null)
             {
-                this.PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
 

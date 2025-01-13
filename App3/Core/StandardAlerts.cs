@@ -1,4 +1,7 @@
-﻿using System;
+﻿using App3;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,31 +16,38 @@ namespace Cirros.Alerts
     {
         public async virtual Task<string> AlertYNC(string title, string content, string yes, string no, string cancel = null)
         {
-            // Create the message dialog and set its content
-            var messageDialog = new MessageDialog(content, title);
+            string s = "no";
 
-            // Add commands and set their callbacks; both buttons use the same callback function instead of inline event handlers
-            messageDialog.Commands.Add(new UICommand(
-                yes,
-                new UICommandInvokedHandler(this.CommandInvokedHandler),
-                "yes"));
-            messageDialog.Commands.Add(new UICommand(
-                no,
-                new UICommandInvokedHandler(this.CommandInvokedHandler),
-                "no"));
+            if (App.Window.Frame.Content is UIElement u)
+            {
+                ContentDialog dialog = new ContentDialog
+                {
+                    Title = title,
+                    Content = content,
+                    PrimaryButtonText = yes,
+                    SecondaryButtonText = no,
+                    CloseButtonText = cancel
+                };
 
-            // Set the command that will be invoked by default
-            messageDialog.DefaultCommandIndex = 0;
+                dialog.XamlRoot = u.XamlRoot;
 
-            // Set the command to be invoked when escape is pressed
-            messageDialog.CancelCommandIndex = 1;
+                ContentDialogResult result = await dialog.ShowAsync();
 
-            // Show the message dialog
-            IUICommand result = await messageDialog.ShowAsync();
-            
-            //await Task.Delay(1);
-            //System.Diagnostics.Debugger.Break();
-            return (string)result.Id;
+                if (result == ContentDialogResult.Primary)
+                {
+                    s = "yes";
+                }
+                else if (result == ContentDialogResult.Secondary)
+                {
+                    s = "no";
+                }
+                else
+                {
+                    s = "cancel";
+                }
+            };
+
+            return s;
         }
 
         private void CommandInvokedHandler(IUICommand command)
@@ -46,8 +56,19 @@ namespace Cirros.Alerts
 
         public async virtual Task<string> AlertOk(string title, string content, string ok)
         {
-            await Task.Delay(1);
-            System.Diagnostics.Debugger.Break();
+            if (App.Window.Frame.Content is UIElement u)
+            {
+                ContentDialog dialog = new ContentDialog
+                {
+                    Title = title,
+                    Content = content,
+                    PrimaryButtonText = ok,
+                };
+
+                dialog.XamlRoot = u.XamlRoot;
+
+                ContentDialogResult result = await dialog.ShowAsync();
+            };
             return "ok";
         }
     }
@@ -549,20 +570,15 @@ namespace Cirros.Alerts
 
         public static async Task PdfError()
         {
+            // NOTE: Resource strings are wrong
+
             var resourceLoader = new ResourceLoader();
 
             string continueString = resourceLoader.GetString("AlertContinue");
             string title = resourceLoader.GetString("PdfErrorTitle");
             string message = resourceLoader.GetString("PdfErrorMessage");
 
-            var messageDialog = new MessageDialog(message, title);
-
-            messageDialog.Commands.Add(new UICommand(continueString, null, "continue"));
-
-            messageDialog.DefaultCommandIndex = 0;  // Default command index
-            messageDialog.CancelCommandIndex = 0;   // Cancel index
-
-            UICommand command = (UICommand)await messageDialog.ShowAsync();
+            await _alertPlatform.AlertOk(title, message, continueString);
         }
     }
 }

@@ -146,11 +146,10 @@ namespace KT22.Console
         {
             error = null;
             string output = "";
-            JsValue result = new JsString(input);
+            JsValue result = new JsValue(input);
 
             try
             {
-#if SIBERIA
                 result = _jint_engine.GetValue(_jint_engine.Execute(input).GetCompletionValue());
 
                 if (result.Type != Types.None && result.Type != Types.Null && result.Type != Types.Undefined)
@@ -158,7 +157,6 @@ namespace KT22.Console
                     var str = TypeConverter.ToString(_jint_engine.Json.Stringify(_jint_engine.Json, Arguments.From(result, Undefined.Instance, "  ")));
                     output = string.Format("{0}", str);
                 }
-#endif
             }
             catch (JavaScriptException je)
             {
@@ -218,7 +216,6 @@ namespace KT22.Console
                 {
                     try
                     {
-#if SIBERIA
                         Stream rs = (await file.OpenReadAsync()).AsStreamForRead();
                         StreamReader reader = new StreamReader(rs);
                         var script = reader.ReadToEnd();
@@ -230,7 +227,6 @@ namespace KT22.Console
                             var str = TypeConverter.ToString(_jint_engine.Json.Stringify(_jint_engine.Json, Arguments.From(result, Undefined.Instance, "  ")));
                             _console.PrintResult(string.Format("=> {0}", str));
                         }
-#endif
                     }
                     catch (JavaScriptException je)
                     {
@@ -257,7 +253,6 @@ namespace KT22.Console
 
             try
             {
-#if SIBERIA
                 var result = _jint_engine.GetValue(_jint_engine.Execute(expression).GetCompletionValue());
                 if (result.Type == Types.Number)
                 {
@@ -265,7 +260,6 @@ namespace KT22.Console
                     isValid = true;
                 }
                 else
-#endif
                 {
                     value = double.NaN;
                 }

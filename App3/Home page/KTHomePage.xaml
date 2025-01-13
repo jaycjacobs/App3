@@ -52,8 +52,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="80" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="80" x:Name="_adMargin" />
-                <ColumnDefinition Width="300" x:Name="_adColumn" />
+                <ColumnDefinition Width="0" x:Name="_adMargin" />
+                <ColumnDefinition Width="0" x:Name="_adColumn" />
                 <ColumnDefinition Width="80" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>

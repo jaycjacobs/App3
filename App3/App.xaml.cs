@@ -90,7 +90,7 @@ namespace App3
 
         internal static void NavigateToDrawingPage(string token)
         {
-            Window.Frame.Navigate(typeof(KTDrawingPage));
+            Window.Frame.Navigate(typeof(KTDrawingPage), token);
         }
 
         public static MainWindow Window { get; private set; }

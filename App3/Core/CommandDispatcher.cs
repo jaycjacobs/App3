@@ -18,7 +18,6 @@ namespace Cirros.Core
             }
             set
             {
-#if SIBERIA
                 try
                 {
                     if (Globals.CommandProcessor != null)
@@ -157,7 +156,6 @@ namespace Cirros.Core
                         case CommandType.dimension:
                             Globals.CommandProcessor = new DimensionCommandProcessor();
                             break;
-
                         case CommandType.image:
                             Globals.CommandProcessor = new ImageCommandProcessor();
                             break;
@@ -229,7 +227,6 @@ namespace Cirros.Core
                         { "command", Globals.CommandProcessor == null ? "none" : Globals.CommandProcessor.Type.ToString() }
                     }, 200);
                 }
-#endif
             }
         }
 
@@ -254,7 +251,6 @@ namespace Cirros.Core
             get
             {
                 StringBuilder sb = new System.Text.StringBuilder();
-#if SIBERIA
                 foreach (CAction action in _undoActions.ToArray())
                 {
                     if (action.ID == ActionID.DeletePrimitive)
@@ -267,7 +263,6 @@ namespace Cirros.Core
                         sb.AppendLine(action.ID.ToString());
                     }
                 }
-#endif
                 return sb.ToString();
             }
         }
@@ -277,7 +272,6 @@ namespace Cirros.Core
             get
             {
                 StringBuilder sb = new System.Text.StringBuilder();
-#if SIBERIA
                 foreach (CAction action in _redoActions.ToArray())
                 {
                     if (action.ID == ActionID.DeletePrimitive)
@@ -290,7 +284,6 @@ namespace Cirros.Core
                         sb.AppendLine(action.ID.ToString());
                     }
                 }
-#endif
                 return sb.ToString();
             }
         }
